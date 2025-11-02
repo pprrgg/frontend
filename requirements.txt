@@ -2,4 +2,3 @@
 PyPDF2
 openpyxl
 pdf2image
-openai-whisper
