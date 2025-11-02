@@ -1,0 +1,191 @@
+[
+    {
+        "sector": "A11_Hasta_50_kW",
+        "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
+        "cod": "A112_Facturación_por_potencia",
+        "descripcion": [
+            "La facturación por potencia contratada se calcula según lo establecido en el artículo 9 de la Circular 3/2020,             de 15 de enero, por la que se establece la metodología para el cálculo de los peajes de transporte y distribución de energía eléctrica."
+        ]
+    },
+    {
+        "sector": "A11_Hasta_50_kW",
+        "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
+        "cod": "A111_Optimización_de_la_potencia_contratada",
+        "descripcion": [
+            "La facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             Se calcula según lo establecido en el artículo 9 de la Circular 3/2020,de 15 de enero.            El objetivo es encontrar la potencia óptima a contratar en cada periodo horario para minimizar el coste total anual.",
+            "diagrama(conexiones=[('FACTURA \\n ELÉCTRICA', 'Término \\n de Potencia.', '', ''), ('FACTURA \\n ELÉCTRICA', 'Término \\n de Energía', '', ''), ('FACTURA \\n ELÉCTRICA', 'Exceso  \\n Recativa', '', ''), ('FACTURA \\n ELÉCTRICA', 'Impuesto\\n Electrico', '', ''), ('FACTURA \\n ELÉCTRICA', 'Alquiler\\n Contador', '', ''), ('Término \\n de Energía', 'ID', '', ''), ('Término \\n de Energía', 'IDs', '', ''), ('Término \\n de Potencia.', 'potencia contratada.', '', ''), ('Término \\n de Potencia.', 'Exceso \\n potencia demandada.', '', '')], orientacion='LR', ancho_max=420, alto_max=300, fontsize=14, label_fontsize=None, titulo='FACTURA ELÉCTRICA')"
+        ]
+    },
+    {
+        "sector": "A12_Mayor_de_50_kW",
+        "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
+        "cod": "A114_Optimización_de_la_potencia_contratada_hasta_50_kW_con_lecturas",
+        "descripcion": [
+            "La facturación por potencia contratada se calcula según lo establecido en el artículo 9 de la Circular 3/2020,             de 15 de enero, por la que se establece la metodología para el cálculo de los peajes de transporte y distribución de energía eléctrica."
+        ]
+    },
+    {
+        "sector": "A12_Mayor_de_50_kW",
+        "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
+        "cod": "Facturación_por_potencia_mayor_de_50_kW_con_sobrepasamientos",
+        "descripcion": [
+            "La facturación por potencia contratada se calcula según lo establecido en el artículo 9 de la Circular 3/2020,             de 15 de enero, por la que se establece la metodología para el cálculo de los peajes de transporte y distribución de energía eléctrica."
+        ]
+    },
+    {
+        "sector": "A12_Mayor_de_50_kW",
+        "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
+        "cod": "A113_Facturación_por_potencia_hasta_50_kW_con_lecturas",
+        "descripcion": [
+            "La facturación por potencia contratada se calcula según lo establecido en el artículo 9 de la Circular 3/2020,             de 15 de enero, por la que se establece la metodología para el cálculo de los peajes de transporte y distribución de energía eléctrica."
+        ]
+    },
+    {
+        "sector": "A52_Residencial",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "RES020_Rehabilitación_de_la_parte_opaca_de_la_envolvente_térmica_de_edificios_de_viviendas_con_superficie_afectada_inferior_o_igual_al_25_por_ciento_de_la_envolvente_térmica_final",
+        "descripcion": [
+            "Rehabilitación de la parte opaca de la envolvente térmica, cuando la superficie afectada represente hasta un 25 % de la superficie total de la envolvente térmica final, de un edificio existente de uso residencial privado[1], ubicado en la Península, las Illes Balears o en las ciudades de Ceuta o Melilla."
+        ]
+    },
+    {
+        "sector": "A52_Residencial",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "RES092_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_C1_C2_C3_o_C4",
+        "descripcion": [
+            "Hibridación en modo paralelo de caldera/s de combustión existente/s en un edificio de uso residencial privado[1], ubicado en zona climática A3 o A4, con bomba de calor de accionamiento eléctrico tipo aire-aire, aire-agua o agua-agua o combinadas, para la calefacción y/o, agua caliente sanitaria (ACS).",
+            "En esta ficha no es aplicable las bombas de calor cuyo compresor esté accionado térmicamente."
+        ]
+    },
+    {
+        "sector": "A52_Residencial",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "RES090_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_A3_o_A4",
+        "descripcion": [
+            "Hibridación en modo paralelo de caldera/s de combustión existente/s en un edificio de uso residencial privado[1], ubicado en zona climática A3 o A4, con bomba de calor de accionamiento eléctrico tipo aire-aire, aire-agua o agua-agua o combinadas, para la calefacción y/o, agua caliente sanitaria (ACS).",
+            "En esta ficha no es aplicable las bombas de calor cuyo compresor esté accionado térmicamente."
+        ]
+    },
+    {
+        "sector": "A52_Residencial",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "RES010_Rehabilitación_de_la_envolvente_térmica_de_edificios_de_viviendas_con_superficie_afectada_mayor_del_25_por_ciento",
+        "descripcion": [
+            "Rehabilitación de más del 25 % de la superficie total de la envolvente térmica final de un edificio existente de uso residencial privado[1], ubicado en la Península, las Illes Balears o en las ciudades de Ceuta y Melilla."
+        ]
+    },
+    {
+        "sector": "A52_Residencial",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "RES093_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_D1_D2_o_D3",
+        "descripcion": [
+            "Hibridación en modo paralelo de caldera/s de combustión existente/s en un edificio de uso residencial privado[1], ubicado en zona climática A3 o A4, con bomba de calor de accionamiento eléctrico tipo aire-aire, aire-agua o agua-agua o combinadas, para la calefacción y/o, agua caliente sanitaria (ACS).",
+            "En esta ficha no es aplicable las bombas de calor cuyo compresor esté accionado térmicamente."
+        ]
+    },
+    {
+        "sector": "A52_Residencial",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "RES060_Sustitución_de_caldera_de_combustión_por_una_bomba_de_calor_de_accionamiento_eléctrico",
+        "descripcion": [
+            "Sustitución[1] de la caldera de combustión en un edificio de uso residencial privado[2] por una bomba de calor de accionamiento eléctrico tipo aire-aire, aire-agua, agua-agua, tierra-agua o tierra-aire para calefacción y/o agua caliente sanitaria (ACS).",
+            "La actuación no afecta a los elementos terminales que configuran la instalación térmica."
+        ]
+    },
+    {
+        "sector": "A52_Residencial",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "RES094_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_E1",
+        "descripcion": [
+            "Hibridación en modo paralelo de caldera/s de combustión existente/s en un edificio de uso residencial privado[1], ubicado en zona climática A3 o A4, con bomba de calor de accionamiento eléctrico tipo aire-aire, aire-agua o agua-agua o combinadas, para la calefacción y/o, agua caliente sanitaria (ACS).",
+            "En esta ficha no es aplicable las bombas de calor cuyo compresor esté accionado térmicamente."
+        ]
+    },
+    {
+        "sector": "A52_Residencial",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "RES091_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_B3_o_B4",
+        "descripcion": [
+            "Hibridación en modo paralelo de caldera/s de combustión existente/s en un edificio de uso residencial privado[1], ubicado en zona climática A3 o A4, con bomba de calor de accionamiento eléctrico tipo aire-aire, aire-agua o agua-agua o combinadas, para la calefacción y/o, agua caliente sanitaria (ACS).",
+            "En esta ficha no es aplicable las bombas de calor cuyo compresor esté accionado térmicamente."
+        ]
+    },
+    {
+        "sector": "A51_Industrial",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "IND260_Sustitución_de_un_Sistema_de_Alimentación_Ininterrumpida_SAI",
+        "descripcion": [
+            "Sustitución de uno o varios Sistema(s) de Alimentación Ininterrumpida (SAI) por uno o varios nuevo(s) más eficiente(s) para uso en actividades industriales."
+        ]
+    },
+    {
+        "sector": "A51_Industrial",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "IND090_Sustitución_o_reemplazo_de_compresor_de_aire_por_uno_más_eficiente",
+        "descripcion": [
+            "Sustitución de un compresor neumático por uno nuevo más eficiente, ambos sin variadores de velocidad, para uso en procesos industriales donde la demanda útil de aire comprimido no varíe."
+        ]
+    },
+    {
+        "sector": "A51_Industrial",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "IND240_Implantación_de_variador_de_velocidad",
+        "descripcion": [
+            "Instalación y puesta en funcionamiento de uno o varios variadores de velocidad en sus correspondientes motores para la regulación de la carga cuando la demanda de energía sea variable en el proceso industrial al que está acoplado.",
+            "Quedan incluidos variadores de velocidad para controlar todo tipo de aplicaciones, ya sean bombas, ventiladores, compresores, motorreductores o cualquier tipo de aplicaciones en las que haya que controlar un motor eléctrico."
+        ]
+    },
+    {
+        "sector": "A51_Industrial",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "IND290_Recuperación_de_calor_en_circuito_frigorifico",
+        "descripcion": [
+            "Instalaciones frigoríficas centralizadas o compactas existentes en las que se implante un sistema de recuperación de calor en la línea de descarga del refrigerante o en el sistema de refrigeración de aceite de los compresores para uso en el propio establecimiento industrial (agua caliente sanitaria, limpieza y/o calefacción, etc.)."
+        ]
+    },
+    {
+        "sector": "A53_Terciario",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "TER280_Sustitución_de_bomba_por_otra_más_eficiente",
+        "descripcion": [
+            "Sustitución de una bomba por otra más eficiente, ambas sin regulación.",
+            "Las bombas deberán dar servicio a una instalación que no haya experimentado cambios sustanciales en su velocidad, presión y caudal de trabajo."
+        ]
+    },
+    {
+        "sector": "A53_Terciario",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "TER260_Sustitución_de_un_Sistema_de_Alimentación_Ininterrumpida_SAI",
+        "descripcion": [
+            "Sustitución de uno o varios Sistema(s) de Alimentación Ininterrumpida (SAI) por uno o varios nuevo(s) más eficiente(s) para uso en actividades terciarias."
+        ]
+    },
+    {
+        "sector": "A53_Terciario",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "TER040_Sustitución_de_generador_de_climatización_por_bomba_de_calor_de_accionamiento_eléctrico",
+        "descripcion": [
+            "Sustitución total del equipo o los equipos de climatización (calefacción y/o refrigeración) y/o agua caliente sanitaria (ACS) y/o calentamiento de piscinas o similares en un edificio del sector terciario (hoteles, restaurantes, hospitales, centros educativos, bibliotecas, centros culturales, oficinas, centros comerciales etc.) por una bomba de calor tipo aire-aire, aire-agua o agua-agua, tierra-agua o tierra-aire accionada eléctricamente, no afectando la actuación a los elementos que configuran la instalación térmica.",
+            "No son aplicables las bombas de calor cuyo compresor esté accionado térmicamente."
+        ]
+    },
+    {
+        "sector": "A54_",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "AGR010_Pantallas_térmicas_en_invernaderos",
+        "descripcion": [
+            "Instalación o sustitución de pantallas térmicas en invernaderos para cultivos agrícolas, plantas ornamentales o cultivos de flor. ",
+            "Se considera pantalla térmica al sistema pasivo de calefacción formado por hilos o filamentos de material ",
+            "poliéster o acrílico transparente o aluminizado, tejido o conformado en láminas continuas que actúan como ",
+            "barrera térmica entre el ambiente interior del invernadero y el exterior regulando el intercambio de calor."
+        ]
+    },
+    {
+        "sector": "A81_Simplificados",
+        "grupo": "A8_Estudios",
+        "cod": "A811_ESTUDIO_SIMPLIFICADO_DE_VIABILIDAD_ECONÓMICA_DE_UNA_INVERSIÓN",
+        "descripcion": [
+            "Este estudio simplificado analiza la viabilidad económica de un proyecto considerando inversión inicial, ingresos y gastos anuales, inflación y tasa de interés."
+        ]
+    }
+]

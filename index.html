@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <script>
+    window.web = "VATIACO";
+    var initials = web.match(/[A-Z]/g)?.join("").slice(0, 2) || "A";
+    generateFavicon(initials);
+    document.title = web; // Asignar dinámicamente el título
+
+    // Función para generar el favicon
+    function generateFavicon(initials) {
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
+
+      // Usar las iniciales de la variable 'web'
+      var text = initials;
+
+      // Configuración del tamaño del canvas y del texto
+      canvas.width = 64;
+      canvas.height = 64;
+      context.font = "55px sans-serif"; // Tamaño del texto
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+      context.fillStyle = "#9c27b0"; // Color del texto
+      context.fillText(text, canvas.width / 2, canvas.height / 2);
+
+      // Crear un enlace <link> para usarlo como favicon
+      var link = document.createElement('link');
+      link.rel = 'icon';
+      link.href = canvas.toDataURL('image/png'); // Convertir el canvas a una imagen PNG
+      document.head.appendChild(link);
+    }
+  </script>
+</body>
+
+</html>
