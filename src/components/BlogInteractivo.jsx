@@ -171,9 +171,14 @@ const NavigationBarDocs = () => {
         />
 
         <Box sx={{ position: 'relative', zIndex: 1 }}>
-          <Container sx={{ py: 8 }}>
-            {/* 🏷 Título */}
-            <Box sx={{ textAlign: 'center', mb: 4 }}>
+          <Container
+            disableGutters
+            sx={{
+              py: { xs: 8, sm: 8 },
+              px: { xs: 0, sm: 2, md: 4 },
+            }}
+          >            {/* 🏷 Título */}
+            <Box sx={{ textAlign: 'center', mb: 1 }}>
 
               {/* 🏷 Título */}
               <Typography
@@ -185,7 +190,7 @@ const NavigationBarDocs = () => {
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
-                  gap: 1
+                  gap: 0
                 }}
               >
                 Blog de Plantilas Técnicas 'Personalizables'
@@ -253,7 +258,7 @@ const NavigationBarDocs = () => {
 
             {/* ✅ Cards agrupadas */}
             {Object.entries(groupedData).map(([grupo, sectores]) => (
-              <Box key={grupo} sx={{ mb: 6 }}>
+              <Box key={grupo} sx={{ mb: 0 }}>
                 <Typography
                   variant="h6"
                   align="center"
@@ -262,13 +267,13 @@ const NavigationBarDocs = () => {
                     background: "linear-gradient(90deg, #00f0ff, #0077ff)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
-                    mb: 3,
+                    mb: 0,
                     textTransform: "uppercase",
                     textShadow: "2px 2px 4px rgba(0,0,0,0.2)",
                   }}
                 >
                   {/* {grupo.replaceAll('_', ' ')} */}
-                    {grupo.includes("_") ? grupo.split("_").slice(1).join("_").replaceAll("_", " ") : grupo}
+                  {grupo.includes("_") ? grupo.split("_").slice(1).join("_").replaceAll("_", " ") : grupo}
 
                 </Typography>
 
@@ -287,7 +292,7 @@ const NavigationBarDocs = () => {
                         textShadow: "1px 1px 2px rgba(0,0,0,0.2)",
                       }}
                     >
-                                          {sector.includes("_") ? sector.split("_").slice(1).join("_").replaceAll("_", " ") : sector}
+                      {sector.includes("_") ? sector.split("_").slice(1).join("_").replaceAll("_", " ") : sector}
 
                     </Typography>
 
@@ -299,7 +304,7 @@ const NavigationBarDocs = () => {
                           display: "flex",
                           overflowX: "auto",
                           scrollBehavior: "smooth",
-                          gap: 3,
+                          gap: 1,
                           pb: 2,
                           px: 1,
                           flexWrap: "nowrap",
@@ -316,8 +321,8 @@ const NavigationBarDocs = () => {
                           <Box
                             key={ficha.cod}
                             sx={{
-                              flex: { xs: "0 0 100%", sm: "0 0 48%" }, // igual que el grid original
-                              minWidth: { xs: "100%", sm: "48%" },
+                              flex: { xs: "0 0 103%", sm: "0 0 48%" }, // igual que el grid original
+                              minWidth: { xs: "103%", sm: "48%" },
                               scrollSnapAlign: "start",
                             }}
                           >
