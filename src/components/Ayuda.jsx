@@ -240,8 +240,8 @@ const HomePage = () => {
                         sx={{
                           fontWeight: "bold",
                           fontSize: "0.95rem",
-    pl: 3, // 👈 sin sangría
-                    color: "#1976d2",
+                          pl: 3, // 👈 sin sangría
+                          color: "#1976d2",
                           width: "100%",
                         }}
                       >
