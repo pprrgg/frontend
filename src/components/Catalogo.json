@@ -12,8 +12,10 @@
         "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
         "cod": "A111_Optimización_de_la_potencia_contratada",
         "descripcion": [
-            "La facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             Se calcula según lo establecido en el artículo 9 de la Circular 3/2020,de 15 de enero.            El objetivo es encontrar la potencia óptima a contratar en cada periodo horario para minimizar el coste total anual.",
-            "diagrama(conexiones=[('FACTURA \\n ELÉCTRICA', 'Término \\n de Potencia.', '', ''), ('FACTURA \\n ELÉCTRICA', 'Término \\n de Energía', '', ''), ('FACTURA \\n ELÉCTRICA', 'Exceso  \\n Recativa', '', ''), ('FACTURA \\n ELÉCTRICA', 'Impuesto\\n Electrico', '', ''), ('FACTURA \\n ELÉCTRICA', 'Alquiler\\n Contador', '', ''), ('Término \\n de Energía', 'ID', '', ''), ('Término \\n de Energía', 'IDs', '', ''), ('Término \\n de Potencia.', 'potencia contratada.', '', ''), ('Término \\n de Potencia.', 'Exceso \\n potencia demandada.', '', '')], orientacion='LR', ancho_max=420, alto_max=300, fontsize=14, label_fontsize=None, titulo='FACTURA ELÉCTRICA')"
+            "seccion('OBJETO Y ALCANCE')",
+            "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             Se calcula según lo establecido en el artículo 9 de la Circular 3/2020,de 15 de enero.            El objetivo es encontrar la potencia óptima a contratar en cada periodo horario para minimizar el coste total anual.",
+            "diagrama(conexiones=[('FACTURA \\n ELÉCTRICA', 'Facturación por \\n potencia demandada.', '', ''), ('FACTURA \\n ELÉCTRICA', 'Facturación por \\n potencia contratada.', '', ''), ('FACTURA \\n ELÉCTRICA', 'Facturación por \\n energía', '', ''), ('FACTURA \\n ELÉCTRICA', 'Facturación por \\n energía reactiva', '', ''), ('FACTURA \\n ELÉCTRICA', 'Impuesto\\n eléctrico', '', ''), ('FACTURA \\n ELÉCTRICA', 'Alquiler\\n Contador', '', ''), ('FACTURA \\n ELÉCTRICA', 'Servicios\\n varios', '', ''), ('FACTURA \\n ELÉCTRICA', 'IVA', '', '')], orientacion='LR', alto_max=250, titulo='')",
+            "seccion('FACTURACIÓN POR POTENCIA')"
         ]
     },
     {
