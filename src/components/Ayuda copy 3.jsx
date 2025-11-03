@@ -211,129 +211,91 @@ const HomePage = () => {
 
               <AccordionDetails sx={{ px: 0 }}>
                 {Object.entries(subsecciones).map(([subseccion, documentos]) => (
-                  <Accordion
-                    key={subseccion}
-                    expanded={expandedSubseccion === subseccion}
-                    onChange={handleSubseccionChange(subseccion)}
-                    disableGutters
-                    elevation={0}
-                    sx={{
-                      background: "transparent",
-                      border: "none",
-                      boxShadow: "none",
-                      mb: 0.5,
-                      "&:before": { display: "none" },
-                    }}
-                  >
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon sx={{ color: "#000", fontSize: "1rem" }} />}
-                      sx={{
-                        minHeight: 28,
-                        py: 1,
-                        "& .MuiAccordionSummary-content": {
-                          margin: 0,
-                          "&.Mui-expanded": { margin: 0 },
-                        },
-                      }}
-                    >
-                      <Typography
+                  <AccordionDetails sx={{ px: 0 }} key={subseccion}>
+                    {documentos.map((doc) => (
+                      <Accordion
+                        key={doc.cod}
+                        expanded={expandedDocumento === doc.cod}
+                        onChange={handleDocumentoChange(doc.cod)}
+                        disableGutters
+                        elevation={0}
                         sx={{
-                          fontWeight: "bold",
-                          fontSize: "0.95rem",
-    pl: 3, // 👈 sin sangría
-                    color: "#1976d2",
-                          width: "100%",
+                          background: "transparent",
+                          border: "none",
+                          boxShadow: "none",
+                          mb: 0.5,
+                          "&:before": { display: "none" },
                         }}
                       >
-                        {subseccion.includes("_")
-                          ? subseccion.split("_").slice(1).join("_").replaceAll("_", " ")
-                          : subseccion}
-                      </Typography>
-                    </AccordionSummary>
-
-                    <AccordionDetails sx={{ px: 1 }}>
-                      {documentos.map((doc) => (
-                        <Accordion
-                          key={doc.cod}
-                          expanded={expandedDocumento === doc.cod}
-                          onChange={handleDocumentoChange(doc.cod)}
-                          disableGutters
-                          elevation={0}
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon sx={{ color: "#000", fontSize: "1rem" }} />}
                           sx={{
-                            background: "transparent",
-                            border: "none",
-                            boxShadow: "none",
-                            mb: 0.5,
-                            "&:before": { display: "none" },
+                            minHeight: 28,
+                            py: 1,
+                            "& .MuiAccordionSummary-content": {
+                              margin: 0,
+                              "&.Mui-expanded": { margin: 0 },
+                            },
                           }}
                         >
-                          <AccordionSummary
-                            expandIcon={<ExpandMoreIcon sx={{ color: "#000", fontSize: "1rem" }} />}
+                          <Typography
                             sx={{
-                              minHeight: 28,
-                              py: 1,
-                              "& .MuiAccordionSummary-content": {
-                                margin: 0,
-                                "&.Mui-expanded": { margin: 0 },
-                              },
+                              fontWeight: "bold",
+                              fontSize: "0.9rem",
+                              width: "100%",
                             }}
                           >
-                            <Typography
+                            {doc.cod.includes("_")
+                              ? doc.cod
+                                .split("_")
+                                .slice(1)
+                                .join("_")
+                                .replaceAll("_", " ")
+                              : doc.cod}
+                          </Typography>
+                        </AccordionSummary>
+
+                        <AccordionDetails sx={{ px: 1, py: 0.5 }}>
+                          <Typography
+                            sx={{
+                              width: "100%",
+                              whiteSpace: "pre-wrap",
+                              mb: 0.5,
+                              fontSize: "0.85rem",
+                              color: "#444",
+                            }}
+                          >
+                            {Array.isArray(doc.descripcion)
+                              ? doc.descripcion.join("\n")
+                              : "(Sin descripción disponible)"}
+                          </Typography>
+
+                          {/* Botón de video */}
+                          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                            <Button
+                              variant="text"
+                              size="small"
+                              color="primary"
+                              startIcon={<PlayCircleFilledIcon />}
+                              onClick={() => handleOpenVideo(doc.video)}
                               sx={{
-                                fontWeight: "bold",
-                                fontSize: "0.9rem",
-                                width: "100%",
+                                textTransform: "none",
+                                fontWeight: 500,
+                                borderRadius: 2,
+                                "&:hover": {
+                                  backgroundColor: "rgba(25, 118, 210, 0.08)",
+                                },
                               }}
                             >
-                              {doc.cod.includes("_")
-                                ? doc.cod.split("_").slice(1).join("_").replaceAll("_", " ")
-                                : doc.cod}
-                            </Typography>
-                          </AccordionSummary>
-
-                          <AccordionDetails sx={{ px: 1, py: 0.5 }}>
-                            <Typography
-                              sx={{
-                                width: "100%",
-                                whiteSpace: "pre-wrap",
-                                mb: 0.5,
-                                fontSize: "0.85rem",
-                                color: "#444",
-                              }}
-                            >
-                              {Array.isArray(doc.descripcion)
-                                ? doc.descripcion.join("\n")
-                                : "(Sin descripción disponible)"}
-                            </Typography>
-
-                            {/* Botón de video */}
-                            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-                              <Button
-                                variant="text"
-                                size="small"
-                                color="primary"
-                                startIcon={<PlayCircleFilledIcon />}
-                                onClick={() => handleOpenVideo(doc.video)}
-                                sx={{
-                                  textTransform: "none",
-                                  fontWeight: 500,
-                                  borderRadius: 2,
-                                  "&:hover": {
-                                    backgroundColor: "rgba(25, 118, 210, 0.08)",
-                                  },
-                                }}
-                              >
-                                Ver video
-                              </Button>
-                            </Box>
-                          </AccordionDetails>
-                        </Accordion>
-                      ))}
-                    </AccordionDetails>
-                  </Accordion>
+                              Ver video
+                            </Button>
+                          </Box>
+                        </AccordionDetails>
+                      </Accordion>
+                    ))}
+                  </AccordionDetails>
                 ))}
               </AccordionDetails>
-
             </Accordion>
           ))
         ) : (
