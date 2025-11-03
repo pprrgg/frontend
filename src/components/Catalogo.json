@@ -4,10 +4,7 @@
         "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
         "cod": "A112_Facturación_por_potencia",
         "descripcion": [
-            "seccion('OBJETO Y ALCANCE')",
-            "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             El objetivo de este estudio es encontrar la potencia óptima a contratar en cada periodo horario para minimizar su coste anual.",
-            "diagrama(conexiones=[('FACTURA \\n ELÉCTRICA', 'Facturación por \\n potencia demandada.', '', ''), ('FACTURA \\n ELÉCTRICA', 'Facturación por \\n potencia contratada.', '', ''), ('FACTURA \\n ELÉCTRICA', 'Facturación por \\n energía', '', ''), ('FACTURA \\n ELÉCTRICA', 'Facturación por \\n energía reactiva', '', ''), ('FACTURA \\n ELÉCTRICA', 'Impuesto\\n eléctrico', '', ''), ('FACTURA \\n ELÉCTRICA', 'Alquiler\\n Contador', '', ''), ('FACTURA \\n ELÉCTRICA', 'Servicios\\n varios', '', ''), ('FACTURA \\n ELÉCTRICA', 'IVA', '', '')], orientacion='LR', alto_max=250, titulo='')",
-            "seccion('FACTURACIÓN POR POTENCIA')"
+            "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             El objetivo de este estudio es calcular el coste anual para una determinada potencia contratada ."
         ]
     },
     {
@@ -15,10 +12,7 @@
         "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
         "cod": "A111_Optimización_de_la_potencia_contratada",
         "descripcion": [
-            "seccion('OBJETO Y ALCANCE')",
-            "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             El objetivo de este estudio es encontrar la potencia óptima a contratar en cada periodo horario para minimizar su coste anual.",
-            "diagrama(conexiones=[('FACTURA \\n ELÉCTRICA', 'Facturación por \\n potencia demandada.', '', ''), ('FACTURA \\n ELÉCTRICA', 'Facturación por \\n potencia contratada.', '', ''), ('FACTURA \\n ELÉCTRICA', 'Facturación por \\n energía', '', ''), ('FACTURA \\n ELÉCTRICA', 'Facturación por \\n energía reactiva', '', ''), ('FACTURA \\n ELÉCTRICA', 'Impuesto\\n eléctrico', '', ''), ('FACTURA \\n ELÉCTRICA', 'Alquiler\\n Contador', '', ''), ('FACTURA \\n ELÉCTRICA', 'Servicios\\n varios', '', ''), ('FACTURA \\n ELÉCTRICA', 'IVA', '', '')], orientacion='LR', alto_max=250, titulo='')",
-            "seccion('FACTURACIÓN POR POTENCIA')"
+            "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             El objetivo de este estudio es encontrar la potencia óptima a contratar en cada periodo horario para minimizar su coste anual."
         ]
     },
     {

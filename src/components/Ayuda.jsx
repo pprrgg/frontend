@@ -314,40 +314,54 @@ const HomePage = () => {
               height: "100vh",
               borderRadius: 0,
               overflow: "hidden",
-              backgroundColor: "#2e2e2e", // 👈 gris oscuro (puedes usar #ccc o #f0f0f0 si lo prefieres)
+              backgroundColor: "#2e2e2e", // Fondo oscuro
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
               margin: 0,
+              p: 0,
             },
           }}
         >
-          <video
-            src={currentVideo || ""}
-            controls
-            autoPlay
-            loop
-            muted
-            playsInline
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
+          <Box
+            sx={{
+              width: "100vw",
+              height: "100vh",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              overflow: "hidden",
             }}
-            onClick={(e) => e.stopPropagation()}
-            onError={(e) => {
-              const vid = e.target;
-              if (!vid.dataset.fallback) {
-                console.warn(
-                  `No se encontró el video: ${currentVideo}. Se usará el video por defecto.`
-                );
-                vid.dataset.fallback = "true";
-                vid.src = "/video/1.mp4";
-                vid.load();
-                vid.play().catch(() => { });
-              }
-            }}
-          />
+          >
+            <video
+              src={currentVideo || ""}
+              controls
+              autoPlay
+              loop
+              muted
+              playsInline
+              style={{
+                height: "100vh", // ocupa toda la altura
+                width: "auto", // mantiene proporción
+                objectFit: "contain", // sin recortes ni deformación
+                maxWidth: "100vw", // no exceder ancho
+                backgroundColor: "#2e2e2e",
+              }}
+              onClick={(e) => e.stopPropagation()}
+              onError={(e) => {
+                const vid = e.target;
+                if (!vid.dataset.fallback) {
+                  console.warn(
+                    `No se encontró el video: ${currentVideo}. Se usará el video por defecto.`
+                  );
+                  vid.dataset.fallback = "true";
+                  vid.src = "/video/1.mp4";
+                  vid.load();
+                  vid.play().catch(() => { });
+                }
+              }}
+            />
+          </Box>
 
           {/* Botón de cerrar */}
           <Box
@@ -386,6 +400,7 @@ const HomePage = () => {
             </svg>
           </Box>
         </Dialog>
+
 
       </Container>
     </Box>
