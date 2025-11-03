@@ -316,8 +316,8 @@ const NavigationBarDocs = () => {
                           <Box
                             key={ficha.cod}
                             sx={{
-                              flex: { xs: "0 0 90%", sm: "0 0 48%" }, // igual que el grid original
-                              minWidth: { xs: "90%", sm: "48%" },
+                              flex: { xs: "0 0 100%", sm: "0 0 48%" }, // igual que el grid original
+                              minWidth: { xs: "100%", sm: "48%" },
                               scrollSnapAlign: "start",
                             }}
                           >
