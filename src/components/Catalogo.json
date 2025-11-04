@@ -1,45 +1,5 @@
 [
     {
-        "sector": "A11_Hasta_50_kW",
-        "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
-        "cod": "A112_Facturación_por_potencia",
-        "descripcion": [
-            "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             El objetivo de este estudio es calcular el coste anual para una determinada potencia contratada ."
-        ]
-    },
-    {
-        "sector": "A11_Hasta_50_kW",
-        "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
-        "cod": "A111_Optimización_de_la_potencia_contratada",
-        "descripcion": [
-            "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             El objetivo de este estudio es encontrar la potencia óptima a contratar en cada periodo horario para minimizar su coste anual."
-        ]
-    },
-    {
-        "sector": "A12_Mayor_de_50_kW",
-        "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
-        "cod": "A114_Optimización_de_la_potencia_contratada_hasta_50_kW_con_lecturas",
-        "descripcion": [
-            "La facturación por potencia contratada se calcula según lo establecido en el artículo 9 de la Circular 3/2020,             de 15 de enero, por la que se establece la metodología para el cálculo de los peajes de transporte y distribución de energía eléctrica."
-        ]
-    },
-    {
-        "sector": "A12_Mayor_de_50_kW",
-        "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
-        "cod": "Facturación_por_potencia_mayor_de_50_kW_con_sobrepasamientos",
-        "descripcion": [
-            "La facturación por potencia contratada se calcula según lo establecido en el artículo 9 de la Circular 3/2020,             de 15 de enero, por la que se establece la metodología para el cálculo de los peajes de transporte y distribución de energía eléctrica."
-        ]
-    },
-    {
-        "sector": "A12_Mayor_de_50_kW",
-        "grupo": "A1_Gestión_y_negociación_de_contratos_de_energía",
-        "cod": "A113_Facturación_por_potencia_hasta_50_kW_con_lecturas",
-        "descripcion": [
-            "La facturación por potencia contratada se calcula según lo establecido en el artículo 9 de la Circular 3/2020,             de 15 de enero, por la que se establece la metodología para el cálculo de los peajes de transporte y distribución de energía eléctrica."
-        ]
-    },
-    {
         "sector": "A52_Residencial",
         "grupo": "A5_Certificados_de_ahorro_energético",
         "cod": "RES020_Rehabilitación_de_la_parte_opaca_de_la_envolvente_térmica_de_edificios_de_viviendas_con_superficie_afectada_inferior_o_igual_al_25_por_ciento_de_la_envolvente_térmica_final",
@@ -185,6 +145,30 @@
         "cod": "A811_ESTUDIO_SIMPLIFICADO_DE_VIABILIDAD_ECONÓMICA_DE_UNA_INVERSIÓN",
         "descripcion": [
             "Este estudio simplificado analiza la viabilidad económica de un proyecto considerando inversión inicial, ingresos y gastos anuales, inflación y tasa de interés."
+        ]
+    },
+    {
+        "sector": "A11_Hasta_50_kW",
+        "grupo": "A1_Gestión_de_contrato_de_energía",
+        "cod": "A112_Facturación_por_potencia",
+        "descripcion": [
+            "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             El objetivo de este estudio es calcular el coste anual para una determinada potencia contratada ."
+        ]
+    },
+    {
+        "sector": "A11_Hasta_50_kW",
+        "grupo": "A1_Gestión_de_contrato_de_energía",
+        "cod": "A111_Optimización_de_la_potencia_contratada",
+        "descripcion": [
+            "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             El objetivo de este estudio es encontrar la potencia óptima a contratar en cada periodo horario para minimizar su coste anual."
+        ]
+    },
+    {
+        "sector": "A12_Mayor_de_50_kW",
+        "grupo": "A1_Gestión_de_contrato_de_energía",
+        "cod": "A122_Facturación_por_potencia",
+        "descripcion": [
+            "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             El objetivo de este estudio es calcular el coste anual para una determinada potencia contratada ."
         ]
     }
 ]
