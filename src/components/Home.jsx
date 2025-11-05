@@ -1370,7 +1370,7 @@ const HomePage = ({
                     textTransform: "uppercase",
                   }}
                 >
-                  Documentación Técnica y Plantillas Personalizables
+                  Documentación Técnica Personalizable
                 </Typography>
 
                 <Typography
@@ -1383,11 +1383,10 @@ const HomePage = ({
                     mb: 3,
                   }}
                 >
-                  <strong>Vatiaco</strong> es un proyecto colaborativo orientado a la creación,
-                  mejora y distribución de fichas técnicas y plantillas personalizables en
-                  formato PDF. Profesionales de distintas áreas comparten y optimizan recursos
-                  técnicos para fomentar el acceso abierto a la documentación
-                  de calidad en ingeniería e industria.
+                  <strong>Vatiaco</strong> es un proyecto colaborativo, orientado a la creación,
+                  mejora y distribución de documentos técnicos personalizables en
+                  formato PDF para fomentar el acceso abierto y gratuito a documentación
+                  de calidad en ingeniería.
                 </Typography>
 
                 {/* ✅ Palabras clave en formato "tags" SEO */}
@@ -1463,7 +1462,7 @@ const HomePage = ({
             >
               <Container maxWidth="lg">
                 <Typography
-                  variant="h4"
+                  variant="h6"
                   align="center"
                   sx={{
                     fontWeight: 800,
@@ -1472,7 +1471,7 @@ const HomePage = ({
                     textTransform: "uppercase",
                   }}
                 >
-                  Participa en el desarrollo de fichas
+                  Participa en el desarrollo de documentos
                 </Typography>
 
                 <Grid container spacing={4} alignItems="flex-start">
@@ -1517,21 +1516,10 @@ const HomePage = ({
                           <Typography variant="subtitle1" fontWeight={600}>
                             Horario
                           </Typography>
-                          <Typography variant="body2">Lun - Vie: 9:00 - 18:00</Typography>
+                          <Typography variant="body2">Lun - Vie: 8:00 - 14:00</Typography>
                         </Box>
                       </Box>
 
-                      {/* <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                      <LocationOnIcon sx={{ color: "#031dadff" }} />
-                      <Box>
-                        <Typography variant="subtitle1" fontWeight={600}>
-                          Ámbito de colaboración
-                        </Typography>
-                        <Typography variant="body2">
-                          España y Latinoamérica (colaboraciones en línea)
-                        </Typography>
-                      </Box>
-                    </Box> */}
                     </Box>
                   </Grid>
 
