@@ -103,6 +103,17 @@
         ]
     },
     {
+        "sector": "A54_Agrario",
+        "grupo": "A5_Certificados_de_ahorro_energético",
+        "cod": "AGR010_Pantallas_térmicas_en_invernaderos",
+        "descripcion": [
+            "Instalación o sustitución de pantallas térmicas en invernaderos para cultivos agrícolas, plantas ornamentales o cultivos de flor. ",
+            "Se considera pantalla térmica al sistema pasivo de calefacción formado por hilos o filamentos de material ",
+            "poliéster o acrílico transparente o aluminizado, tejido o conformado en láminas continuas que actúan como ",
+            "barrera térmica entre el ambiente interior del invernadero y el exterior regulando el intercambio de calor."
+        ]
+    },
+    {
         "sector": "A53_Terciario",
         "grupo": "A5_Certificados_de_ahorro_energético",
         "cod": "TER280_Sustitución_de_bomba_por_otra_más_eficiente",
@@ -126,17 +137,6 @@
         "descripcion": [
             "Sustitución total del equipo o los equipos de climatización (calefacción y/o refrigeración) y/o agua caliente sanitaria (ACS) y/o calentamiento de piscinas o similares en un edificio del sector terciario (hoteles, restaurantes, hospitales, centros educativos, bibliotecas, centros culturales, oficinas, centros comerciales etc.) por una bomba de calor tipo aire-aire, aire-agua o agua-agua, tierra-agua o tierra-aire accionada eléctricamente, no afectando la actuación a los elementos que configuran la instalación térmica.",
             "No son aplicables las bombas de calor cuyo compresor esté accionado térmicamente."
-        ]
-    },
-    {
-        "sector": "A54_",
-        "grupo": "A5_Certificados_de_ahorro_energético",
-        "cod": "AGR010_Pantallas_térmicas_en_invernaderos",
-        "descripcion": [
-            "Instalación o sustitución de pantallas térmicas en invernaderos para cultivos agrícolas, plantas ornamentales o cultivos de flor. ",
-            "Se considera pantalla térmica al sistema pasivo de calefacción formado por hilos o filamentos de material ",
-            "poliéster o acrílico transparente o aluminizado, tejido o conformado en láminas continuas que actúan como ",
-            "barrera térmica entre el ambiente interior del invernadero y el exterior regulando el intercambio de calor."
         ]
     },
     {

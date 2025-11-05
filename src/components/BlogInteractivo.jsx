@@ -177,7 +177,8 @@ const NavigationBarDocs = () => {
               py: { xs: 8, sm: 8 },
               px: { xs: 0, sm: 2, md: 4 },
             }}
-          >            {/* 🏷 Título */}
+          >
+            {/* 🏷 Título */}
             <Box sx={{ textAlign: 'center', mb: 1 }}>
 
               {/* 🏷 Título */}
@@ -223,16 +224,16 @@ const NavigationBarDocs = () => {
                     component="span"
                     onClick={handleOpenAyuda}
                     sx={{
-                      color: "#1976d2",
+                      color: "#031dadff",
                       fontWeight: 700,
-                      borderBottom: "2px solid #1976d2",
+                      borderBottom: "2px solid #031dadff",
                       paddingBottom: "2px",
                       cursor: "pointer",
                       display: "inline-flex",
                       alignItems: "center",
                       "&:hover": {
-                        color: "#00b0ff",
-                        borderColor: "#00b0ff",
+                        color: "#031dadff",
+                        borderColor: "#031dadff",
                       },
                     }}
                   >
@@ -265,7 +266,7 @@ const NavigationBarDocs = () => {
                   align="center"
                   sx={{
                     fontWeight: "bold",
-                    background: "linear-gradient(90deg, #0077ff, #0077ff)",
+                    background: "linear-gradient(90deg, #031dadff, #031dadff)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     mb: 0,
@@ -285,7 +286,7 @@ const NavigationBarDocs = () => {
                       align="center"
                       sx={{
                         fontWeight: "bold",
-                        background: "linear-gradient(90deg, #0077ff, #0077ff)",
+                        background: "linear-gradient(90deg, #031dadff, #031dadff)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         mb: 2,
@@ -312,7 +313,7 @@ const NavigationBarDocs = () => {
                           scrollSnapType: "x mandatory",
                           "&::-webkit-scrollbar": { height: 6 },
                           "&::-webkit-scrollbar-thumb": {
-                            backgroundColor: "#00b0ff",
+                            backgroundColor: "#031dadff",
                             borderRadius: 4,
                           },
                           "&::-webkit-scrollbar-track": { backgroundColor: "#e0f7fa" },
@@ -334,14 +335,14 @@ const NavigationBarDocs = () => {
                                 overflow: "hidden",
                                 cursor: "pointer",
                                 backgroundColor: "#fff",
-                                border: "2px solid #00b0ff",
+                                border: "2px solid #031dadff",
                                 boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
                                 transition: "all 0.3s ease",
                                 position: "relative",
                                 "&:hover": {
                                   transform: "translateY(-6px)",
                                   boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
-                                  borderColor: "#0091ea",
+                                  borderColor: "#031dadff",
                                 },
                               }}
                             >
@@ -454,12 +455,11 @@ const NavigationBarDocs = () => {
                 ))}
               </Box>
             ))}
+
           </Container>
 
-          {/* 🧭 Drawer lateral (filtros) */}
-
-
           <Home
+            showSEO={true}
             showLanding={false}
             showCarrusel={false}
             showInicio={false}
@@ -471,6 +471,14 @@ const NavigationBarDocs = () => {
             showTermsOfUse={false}
             showAboutUs={false}
           />
+
+
+
+
+          {/* 🧭 Drawer lateral (filtros) */}
+
+
+
         </Box>
       </Box>
     </>
