@@ -193,7 +193,8 @@ const NavigationBarDocs = () => {
                   gap: 0
                 }}
               >
-                Blog de Plantilas Técnicas 'Personalizables'
+                {/* Blog de Plantilas Técnicas 'Personalizables' */}
+                Blog interactivo para la generación automatizada de documentos técnicos en formato PDF
 
 
               </Typography>
@@ -264,7 +265,7 @@ const NavigationBarDocs = () => {
                   align="center"
                   sx={{
                     fontWeight: "bold",
-                    background: "linear-gradient(90deg, #00f0ff, #0077ff)",
+                    background: "linear-gradient(90deg, #0077ff, #0077ff)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     mb: 0,
@@ -284,7 +285,7 @@ const NavigationBarDocs = () => {
                       align="center"
                       sx={{
                         fontWeight: "bold",
-                        background: "linear-gradient(90deg, #00f0ff, #0077ff)",
+                        background: "linear-gradient(90deg, #0077ff, #0077ff)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         mb: 2,
@@ -292,7 +293,7 @@ const NavigationBarDocs = () => {
                         textShadow: "1px 1px 2px rgba(0,0,0,0.2)",
                       }}
                     >
-                      {sector.includes("_") ? sector.split("_").slice(1).join("_").replaceAll("_", " ") : sector}
+                      {grupo.includes("_") ? grupo.split("_").slice(1).join("_").replaceAll("_", " ") : grupo}. {sector.includes("_") ? sector.split("_").slice(1).join("_").replaceAll("_", " ") : sector}
 
                     </Typography>
 
