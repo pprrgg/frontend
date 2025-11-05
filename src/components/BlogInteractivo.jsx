@@ -194,8 +194,7 @@ const NavigationBarDocs = () => {
                   gap: 0
                 }}
               >
-                {/* Blog de Plantilas Técnicas 'Personalizables' */}
-                Blog interactivo para la generación automatizada de documentos técnicos en formato PDF
+                Aplicación Web para la generación de documentos técnicos en formato PDF
 
 
               </Typography>

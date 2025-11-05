@@ -773,7 +773,7 @@ const HomePage = ({
                 }
               }}>
                 <Typography variant="h6" sx={{ mb: 2, fontWeight: "bold" }}>
-                  Blog técnico interactivo de uso libre y gratuito.
+                  Aplicación Web interactiva de uso libre y gratuito.
                 </Typography>
                 <Typography
                   variant="body2"
@@ -1233,7 +1233,7 @@ const HomePage = ({
                       {/* Mensaje personal adicional */}
                       <Box sx={{ mt: 3, p: 2, backgroundColor: 'rgba(237, 108, 2, 0.1)', borderRadius: 2, border: '1px solid rgba(237, 108, 2, 0.3)' }}>
                         <Typography variant="body2" sx={{ fontStyle: 'italic', textAlign: 'center' }}>
-                          "Este blog, incluido su soporte softwate, a medida, es el fruto de la experiencia y la curiosidad."
+                          "Los documentos de esta Aplicación Web, incluido su soporte softwate a medida, son el fruto de la experiencia y la curiosidad."
                         </Typography>
                       </Box>
                     </Grid>
@@ -1326,8 +1326,8 @@ const HomePage = ({
                         }}
                       >
                         <Typography variant="body2" sx={{ fontStyle: "italic", textAlign: "center" }}>
-                          "Este blog, junto con su soporte de software a medida, es el resultado
-                          de la curiosidad y la dedicación."
+                          "Los documentos de esta Aplicación Web, incluido su soporte softwate a medida, son el fruto de la experiencia y la curiosidad."
+
                         </Typography>
                       </Box>
                     </Grid>
@@ -1386,7 +1386,7 @@ const HomePage = ({
                   <strong>Vatiaco</strong> es un proyecto colaborativo orientado a la creación,
                   mejora y distribución de fichas técnicas y plantillas personalizables en
                   formato PDF. Profesionales de distintas áreas comparten y optimizan recursos
-                  técnicos para fomentar el acceso abierto y la documentación
+                  técnicos para fomentar el acceso abierto a la documentación
                   de calidad en ingeniería e industria.
                 </Typography>
 
