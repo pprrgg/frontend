@@ -1383,9 +1383,9 @@ const HomePage = ({
                     mb: 3,
                   }}
                 >
-                  <strong>Vatiaco</strong> es un proyecto colaborativo, orientado a la creación,
+                  <strong>Vatiaco</strong> es una aplicación web, orientada a la creación,
                   mejora y distribución de documentos técnicos personalizables en
-                  formato PDF para fomentar el acceso abierto y gratuito a documentación
+                  formato PDF que fomenta el acceso abierto a documentación
                   de calidad en ingeniería.
                 </Typography>
 
@@ -1471,7 +1471,7 @@ const HomePage = ({
                     textTransform: "uppercase",
                   }}
                 >
-                  Participa en el desarrollo de documentos
+                  Contacto
                 </Typography>
 
                 <Grid container spacing={4} alignItems="flex-start">
@@ -1575,8 +1575,8 @@ const HomePage = ({
                               <MenuItem value="">
                                 <em>Selecciona una opción</em>
                               </MenuItem>
-                              <MenuItem value="colaboracion-fichas">
-                                Colaborar en fichas del catálogo
+                              <MenuItem value="colaboracion">
+                                Colaborar 
                               </MenuItem>
                               <MenuItem value="metodologia-calculo">
                                 Modificar metodología de cálculo
