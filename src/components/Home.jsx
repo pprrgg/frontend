@@ -1501,11 +1501,11 @@ const HomePage = ({
                           </Typography>
                           <Typography variant="body2">
                             <Link
-                              href="mailto:vatiacoblog@gmail.com?subject=Colaboración%20o%20Solicitud%20de%20Metodología"
+                              href="mailto:info@vatiaco.com?subject=Colaboración%20o%20Solicitud%20de%20Metodología"
                               underline="hover"
                               color="primary"
                             >
-                              vatiacoblog@gmail.com
+                              info@vatiaco.com
                             </Link>
                           </Typography>
                         </Box>
@@ -1539,7 +1539,7 @@ const HomePage = ({
                   <Grid item xs={12} md={7}>
                     <Box
                       component="form"
-                      action="mailto:vatiacoblog@gmail.com?subject=Colaboración%20o%20Solicitud%20de%20Metodología"
+                      action="mailto:info@vatiaco.com?subject=Colaboración%20o%20Solicitud%20de%20Metodología"
                       method="POST"
                       encType="text/plain"
                       sx={{
