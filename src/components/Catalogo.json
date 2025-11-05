@@ -149,7 +149,7 @@
     },
     {
         "sector": "A11_Hasta_50_kW",
-        "grupo": "A1_Gestión_de_contrato_de_energía",
+        "grupo": "A1_Contrato_de_energía_eléctrica",
         "cod": "A112_Facturación_por_potencia",
         "descripcion": [
             "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             El objetivo de este estudio es calcular el coste anual para una determinada potencia contratada ."
@@ -157,7 +157,7 @@
     },
     {
         "sector": "A11_Hasta_50_kW",
-        "grupo": "A1_Gestión_de_contrato_de_energía",
+        "grupo": "A1_Contrato_de_energía_eléctrica",
         "cod": "A111_Optimización_de_la_potencia_contratada",
         "descripcion": [
             "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             El objetivo de este estudio es encontrar la potencia óptima a contratar en cada periodo horario para minimizar su coste anual."
@@ -165,7 +165,7 @@
     },
     {
         "sector": "A12_Mayor_de_50_kW",
-        "grupo": "A1_Gestión_de_contrato_de_energía",
+        "grupo": "A1_Contrato_de_energía_eléctrica",
         "cod": "A122_Facturación_por_potencia",
         "descripcion": [
             "En la factura eléctrica la facturación por potencia tiene dos partes: la potencia contratada, que es un coste fijo,             y la potencia demandada, que se paga si se supera la contratada.             El objetivo de este estudio es calcular el coste anual para una determinada potencia contratada ."

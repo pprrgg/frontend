@@ -116,7 +116,7 @@ const Doc = forwardRef((props, ref) => {
     try {
       const response = await axios.post(PDF_API_URL, parametros, {
         responseType: "arraybuffer",
-        timeout: 10000,
+        timeout: 20000,
       });
 
       if (response.status === 200 && response.data) {
@@ -310,7 +310,7 @@ const Doc = forwardRef((props, ref) => {
 
       {apiDisponible === null && (
         <Typography align="center">
-          Verificando disponibilidad de la API...
+          Procesando ...
         </Typography>
       )}
 
