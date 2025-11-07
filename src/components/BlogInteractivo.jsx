@@ -274,27 +274,27 @@ const NavigationBarDocs = () => {
                   }}
                 >
                   {/* {grupo.replaceAll('_', ' ')} */}
-                  {grupo.includes("_") ? grupo.split("_").slice(1).join("_").replaceAll("_", " ") : grupo}
+                  {/* {grupo.includes("_") ? grupo.split("_").slice(1).join("_").replaceAll("_", " ") : grupo} */}
 
                 </Typography>
 
                 {Object.entries(sectores).map(([sector, fichas]) => (
                   <Box key={sector} sx={{ mb: 4 }}>
+
                     <Typography
-                      variant="h7"
-                      align="center"
                       sx={{
-                        fontWeight: "bold",
-                        background: "linear-gradient(90deg, #031dadff, #031dadff)",
-                        WebkitBackgroundClip: "text",
-                        WebkitTextFillColor: "transparent",
-                        mb: 2,
-                        textTransform: "capitalize",
-                        textShadow: "1px 1px 2px rgba(0,0,0,0.2)",
+                        textTransform: 'uppercase',
+                        color: 'rgba(3, 29, 173, 1)', // mismo color sin transparencia
+                        textAlign: 'center',          // centrado
+
                       }}
                     >
-                      {grupo.includes("_") ? grupo.split("_").slice(1).join("_").replaceAll("_", " ") : grupo}. {sector.includes("_") ? sector.split("_").slice(1).join("_").replaceAll("_", " ") : sector}
-
+                      {grupo.includes("_")
+                        ? grupo.split("_").slice(1).join("_").replaceAll("_", " ")
+                        : grupo}{" "}
+                      {sector.includes("_")
+                        ? sector.split("_").slice(1).join("_").replaceAll("_", " ")
+                        : sector}
                     </Typography>
 
                     <Box sx={{ position: "relative" }}>
