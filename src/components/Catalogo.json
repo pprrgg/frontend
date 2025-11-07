@@ -1,7 +1,7 @@
 [
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES020_Rehabilitación_de_la_parte_opaca_de_la_envolvente_térmica_de_edificios_de_viviendas_con_superficie_afectada_inferior_o_igual_al_25_por_ciento_de_la_envolvente_térmica_final",
         "descripcion": [
             "d",
@@ -15,7 +15,7 @@
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES092_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_C1_C2_C3_o_C4",
         "descripcion": [
             "d",
@@ -29,7 +29,7 @@
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES090_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_A3_o_A4",
         "descripcion": [
             "d",
@@ -43,7 +43,7 @@
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES010_Rehabilitación_de_la_envolvente_térmica_de_edificios_de_viviendas_con_superficie_afectada_mayor_del_25_por_ciento",
         "descripcion": [
             "d",
@@ -57,7 +57,7 @@
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES093_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_D1_D2_o_D3",
         "descripcion": [
             "d",
@@ -71,7 +71,7 @@
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES060_Sustitución_de_caldera_de_combustión_por_una_bomba_de_calor_de_accionamiento_eléctrico",
         "descripcion": [
             "d",
@@ -85,7 +85,7 @@
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES094_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_E1",
         "descripcion": [
             "d",
@@ -99,7 +99,7 @@
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES091_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_B3_o_B4",
         "descripcion": [
             "d",
@@ -113,7 +113,7 @@
     },
     {
         "sector": "A51_Industrial",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "IND260_Sustitución_de_un_Sistema_de_Alimentación_Ininterrumpida_SAI",
         "descripcion": [
             "d",
@@ -127,7 +127,7 @@
     },
     {
         "sector": "A51_Industrial",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "IND090_Sustitución_o_reemplazo_de_compresor_de_aire_por_uno_más_eficiente",
         "descripcion": [
             "d",
@@ -141,7 +141,7 @@
     },
     {
         "sector": "A51_Industrial",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "IND240_Implantación_de_variador_de_velocidad",
         "descripcion": [
             "d",
@@ -155,7 +155,7 @@
     },
     {
         "sector": "A51_Industrial",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "IND290_Recuperación_de_calor_en_circuito_frigorifico",
         "descripcion": [
             "d",
@@ -169,7 +169,7 @@
     },
     {
         "sector": "A54_Agrario",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "AGR010_Pantallas_térmicas_en_invernaderos",
         "descripcion": [
             "d",
@@ -183,7 +183,7 @@
     },
     {
         "sector": "A53_Terciario",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "TER280_Sustitución_de_bomba_por_otra_más_eficiente",
         "descripcion": [
             "d",
@@ -197,7 +197,7 @@
     },
     {
         "sector": "A53_Terciario",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "TER260_Sustitución_de_un_Sistema_de_Alimentación_Ininterrumpida_SAI",
         "descripcion": [
             "d",
@@ -211,7 +211,7 @@
     },
     {
         "sector": "A53_Terciario",
-        "grupo": "A5_Certificados_de_ahorro_energético",
+        "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "TER040_Sustitución_de_generador_de_climatización_por_bomba_de_calor_de_accionamiento_eléctrico",
         "descripcion": [
             "d",

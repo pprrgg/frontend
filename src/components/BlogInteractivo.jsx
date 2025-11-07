@@ -201,7 +201,7 @@ const NavigationBarDocs = () => {
 
 
               {/* 🏷 Nombre del Blog */}
-              <Typography
+              {/* <Typography
                 variant="h4"
                 sx={{
                   fontWeight: 999,
@@ -213,7 +213,7 @@ const NavigationBarDocs = () => {
                 }}
               >
                 Vatiaco
-              </Typography>
+              </Typography> */}
               <>
                 <Typography
                   variant="body2"
