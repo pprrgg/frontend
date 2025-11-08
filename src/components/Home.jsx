@@ -1383,7 +1383,7 @@ const HomePage = ({
                     mb: 3,
                   }}
                 >
-                  <strong>Vatiaco</strong> es una aplicación web, orientada a la creación,
+                  <strong>Aplicación web</strong> orientada a la creación,
                   mejora y distribución de documentos técnicos personalizables en
                   formato PDF que fomenta el acceso abierto a documentación
                   de calidad en ingeniería.
