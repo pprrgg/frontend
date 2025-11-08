@@ -1284,7 +1284,7 @@ const HomePage = ({
                         El objetivo es que estos materiales resulten útiles y sirvan de
                         inspiración. Que quienes lleguen aquí encuentren no solo
                         herramientas técnicas, sino también la motivación para crear
-                        mas plantillas.
+                        mas documentos.
                       </Typography>
 
                       <Typography
