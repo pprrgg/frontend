@@ -1370,7 +1370,7 @@ const HomePage = ({
                     textTransform: "uppercase",
                   }}
                 >
-                  Documentación Técnica Personalizable
+                  Documentación Técnica Personalizable en PDF
                 </Typography>
 
                 <Typography
@@ -1383,10 +1383,8 @@ const HomePage = ({
                     mb: 3,
                   }}
                 >
-                  <strong>Aplicación web</strong> orientada a la creación,
-                  mejora y distribución de documentos técnicos personalizables en
-                  formato PDF que fomenta el acceso abierto a documentación
-                  de calidad en ingeniería.
+                  Crea, mejora y distribuye documentos de ingeniería con una herramienta
+                  especializada que promueve el acceso abierto al conocimiento..
                 </Typography>
 
                 {/* ✅ Palabras clave en formato "tags" SEO */}
@@ -1564,25 +1562,25 @@ const HomePage = ({
                         {/* Tipo de solicitud */}
                         <Grid item xs={12} md={6}>
                           <FormControl fullWidth required>
-                            <InputLabel id="request-type-label">Tipo de solicitud</InputLabel>
+                            <InputLabel id="request-type-label">Objeto</InputLabel>
                             <Select
                               labelId="request-type-label"
                               id="request-type"
                               name="request-type"
                               defaultValue=""
-                              label="Tipo de solicitud"
+                              label="Objeto"
                             >
                               <MenuItem value="">
                                 <em>Selecciona una opción</em>
                               </MenuItem>
-                              <MenuItem value="colaboracion">
-                                Colaborar 
+                              <MenuItem value="contribuir">
+                                Contribuir
                               </MenuItem>
-                              <MenuItem value="metodologia-calculo">
-                                Modificar metodología de cálculo
+                              <MenuItem value="modificar">
+                                Modificar
                               </MenuItem>
-                              <MenuItem value="asesoria-tecnica">
-                                Asesoría o consulta técnica
+                              <MenuItem value="asesoria">
+                                Asesoría
                               </MenuItem>
                               <MenuItem value="otros">Otros</MenuItem>
                             </Select>
@@ -1592,26 +1590,25 @@ const HomePage = ({
                         {/* Área de interés */}
                         <Grid item xs={12} md={6}>
                           <FormControl fullWidth>
-                            <InputLabel id="area-label">Área de interés</InputLabel>
+                            <InputLabel id="area-label">Área</InputLabel>
                             <Select
                               labelId="area-label"
                               id="area"
                               name="area"
                               defaultValue=""
-                              label="Área de interés"
+                              label="Área"
                             >
                               <MenuItem value="">
                                 <em>Selecciona un área</em>
                               </MenuItem>
-                              <MenuItem value="Contratos">Contratos de energía </MenuItem>
+                              <MenuItem value="contratos">Contratos de energía</MenuItem>
                               <MenuItem value="instalaciones">Instalaciones</MenuItem>
-                              <MenuItem value="energias">Energías renovables</MenuItem>
+                              <MenuItem value="energias-renovables">Energías renovables</MenuItem>
                               <MenuItem value="CAEs">Certificados de ahorro energético</MenuItem>
                               {/* <MenuItem value="software">Automatización documental</MenuItem> */}
                             </Select>
                           </FormControl>
                         </Grid>
-
 
                         <Grid item xs={12}>
                           <TextField
@@ -1665,3 +1662,4 @@ const HomePage = ({
 };
 
 export default HomePage;
+

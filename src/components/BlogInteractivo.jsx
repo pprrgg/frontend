@@ -194,7 +194,8 @@ const NavigationBarDocs = () => {
                   gap: 0
                 }}
               >
-                Aplicación Web para la generación de documentos técnicos en formato PDF
+                {/* Aplicación Web para la generación de documentos técnicos en formato PDF */}
+                Genera documentos técnicos a medida. Al instante.
 
 
               </Typography>

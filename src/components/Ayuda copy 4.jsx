@@ -301,17 +301,9 @@ const HomePage = () => {
                                 color: "#444",
                               }}
                             >
-                              <Typography variant="body1">
-                                {Array.isArray(doc.descripcion) ? (
-                                  <span
-                                    dangerouslySetInnerHTML={{
-                                      __html: doc.descripcion.join("<br/>"), // Usamos <br/> para saltos de línea
-                                    }}
-                                  />
-                                ) : (
-                                  "(Sin descripción disponible)"
-                                )}
-                              </Typography>
+                              {Array.isArray(doc.descripcion)
+                                ? doc.descripcion.join("\n")
+                                : "(Sin descripción disponible)"}
                             </Typography>
 
                             {/* Botón de video */}

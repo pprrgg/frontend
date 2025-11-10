@@ -3,238 +3,116 @@
         "sector": "A52_Residencial",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES020_Rehabilitación_de_la_parte_opaca_de_la_envolvente_térmica_de_edificios_de_viviendas_con_superficie_afectada_inferior_o_igual_al_25_por_ciento_de_la_envolvente_térmica_final",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A52_Residencial",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES092_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_C1_C2_C3_o_C4",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A52_Residencial",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES090_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_A3_o_A4",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A52_Residencial",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES010_Rehabilitación_de_la_envolvente_térmica_de_edificios_de_viviendas_con_superficie_afectada_mayor_del_25_por_ciento",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A52_Residencial",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES093_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_D1_D2_o_D3",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A52_Residencial",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES060_Sustitución_de_caldera_de_combustión_por_una_bomba_de_calor_de_accionamiento_eléctrico",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A52_Residencial",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES094_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_E1",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A52_Residencial",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "RES091_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_B3_o_B4",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A51_Industrial",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "IND260_Sustitución_de_un_Sistema_de_Alimentación_Ininterrumpida_SAI",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A51_Industrial",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "IND090_Sustitución_o_reemplazo_de_compresor_de_aire_por_uno_más_eficiente",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A51_Industrial",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "IND240_Implantación_de_variador_de_velocidad",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A51_Industrial",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "IND290_Recuperación_de_calor_en_circuito_frigorifico",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A54_Agrario",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "AGR010_Pantallas_térmicas_en_invernaderos",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A53_Terciario",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "TER280_Sustitución_de_bomba_por_otra_más_eficiente",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A53_Terciario",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "TER260_Sustitución_de_un_Sistema_de_Alimentación_Ininterrumpida_SAI",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A53_Terciario",
         "grupo": "A5_Certificado_de_ahorro_energético",
         "cod": "TER040_Sustitución_de_generador_de_climatización_por_bomba_de_calor_de_accionamiento_eléctrico",
-        "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
-        ]
+        "descripcion": []
     },
     {
         "sector": "A11_Hasta_50_kW",
         "grupo": "A1_Contrato_de_energía_eléctrica",
         "cod": "A112_Facturación_por_potencia",
         "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
+            "Este informe presenta el análisis de la facturación por potencia en la factura eléctrica, desglosando los costes asociados a la potencia contratada y a la potencia demandada.",
+            "",
+            "El objetivo del estudio es determinar el coste anual total por potencia (FPT) a partir de los datos de facturación y los términos regulados vigentes para el año 2025.",
+            "",
+            "Se aplican las fórmulas oficiales de cálculo según la normativa eléctrica, considerando los precios por período horario y los posibles excesos de potencia registrados mediante maxímetros.",
+            "",
+            "Los resultados permiten:",
+            "  • Identificar los componentes del coste total (FPC y FPD).",
+            "  • Evaluar el impacto de los excesos de potencia sobre la factura.",
+            "  • Obtener una visión porcentual de la contribución de cada término en el coste total.",
+            "",
+            "En conclusión, este análisis proporciona una herramienta útil para optimizar la potencia contratada y reducir los costes energéticos anuales.",
+            " "
         ]
     },
     {
@@ -242,13 +120,19 @@
         "grupo": "A1_Contrato_de_energía_eléctrica",
         "cod": "A111_Optimización_de_la_potencia_contratada",
         "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
+            "Este informe analiza la facturación por potencia en la factura eléctrica, diferenciando entre la potencia contratada, que representa un coste fijo, y la potencia demandada, que genera costes adicionales si se supera la contratada.",
+            "",
+            "El objetivo del estudio es encontrar la potencia óptima a contratar en cada periodo horario para minimizar el coste anual total por potencia (FPT), considerando tanto los cargos por potencia contratada (FPC) como por potencia demandada (FPD).",
+            "",
+            "Se aplican fórmulas reguladas de cálculo de facturación y un algoritmo de optimización secuencial de mínimos cuadrados para determinar la potencia contratada óptima (Pc_po) en cada periodo tarifario.",
+            "",
+            "Los resultados permiten:",
+            "  • Identificar los componentes de la factura eléctrica y su contribución relativa al coste total.",
+            "  • Determinar la potencia óptima a contratar para minimizar FPT en todos los periodos horarios.",
+            "  • Evaluar el impacto de los excesos de potencia sobre la factura y proponer ajustes para reducir costes.",
+            "",
+            "El informe incluye tablas y gráficos que muestran los valores de FPC, FPD y FPT, así como los porcentajes relativos de cada término, facilitando la interpretación de los resultados y la toma de decisiones energéticas.",
+            " "
         ]
     },
     {
@@ -256,13 +140,8 @@
         "grupo": "A1_Contrato_de_energía_eléctrica",
         "cod": "A122_Facturación_por_potencia",
         "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
+            " ",
+            "El presente documento expone el procedimiento de cálculo del coste anual asociado a la facturación por potencia en una factura eléctrica. La facturación por potencia se compone de dos términos: la potencia contratada (F<sub>PC</sub>), de carácter fijo, y la potencia demandada (F<sub>PD</sub>), que se aplica cuando la potencia medida supera la contratada.         Se presentan las expresiones matemáticas utilizadas para determinar la facturación total por potencia (F<sub>PT</sub> = F<sub>PC</sub> + F<sub>PD</sub>), así como los datos de entrada necesarios: lecturas de energía en intervalos de 15 minutos, precios unitarios por periodo horario (T<sub>pp</sub> y tep<sub>p</sub><sup>1–3</sup>) y potencias contratadas (P<sub>cp</sub>).         El estudio incluye tablas y gráficos que muestran la evolución de los distintos componentes de la facturación, permitiendo analizar los sobrepasamientos de potencia y su impacto económico. Finalmente, se cuantifica la facturación anual por potencia contratada, demandada y total, junto con su distribución porcentual dentro del término de potencia."
         ]
     },
     {
@@ -270,13 +149,18 @@
         "grupo": "A8_Estudio",
         "cod": "A811_VIABILIDAD_ECONÓMICA_DE_LA_INVERSIÓN",
         "descripcion": [
-            "d",
-            "o",
-            "c",
-            "u",
-            "m",
-            "e",
-            "n"
+            "El presente documento resume el análisis económico-financiero de un proyecto de inversión, considerando la inversión inicial, los flujos netos de caja, la tasa de descuento y los indicadores de rentabilidad más representativos.",
+            " ",
+            "A partir de los datos proporcionados, se calculan los principales parámetros de evaluación económica:",
+            " ",
+            "<i>• Valor Actual Neto (VAN):</i> mide la creación de valor del proyecto al traer los flujos futuros a valor presente.",
+            "<i>• Tasa Interna de Retorno (TIR):</i> representa la rentabilidad del proyecto; es atractiva cuando supera la tasa de descuento.",
+            "<i>• Payback:</i> indica el tiempo necesario para recuperar la inversión inicial, reflejando la liquidez del proyecto.",
+            " ",
+            "f'En este caso, el VAN obtenido es {('positivo' if ss.van_positivo else 'negativo')} ({ss.VAN:,.2f} €), la TIR es del {ss.TIR:.2f}%, y el periodo de recuperación estimado es de {ss.Payback_anos} años.'",
+            " ",
+            "'Los resultados muestran que el proyecto ' + ('es financieramente <b>viable</b> al generar valor y superar la tasa de descuento.' if ss.van_positivo and ss.tir_supera_descuento else 'no resulta <b>viable</b> desde el punto de vista financiero, al no alcanzar los umbrales de rentabilidad esperados.')",
+            " "
         ]
     }
 ]
