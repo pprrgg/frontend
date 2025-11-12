@@ -46,7 +46,6 @@ const Doc = forwardRef((props, ref) => {
   const pdfContainerRef = useRef(null);
   const renderingRef = useRef(false);
   const pdfIntentado = useRef(false);
-  const currentPdfBlobRef = useRef(null); // 🔹 Nuevo ref para almacenar el Blob del PDF renderizado
 
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
@@ -79,11 +78,6 @@ const Doc = forwardRef((props, ref) => {
       const response = await fetch(pdfPath);
       if (!response.ok) throw new Error("No se encontró el PDF local.");
       const pdfData = new Uint8Array(await response.arrayBuffer());
-      
-      // 🔹 Guardar el Blob del PDF local inmediatamente
-      const blob = new Blob([pdfData], { type: "application/pdf" });
-      currentPdfBlobRef.current = blob;
-      
       return pdfData;
     } catch (err) {
       console.error("Error cargando PDF local:", err);
@@ -121,10 +115,6 @@ const Doc = forwardRef((props, ref) => {
           setApiDisponible(true);
           const apiPdfData = new Uint8Array(response.data);
           
-          // 🔹 Guardar el Blob del PDF de la API
-          const blob = new Blob([apiPdfData], { type: "application/pdf" });
-          currentPdfBlobRef.current = blob;
-          
           // Re-renderizar con el PDF de la API
           await renderPdfWithPdfJs(apiPdfData);
           return apiPdfData;
@@ -159,8 +149,8 @@ const Doc = forwardRef((props, ref) => {
       const renderScaleFactor = 2;
       const marginLeft = 70,
         marginRight = 70,
-        marginTop = 80,
-        marginBottom = 80;
+        marginTop = 50,
+        marginBottom = 50;
 
       for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
         const page = await pdf.getPage(pageNumber);
@@ -232,26 +222,23 @@ const Doc = forwardRef((props, ref) => {
     });
   }, [fetchPdfData, renderPdfWithPdfJs]);
 
-  // 🔹 descarga del PDF actual (sin llamar a la API nuevamente)
+  // 🔹 descarga del PDF
   const handleDownload = async () => {
     try {
-      if (!currentPdfBlobRef.current) {
-        throw new Error("No hay PDF disponible para descargar");
-      }
-
-      const url = URL.createObjectURL(currentPdfBlobRef.current);
+      setLoading(true);
+      const pdfData = await fetchPdfData();
+      const blob = new Blob([pdfData], { type: "application/pdf" });
+      const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
       link.download = `${ep.cod}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      
-      // Limpiar el URL creado después de un tiempo
-      setTimeout(() => URL.revokeObjectURL(url), 100);
     } catch (err) {
       console.error("Error al descargar PDF:", err);
-      setError("Error al descargar el PDF");
+    } finally {
+      setLoading(false);
     }
   };
 

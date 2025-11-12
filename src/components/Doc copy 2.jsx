@@ -29,6 +29,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import * as pdfjsLib from "pdfjs-dist/legacy/build/pdf";
 import "pdfjs-dist/legacy/web/pdf_viewer.css";
+import Home from "./Home.jsx"; // Ajusta la ruta según la ubicación real de tu Home.jsx
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/legacy/build/pdf.worker.min.js",
@@ -42,11 +43,13 @@ const Doc = forwardRef((props, ref) => {
   const [error, setError] = useState(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [apiDisponible, setApiDisponible] = useState(null);
+  const [textoActual, setTextoActual] = useState(
+    "Conectando al servidor, por favor espere..."
+  );
   const [navValue, setNavValue] = useState(0);
   const pdfContainerRef = useRef(null);
   const renderingRef = useRef(false);
   const pdfIntentado = useRef(false);
-  const currentPdfBlobRef = useRef(null); // 🔹 Nuevo ref para almacenar el Blob del PDF renderizado
 
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
@@ -71,29 +74,37 @@ const Doc = forwardRef((props, ref) => {
   }
 
   const ENDPOINT = `${ep.grupo}/${ep.sector}/${ep.cod}/f`;
-  const pdfPath = `/routers/${ep.grupo}/${ep.sector}/${ep.cod}.pdf`;
+  const mensajes = [
+    "Conectando al servidor, por favor espere...",
+    "Calculando, por favor espere...",
+    "Aplicando formato y realizando validaciones...",
+    "Cargando las primeras configuraciones...",
+    "Inicializando el proceso de simulación...",
+    "Verificando los datos iniciales...",
+    "Generando el documento solicitado...",
+    "Aplicando formato y realizando validaciones...",
+    "Finalizando tareas pendientes y liberando recursos...",
+  ];
 
-  // 🔹 función para cargar PDF local
-  const fetchLocalPdf = useCallback(async () => {
-    try {
-      const response = await fetch(pdfPath);
-      if (!response.ok) throw new Error("No se encontró el PDF local.");
-      const pdfData = new Uint8Array(await response.arrayBuffer());
-      
-      // 🔹 Guardar el Blob del PDF local inmediatamente
-      const blob = new Blob([pdfData], { type: "application/pdf" });
-      currentPdfBlobRef.current = blob;
-      
-      return pdfData;
-    } catch (err) {
-      console.error("Error cargando PDF local:", err);
-      throw err;
-    }
-  }, [pdfPath]);
+  // 🔹 animación de textos mientras carga
+  useEffect(() => {
+    if (!loading) return;
+    let index = 0;
+    let timeoutId;
+
+    const cambiarTexto = () => {
+      index = (index + 1) % mensajes.length;
+      setTextoActual(mensajes[index]);
+      timeoutId = setTimeout(cambiarTexto, Math.floor(Math.random() * 3000) + 10);
+    };
+
+    cambiarTexto();
+    return () => clearTimeout(timeoutId);
+  }, [loading]);
 
   // 🔹 función para obtener PDF desde API o fallback local
   const fetchPdfData = useCallback(async () => {
-    setLoading(true);
+    setLoading(true); // ✅ Mostrar spinner desde que inicia la petición
     setError(null);
 
     const parametros = sessionStorage.getItem("excelData")
@@ -103,49 +114,37 @@ const Doc = forwardRef((props, ref) => {
     const PDF_API_URL = `${config.API_URL}/${ENDPOINT}?timestamp=${new Date().getTime()}`;
 
     try {
-      // Primero cargar PDF local inmediatamente
-      const localPdfData = await fetchLocalPdf();
-      
-      // Renderizar PDF local mientras se hace la llamada a la API
-      renderPdfWithPdfJs(localPdfData);
-      setApiDisponible(false); // Temporalmente marcamos como no disponible hasta verificar API
+      const response = await axios.post(PDF_API_URL, parametros, {
+        responseType: "arraybuffer",
+        timeout: 20000,
+      });
 
-      // Llamar a la API en segundo plano
-      try {
-        const response = await axios.post(PDF_API_URL, parametros, {
-          responseType: "arraybuffer",
-          timeout: 20000,
-        });
-
-        if (response.status === 200 && response.data) {
-          setApiDisponible(true);
-          const apiPdfData = new Uint8Array(response.data);
-          
-          // 🔹 Guardar el Blob del PDF de la API
-          const blob = new Blob([apiPdfData], { type: "application/pdf" });
-          currentPdfBlobRef.current = blob;
-          
-          // Re-renderizar con el PDF de la API
-          await renderPdfWithPdfJs(apiPdfData);
-          return apiPdfData;
-        } else {
-          throw new Error("Error al obtener PDF desde API");
-        }
-      } catch (apiErr) {
-        console.warn("API no disponible, usando PDF local...", apiErr);
-        setApiDisponible(false);
-        return localPdfData;
+      if (response.status === 200 && response.data) {
+        setApiDisponible(true);
+        return new Uint8Array(response.data);
+      } else {
+        throw new Error("Error al obtener PDF desde API");
       }
-    } catch (localErr) {
-      console.error("No se pudo cargar PDF local:", localErr);
-      setError("No se pudo cargar el PDF.");
-      throw localErr;
-    } finally {
-      setLoading(false);
-    }
-  }, [ENDPOINT, ep, fetchLocalPdf]);
+    } catch (err) {
+      console.warn("API no disponible, cargando PDF local...", err);
+      setApiDisponible(false);
 
-  // 🔹 renderizado del PDF con recorte y fondo blanco
+      try {
+        const pdfPath = `/routers/${ep.grupo}/${ep.sector}/${ep.cod}.pdf`;
+        const fallbackResponse = await fetch(pdfPath);
+        if (!fallbackResponse.ok) throw new Error("No se encontró el PDF local.");
+
+        const pdfData = new Uint8Array(await fallbackResponse.arrayBuffer());
+        return pdfData;
+      } catch (fallbackErr) {
+        console.error("No se pudo cargar PDF local:", fallbackErr);
+        setError("No se pudo cargar PDF local.");
+        throw fallbackErr;
+      }
+    }
+  }, [ENDPOINT, ep]);
+
+  // 🔹 renderizado del PDF
   const renderPdfWithPdfJs = useCallback(async (pdfData) => {
     renderingRef.current = true;
     setError(null);
@@ -159,8 +158,8 @@ const Doc = forwardRef((props, ref) => {
       const renderScaleFactor = 2;
       const marginLeft = 70,
         marginRight = 70,
-        marginTop = 80,
-        marginBottom = 80;
+        marginTop = 50,
+        marginBottom = 50;
 
       for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
         const page = await pdf.getPage(pageNumber);
@@ -182,11 +181,6 @@ const Doc = forwardRef((props, ref) => {
         finalCanvas.height = croppedHeight * renderScaleFactor;
         const finalCtx = finalCanvas.getContext("2d");
 
-        // Fondo blanco
-        finalCtx.fillStyle = "white";
-        finalCtx.fillRect(0, 0, finalCanvas.width, finalCanvas.height);
-
-        // Dibujar PDF recortado
         finalCtx.drawImage(
           tempCanvas,
           marginLeft * renderScaleFactor,
@@ -206,7 +200,6 @@ const Doc = forwardRef((props, ref) => {
         const card = document.createElement("div");
         card.style.boxShadow = "0 4px 4px rgba(0,0,0,0.1)";
         card.style.background = "white";
-        card.style.marginBottom = "20px";
         card.appendChild(finalCanvas);
 
         container.appendChild(card);
@@ -215,8 +208,8 @@ const Doc = forwardRef((props, ref) => {
       console.error(err);
       setError(`Error al renderizar PDF: ${err.message}`);
     } finally {
+      setLoading(false); // ✅ Ocultar spinner solo cuando termina todo
       renderingRef.current = false;
-      setLoading(false);
     }
   }, []);
 
@@ -225,33 +218,32 @@ const Doc = forwardRef((props, ref) => {
     if (pdfIntentado.current) return;
     pdfIntentado.current = true;
 
-    fetchPdfData().catch((err) => {
-      console.error("Fallo al cargar PDF:", err);
-      setError("No se pudo cargar el PDF.");
-      setLoading(false);
-    });
+    fetchPdfData()
+      .then((pdfData) => renderPdfWithPdfJs(pdfData))
+      .catch((err) => {
+        console.error("Fallo al cargar PDF:", err);
+        setError("No se pudo cargar el PDF.");
+        setLoading(false);
+      });
   }, [fetchPdfData, renderPdfWithPdfJs]);
 
-  // 🔹 descarga del PDF actual (sin llamar a la API nuevamente)
+  // 🔹 descarga del PDF
   const handleDownload = async () => {
     try {
-      if (!currentPdfBlobRef.current) {
-        throw new Error("No hay PDF disponible para descargar");
-      }
-
-      const url = URL.createObjectURL(currentPdfBlobRef.current);
+      setLoading(true);
+      const pdfData = await fetchPdfData();
+      const blob = new Blob([pdfData], { type: "application/pdf" });
+      const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url;
       link.download = `${ep.cod}.pdf`;
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      
-      // Limpiar el URL creado después de un tiempo
-      setTimeout(() => URL.revokeObjectURL(url), 100);
     } catch (err) {
       console.error("Error al descargar PDF:", err);
-      setError("Error al descargar el PDF");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -273,13 +265,20 @@ const Doc = forwardRef((props, ref) => {
 
   return (
     <>
-      {/* 🔹 SPINNER - Solo se muestra brevemente mientras carga el PDF local */}
+      {/* 🔹 SPINNER */}
       <Backdrop open={loading} style={{ zIndex: 1201, color: "#000" }}>
-        <CircularProgress color="inherit" sx={{ color: "white" }} />
+        <div
+          style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+        >
+          <CircularProgress color="inherit" sx={{ color: "white" }} />
+          <Typography variant="h6" sx={{ color: "white", marginTop: 2 }}>
+            {textoActual}
+          </Typography>
+        </div>
       </Backdrop>
 
       {error && (
-        <Typography align="center" color="error" sx={{ mt: 2 }}>
+        <Typography align="center" color="error">
           {error}
         </Typography>
       )}
@@ -288,7 +287,7 @@ const Doc = forwardRef((props, ref) => {
       <Box
         display="flex"
         flexDirection="column"
-        alignItems="center"
+        alignItems="flex-start"
         position="relative"
         sx={{ pb: apiDisponible ? "56px" : 0 }}
       >
@@ -308,6 +307,12 @@ const Doc = forwardRef((props, ref) => {
           }}
         />
       </Box>
+
+      {apiDisponible === null && (
+        <Typography align="center">
+          Procesando ...
+        </Typography>
+      )}
 
       {apiDisponible === true && isMobile && (
         <BottomNavigation
@@ -367,7 +372,7 @@ const Doc = forwardRef((props, ref) => {
           handleRecalculate={async () => {
             setDrawerOpen(false);
             try {
-              setLoading(true);
+              setLoading(true); // ✅ Spinner también en recalcular
               const pdfData = await fetchPdfData();
               await renderPdfWithPdfJs(pdfData);
             } catch (err) {
@@ -382,7 +387,7 @@ const Doc = forwardRef((props, ref) => {
 
       <ToastContainer />
 
-      {apiDisponible === false && !loading && (
+      {apiDisponible === false && (
         <Typography align="center" color="error">
           API no disponible, se está usando el PDF local.
         </Typography>
