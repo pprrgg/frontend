@@ -263,27 +263,38 @@ const Doc = forwardRef((props, ref) => {
   return (
     <>
       {/* 🔹 SPINNER CARGA INICIAL */}
-      <Backdrop open={loading} style={{ zIndex: 1201, color: "#000" }}>
-        <CircularProgress color="inherit" sx={{ color: "white" }} />
+      <Backdrop
+        open={loading}
+        sx={{
+          zIndex: 1201,
+          color: "#fff",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-end", // alinea verticalmente al fondo
+          pb: 3, // padding-bottom (ajusta la distancia desde el borde inferior)
+        }}
+      >
+        <CircularProgress color="inherit" />
       </Backdrop>
 
-  {/* 🔹 MENSAJE ACTUALIZANDO */}
-  {updating && (
-    <Box
-      position="fixed"
-      top="50%"
-      left="50%"
-      sx={{
-        transform: "translate(-50%, -50%)", // centra el contenido
-        zIndex: 1400,
-        pointerEvents: "none",
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-        <CircularProgress color="inherit" sx={{ color: "black" }} />
-    </Box>
-  )}
+      {/* 🔹 MENSAJE ACTUALIZANDO */}
+      {updating && (
+        <Box
+          position="fixed"
+          bottom="24px"
+          left="50%"
+          sx={{
+            transform: "translateX(-50%)",
+            zIndex: 1400,
+            pointerEvents: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <CircularProgress color="inherit" sx={{ color: "black" }} />
+        </Box>
+      )}
 
 
       {error && (
