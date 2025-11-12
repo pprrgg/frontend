@@ -145,6 +145,26 @@
         ]
     },
     {
+        "sector": "A12_Mayor_de_50_kW",
+        "grupo": "A1_Contrato_de_energía_eléctrica",
+        "cod": "A121_Optimización_de_la_potencia_contratada",
+        "descripcion": [
+            "Este informe analiza la facturación por potencia en la factura eléctrica, diferenciando entre la potencia contratada, que representa un coste fijo, y la potencia demandada, que genera costes adicionales si se supera la contratada.",
+            "",
+            "El objetivo del estudio es encontrar la potencia óptima a contratar en cada periodo horario para minimizar el coste anual total por potencia (FPT), considerando tanto los cargos por potencia contratada (FPC) como por potencia demandada (FPD).",
+            "",
+            "Se aplican fórmulas reguladas de cálculo de facturación y un algoritmo de optimización secuencial de mínimos cuadrados para determinar la potencia contratada óptima (Pc_po) en cada periodo tarifario.",
+            "",
+            "Los resultados permiten:",
+            "  • Identificar los componentes de la factura eléctrica y su contribución relativa al coste total.",
+            "  • Determinar la potencia óptima a contratar para minimizar FPT en todos los periodos horarios.",
+            "  • Evaluar el impacto de los excesos de potencia sobre la factura y proponer ajustes para reducir costes.",
+            "",
+            "El informe incluye tablas y gráficos que muestran los valores de FPC, FPD y FPT, así como los porcentajes relativos de cada término, facilitando la interpretación de los resultados y la toma de decisiones energéticas.",
+            " "
+        ]
+    },
+    {
         "sector": "A81_Simplificado",
         "grupo": "A8_Estudio",
         "cod": "A811_VIABILIDAD_ECONÓMICA_DE_LA_INVERSIÓN",
@@ -157,9 +177,7 @@
             "<i>• Tasa Interna de Retorno (TIR):</i> representa la rentabilidad del proyecto; es atractiva cuando supera la tasa de descuento.",
             "<i>• Payback:</i> indica el tiempo necesario para recuperar la inversión inicial, reflejando la liquidez del proyecto.",
             " ",
-            "f'En este caso, el VAN obtenido es {('positivo' if ss.van_positivo else 'negativo')} ({ss.VAN:,.2f} €), la TIR es del {ss.TIR:.2f}%, y el periodo de recuperación estimado es de {ss.Payback_anos} años.'",
-            " ",
-            "'Los resultados muestran que el proyecto ' + ('es financieramente <b>viable</b> al generar valor y superar la tasa de descuento.' if ss.van_positivo and ss.tir_supera_descuento else 'no resulta <b>viable</b> desde el punto de vista financiero, al no alcanzar los umbrales de rentabilidad esperados.')",
+            "_",
             " "
         ]
     }
