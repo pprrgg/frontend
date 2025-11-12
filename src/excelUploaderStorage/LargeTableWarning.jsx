@@ -48,15 +48,20 @@ const LargeTableWarning = ({ columns, data }) => {
 
             <List dense sx={{ color: 'red', mt: 2, textAlign: 'left', display: 'inline-block' }}>
                 <ListItem>
-                    <ListItemText primary="* Esta hoja es muy larga y no puede editarse directamente en la aplicación." />
+                    <ListItemText primary="* !! Hoja muy larga" />
                 </ListItem>
                 <ListItem>
-                    <ListItemText primary="* Puedes exportarla, editarla externamente, e importarla." />
+                    <ListItemText secondary="* Exportar, editar externamente, e importar." />
+                </ListItem>
+
+                 <ListItem>
+                    <ListItemText secondary="* La fecha de inicio solo es necesaria en la primera fila, correspondera a la hora-minuto 00-00." />
                 </ListItem>
                  <ListItem>
-                    <ListItemText primary="* Se debe mantener la estructura de la hoja, los nombres del cabecero, etc., cambiar solo los valores y la fecha." />
+                    <ListItemText secondary="* Insertar las lecturas de longitud max. 1 año, con periodo cuartohorario, en la columna 'valor'." />
                 </ListItem>
-            </List>
+
+             </List>
         </Box>
     );
 };
