@@ -267,23 +267,23 @@ const Doc = forwardRef((props, ref) => {
         <CircularProgress color="inherit" sx={{ color: "white" }} />
       </Backdrop>
 
-{/* 🔹 MENSAJE ACTUALIZANDO */}
-{updating && (
-  <Box
-    position="fixed"
-    bottom={16}      // distancia desde abajo
-    left={16}        // distancia desde la izquierda
-    display="flex"
-    alignItems="center"
-    zIndex={1400}
-    pointerEvents="none" // permite interactuar con otros elementos
-  >
-    <CircularProgress color="error" size={20} sx={{ mr: 1 }} />
-    <Typography variant="body1" color="error">
-      Actualizando...
-    </Typography>
-  </Box>
-)}
+  {/* 🔹 MENSAJE ACTUALIZANDO */}
+  {updating && (
+    <Box
+      position="fixed"
+      top="50%"
+      left="50%"
+      sx={{
+        transform: "translate(-50%, -50%)", // centra el contenido
+        zIndex: 1400,
+        pointerEvents: "none",
+        display: "flex",
+        alignItems: "center",
+      }}
+    >
+        <CircularProgress color="inherit" sx={{ color: "black" }} />
+    </Box>
+  )}
 
 
       {error && (
