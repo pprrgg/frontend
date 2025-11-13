@@ -1498,11 +1498,12 @@ const HomePage = ({
                           </Typography>
                           <Typography variant="body2">
                             <Link
-                              href="mailto:info@vatiaco.com?subject=Colaboración%20o%20Solicitud%20de%20Metodología"
+                              href="mailto:informetecnicoapp@gmail.com?subject=Colaboración%20o%20Solicitud%20de%20Metodología"
                               underline="hover"
                               color="primary"
                             >
-                              info@vatiaco.com
+                              informetecnicoapp@gmail.com
+
                             </Link>
                           </Typography>
                         </Box>
