@@ -272,11 +272,14 @@ const NavigationBarDocs = () => {
                       },
                     }}
                   >
-                    Informes Técnicos listos para personalizar y descargar en PDF.{"   "}
+                    Personaliza y descarga.{"   "}
 
                   </Box>
                     
-                  <Link
+
+                </Typography>
+                <Typography>
+                                    <Link
                     href="https://creativecommons.org/licenses/by/4.0/deed.es"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -286,7 +289,7 @@ const NavigationBarDocs = () => {
                     <img
                       src="https://licensebuttons.net/l/by/4.0/88x31.png"
                       alt="Creative Commons Attribution 4.0 License"
-                      style={{ verticalAlign: "middle", height: 15 }}
+                      style={{ verticalAlign: "middle", height: 20 }}
                     />
                   </Link>
                 </Typography>
