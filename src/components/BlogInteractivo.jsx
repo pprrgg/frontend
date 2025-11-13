@@ -200,8 +200,8 @@ const NavigationBarDocs = () => {
       {/* Logo cuadrado negro con letras IT */}
       <Box
         sx={{
-          width: 40,
-          height: 40,
+          width: 37,
+          height: 37,
           backgroundColor: "#000",
           color: "#fff",
           display: "flex",
