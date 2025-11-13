@@ -6,43 +6,46 @@
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title></title>
-  <script type="module" crossorigin src="/assets/index-BdRXfWjx.js"></script>
+  <script type="module" crossorigin src="/assets/index-DuBEKPPP.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-V9o9u5_1.css">
 </head>
 
 <body>
   <div id="root"></div>
 
-  <script>
-    window.web = "Informe Técnico";
-    var initials = web.match(/[A-Z]/g)?.join("").slice(0, 2) || "A";
-    generateFavicon(initials);
-    document.title = web; // Asignar dinámicamente el título
+<script>
+  window.web = "Informe Técnico";
+  var initials = web.match(/[A-Z]/g)?.join("").slice(0, 2) || "A";
+  generateFavicon(initials);
+  document.title = web; // Asignar dinámicamente el título
 
-    // Función para generar el favicon
-    function generateFavicon(initials) {
-      var canvas = document.createElement('canvas');
-      var context = canvas.getContext('2d');
+  // Función para generar el favicon
+  function generateFavicon(initials) {
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
 
-      // Usar las iniciales de la variable 'web'
-      var text = initials;
+    canvas.width = 64;
+    canvas.height = 64;
 
-      // Configuración del tamaño del canvas y del texto
-      canvas.width = 64;
-      canvas.height = 64;
-      context.font = "55px sans-serif"; // Tamaño del texto
-      context.textAlign = "center";
-      context.textBaseline = "middle";
-      context.fillStyle = "orange"; // Color del texto
-      context.fillText(text, canvas.width / 2, canvas.height / 2);
+    // Fondo rojo
+    context.fillStyle = "black"; // rojo
+    context.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Crear un enlace <link> para usarlo como favicon
-      var link = document.createElement('link');
-      link.rel = 'icon';
-      link.href = canvas.toDataURL('image/png'); // Convertir el canvas a una imagen PNG
-      document.head.appendChild(link);
-    }
-  </script>
+    // Texto en color claro sobre el fondo rojo
+    context.font = "bold 60px sans-serif";
+    context.textAlign = "center";
+    context.textBaseline = "middle";
+    context.fillStyle = "white"; // Color del texto
+    context.fillText(initials, canvas.width / 2, canvas.height / 2);
+
+    // Crear el favicon
+    var link = document.createElement('link');
+    link.rel = 'icon';
+    link.href = canvas.toDataURL('image/png');
+    document.head.appendChild(link);
+  }
+</script>
+
 </body>
 
 </html>
