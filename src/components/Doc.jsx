@@ -344,7 +344,7 @@ const Doc = forwardRef((props, ref) => {
           showLabels
         >
           <BottomNavigationAction
-            label="Datos"
+            label="Personalizar"
             icon={<TuneIcon />}
             sx={{
               color: navValue === 0 ? fuchsiaColor : "gray",
