@@ -70,7 +70,7 @@ export default function TopNavBar() {
     { label: "", icon: <HomeIcon />, path: "/Blog" },
     { label: "Docs", icon: <DescriptionIcon />, isMenu: true },
     { label: "", icon: <HelpOutlineIcon />, path: "/ayuda" },
-    { label: "Login", icon: <PersonOutlineIcon />, path: "/login" },
+    // { label: "Login", icon: <PersonOutlineIcon />, path: "/login" },
   ];
 
   // --- Normalizar texto ---
