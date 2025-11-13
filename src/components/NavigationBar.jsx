@@ -63,7 +63,7 @@ export default function TopNavBar() {
     { label: "Contacto", path: "/Contacto", icon: <ContactMailIcon fontSize="small" /> },
     { label: "Términos de Uso", path: "/Terminos", icon: <GavelIcon fontSize="small" /> },
     { label: "Privacidad", path: "/Privacidad", icon: <PolicyIcon fontSize="small" /> },
-    { label: "Sobre Vatiaco", path: "/Sobre", icon: <InfoIcon fontSize="small" /> },
+    { label: "Sobre IT", path: "/Sobre", icon: <InfoIcon fontSize="small" /> },
   ];
 
   const pages = [

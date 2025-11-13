@@ -134,7 +134,7 @@ const ExcelUploaderStorage = ({ openx, cerrarModalx, handleRecalculate }) => {
 
     const ep = JSON.parse(sessionStorage.getItem('selectedFicha') || 'null');
     const formattedDate = new Date().toISOString().slice(0, 10);
-    const fileName = `Vatiaco_${ep?.cod || "Export"}_${formattedDate}.xlsx`;
+    const fileName = `IT_${ep?.cod || "Export"}_${formattedDate}.xlsx`;
     XLSX.writeFile(wb, fileName);
   };
 

@@ -1048,7 +1048,7 @@ const HomePage = ({
 
                 <Typography variant="h5" gutterBottom>2. Modificaciones a los Términos</Typography>
                 <Typography variant="body1" paragraph>
-                  Vatiaco se reserva el derecho de modificar estos Términos de Uso en cualquier momento. Los cambios entrarán en vigor una vez que se publiquen en este sitio. Es su responsabilidad revisar periódicamente los términos para estar al tanto de cualquier modificación.
+                  IT se reserva el derecho de modificar estos Términos de Uso en cualquier momento. Los cambios entrarán en vigor una vez que se publiquen en este sitio. Es su responsabilidad revisar periódicamente los términos para estar al tanto de cualquier modificación.
                 </Typography>
 
                 <Typography variant="h5" gutterBottom>3. Uso Permitido</Typography>
@@ -1058,7 +1058,7 @@ const HomePage = ({
 
                 <Typography variant="h5" gutterBottom>4. Autorización para Ofertar Ahorros Energéticos</Typography>
                 <Typography variant="body1" paragraph>
-                  Al utilizar esta plataforma, el propietario de los ahorros energéticos autoriza expresamente a Vatiaco a ofertar, exhibir y promocionar sus productos a través del sitio. Esta autorización incluye el derecho de Vatiaco a utilizar imágenes, descripciones y cualquier otro contenido proporcionado por el propietario para la promoción de los ahorros energéticos. El propietario garantiza que tiene todos los derechos necesarios para otorgar esta autorización.
+                  Al utilizar esta plataforma, el propietario de los ahorros energéticos autoriza expresamente a IT a ofertar, exhibir y promocionar sus productos a través del sitio. Esta autorización incluye el derecho de IT a utilizar imágenes, descripciones y cualquier otro contenido proporcionado por el propietario para la promoción de los ahorros energéticos. El propietario garantiza que tiene todos los derechos necesarios para otorgar esta autorización.
                 </Typography>
 
                 <Typography variant="h5" gutterBottom>5. Veracidad de la Información Proporcionada</Typography>
@@ -1068,22 +1068,22 @@ const HomePage = ({
 
                 <Typography variant="h5" gutterBottom>6. Propiedad Intelectual</Typography>
                 <Typography variant="body1" paragraph>
-                  Todos los contenidos de este sitio, incluidos textos, gráficos, logotipos, imágenes y software, son propiedad de Vatiaco o de sus licenciantes y están protegidos por las leyes de derechos de autor y propiedad intelectual. No se permite la reproducción, distribución o modificación de ningún contenido sin el consentimiento previo por escrito de Vatiaco.
+                  Todos los contenidos de este sitio, incluidos textos, gráficos, logotipos, imágenes y software, son propiedad de IT o de sus licenciantes y están protegidos por las leyes de derechos de autor y propiedad intelectual. No se permite la reproducción, distribución o modificación de ningún contenido sin el consentimiento previo por escrito de IT.
                 </Typography>
 
                 <Typography variant="h5" gutterBottom>7. Limitación de Responsabilidad</Typography>
                 <Typography variant="body1" paragraph>
-                  En la máxima medida permitida por la ley, Vatiaco no será responsable de ningún daño directo, indirecto, incidental, especial, punitivo o consecuente que surja de su acceso o uso del sitio, incluyendo, pero no limitado a, la pérdida de beneficios o ingresos, o la interrupción del negocio.
+                  En la máxima medida permitida por la ley, IT no será responsable de ningún daño directo, indirecto, incidental, especial, punitivo o consecuente que surja de su acceso o uso del sitio, incluyendo, pero no limitado a, la pérdida de beneficios o ingresos, o la interrupción del negocio.
                 </Typography>
 
                 <Typography variant="h5" gutterBottom>8. Enlaces a Sitios de Terceros</Typography>
                 <Typography variant="body1" paragraph>
-                  Este sitio puede contener enlaces a otros sitios web que no son propiedad ni están controlados por Vatiaco. No somos responsables del contenido de dichos sitios y no asumimos ninguna responsabilidad por las prácticas de privacidad de los mismos. Le recomendamos que revise los términos y políticas de privacidad de cualquier sitio web de terceros que visite.
+                  Este sitio puede contener enlaces a otros sitios web que no son propiedad ni están controlados por IT. No somos responsables del contenido de dichos sitios y no asumimos ninguna responsabilidad por las prácticas de privacidad de los mismos. Le recomendamos que revise los términos y políticas de privacidad de cualquier sitio web de terceros que visite.
                 </Typography>
 
                 <Typography variant="h5" gutterBottom>9. Sanciones por Incumplimiento</Typography>
                 <Typography variant="body1" paragraph>
-                  En caso de que se descubra que ha proporcionado información falsa, inexacta o engañosa, Vatiaco se reserva el derecho de suspender o eliminar su cuenta sin previo aviso. Dependiendo de la gravedad del caso, Vatiaco se reserva el derecho de tomar medidas legales adicionales para proteger sus derechos y los de otros usuarios.
+                  En caso de que se descubra que ha proporcionado información falsa, inexacta o engañosa, IT se reserva el derecho de suspender o eliminar su cuenta sin previo aviso. Dependiendo de la gravedad del caso, IT se reserva el derecho de tomar medidas legales adicionales para proteger sus derechos y los de otros usuarios.
                 </Typography>
 
                 <Typography variant="h5" gutterBottom>10. Ley Aplicable</Typography>
@@ -1112,7 +1112,7 @@ const HomePage = ({
                 }
               }}>
                 <Typography variant="h4" sx={{ fontWeight: "bold", mb: 3, textAlign: "center" }}>
-                  Sobre Vatiaco
+                  Sobre IT
                 </Typography>
 
                 {false && (
@@ -1190,7 +1190,7 @@ const HomePage = ({
                       </Typography>
                       <Typography variant="body1" sx={{ mb: 3, fontStyle: 'italic', lineHeight: 1.6 }}>
                         Después de una vida dedicada a la ingeniería, mantengo viva esta hermosa profesión
-                        que me sigue llenando de satisfacción. Cada documento que vaya compartiendo contiene
+                        que me sigue llenando de satisfacción. Cada informe que vaya compartiendo contiene
                         el amor por esta disciplina que ha dado sentido a mi carrera.
                       </Typography>
 
@@ -1203,7 +1203,7 @@ const HomePage = ({
                         Mi Deseo
                       </Typography>
                       <Typography variant="body1" sx={{ mb: 3, lineHeight: 1.6 }}>
-                        Mi mayor anhelo es que estos documentos les sirvan a alguien. Que encuentren aquí no solo herramientas técnicas, sino también
+                        Mi mayor anhelo es que estos infomres técnicos les sirvan a alguien. Que encuentren aquí no solo herramientas técnicas, sino también
                         la chispa que encienda su propia pasión por crear un mundo más sostenible.
                       </Typography>
 
@@ -1233,7 +1233,7 @@ const HomePage = ({
                       {/* Mensaje personal adicional */}
                       <Box sx={{ mt: 3, p: 2, backgroundColor: 'rgba(237, 108, 2, 0.1)', borderRadius: 2, border: '1px solid rgba(237, 108, 2, 0.3)' }}>
                         <Typography variant="body2" sx={{ fontStyle: 'italic', textAlign: 'center' }}>
-                          "Los documentos de esta Aplicación Web, incluido su soporte softwate a medida, son el fruto de la experiencia y la curiosidad."
+                          "Los informes técnicos de esta Aplicación Web, incluido su soporte softwate a medida, son el fruto de la experiencia y la curiosidad."
                         </Typography>
                       </Box>
                     </Grid>
@@ -1253,7 +1253,7 @@ const HomePage = ({
                         ¿Qué es?
                       </Typography>
                       <Typography variant="body1" sx={{ mb: 2, lineHeight: 1.6 }}>
-                        Un espacio en línea donde se comparten documentos 'aplantillados' para recibir parámetros y adaptarse automáticamente
+                        Un espacio en línea donde se comparten informes técnicos 'aplantillados' para recibir parámetros y adaptarse automáticamente
                         a distintos contextos o necesidades.
                       </Typography>
 
@@ -1268,7 +1268,7 @@ const HomePage = ({
                         sx={{ mb: 3, fontStyle: "italic", lineHeight: 1.6 }}
                       >
                         Este proyecto mantiene viva la pasión por la ingeniería y por el
-                        aprendizaje constante. Cada documento refleja el aprecio por una
+                        aprendizaje constante. Cada informe técnico refleja el aprecio por una
                         disciplina que continúa inspirando curiosidad.
                       </Typography>
                     </Grid>
@@ -1284,7 +1284,7 @@ const HomePage = ({
                         El objetivo es que estos materiales resulten útiles y sirvan de
                         inspiración. Que quienes lleguen aquí encuentren no solo
                         herramientas técnicas, sino también la motivación para crear
-                        mas documentos.
+                        mas informes técnicos.
                       </Typography>
 
                       <Typography
@@ -1326,7 +1326,7 @@ const HomePage = ({
                         }}
                       >
                         <Typography variant="body2" sx={{ fontStyle: "italic", textAlign: "center" }}>
-                          "Los documentos de esta Aplicación Web, incluido su soporte softwate a medida, son el fruto de la experiencia y la curiosidad."
+                          "Los informes técnicos de esta Aplicación Web, incluido su soporte softwate a medida, son el fruto de la experiencia y la curiosidad."
 
                         </Typography>
                       </Box>
@@ -1370,7 +1370,7 @@ const HomePage = ({
                     textTransform: "uppercase",
                   }}
                 >
-                  Documentación Técnica Personalizable en PDF
+                  Informes Técnicos Personalizables en PDF
                 </Typography>
 
                 <Typography
@@ -1383,8 +1383,8 @@ const HomePage = ({
                     mb: 3,
                   }}
                 >
-                  Crea, mejora y distribuye documentos de ingeniería con una herramienta
-                  especializada que promueve el acceso abierto al conocimiento..
+                  Crea, mejora y distribuye informes técnicos con una herramienta
+                  especializada que promueve el acceso abierto al conocimiento.
                 </Typography>
 
                 {/* ✅ Palabras clave en formato "tags" SEO */}

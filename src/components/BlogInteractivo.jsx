@@ -195,9 +195,7 @@ const NavigationBarDocs = () => {
                 }}
               >
                 {/* Aplicación Web para la generación de documentos técnicos en formato PDF */}
-                Genera documentos técnicos a medida. Al instante.
-
-
+                Informes Técnicos
               </Typography>
 
 
@@ -213,7 +211,7 @@ const NavigationBarDocs = () => {
                   textShadow: "2px 2px 6px rgba(0,0,0,0.25)",
                 }}
               >
-                Vatiaco
+                IT
               </Typography> */}
               <>
                 <Typography
@@ -237,10 +235,10 @@ const NavigationBarDocs = () => {
                       },
                     }}
                   >
-                    Personaliza
+                    Listos para personalizar y descargar en PDF.{" "}
 
                   </Box>
-                  , descarga y comparte.{" "}
+                    
                   <Link
                     href="https://creativecommons.org/licenses/by/4.0/deed.es"
                     target="_blank"

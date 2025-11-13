@@ -1038,7 +1038,7 @@ const HomePage = ({
 
               <Typography variant="h5" gutterBottom>2. Modificaciones a los Términos</Typography>
               <Typography variant="body1" paragraph>
-                Vatiaco se reserva el derecho de modificar estos Términos de Uso en cualquier momento. Los cambios entrarán en vigor una vez que se publiquen en este sitio. Es su responsabilidad revisar periódicamente los términos para estar al tanto de cualquier modificación.
+                IT se reserva el derecho de modificar estos Términos de Uso en cualquier momento. Los cambios entrarán en vigor una vez que se publiquen en este sitio. Es su responsabilidad revisar periódicamente los términos para estar al tanto de cualquier modificación.
               </Typography>
 
               <Typography variant="h5" gutterBottom>3. Uso Permitido</Typography>
@@ -1048,7 +1048,7 @@ const HomePage = ({
 
               <Typography variant="h5" gutterBottom>4. Autorización para Ofertar Ahorros Energéticos</Typography>
               <Typography variant="body1" paragraph>
-                Al utilizar esta plataforma, el propietario de los ahorros energéticos autoriza expresamente a Vatiaco a ofertar, exhibir y promocionar sus productos a través del sitio. Esta autorización incluye el derecho de Vatiaco a utilizar imágenes, descripciones y cualquier otro contenido proporcionado por el propietario para la promoción de los ahorros energéticos. El propietario garantiza que tiene todos los derechos necesarios para otorgar esta autorización.
+                Al utilizar esta plataforma, el propietario de los ahorros energéticos autoriza expresamente a IT a ofertar, exhibir y promocionar sus productos a través del sitio. Esta autorización incluye el derecho de IT a utilizar imágenes, descripciones y cualquier otro contenido proporcionado por el propietario para la promoción de los ahorros energéticos. El propietario garantiza que tiene todos los derechos necesarios para otorgar esta autorización.
               </Typography>
 
               <Typography variant="h5" gutterBottom>5. Veracidad de la Información Proporcionada</Typography>
@@ -1058,22 +1058,22 @@ const HomePage = ({
 
               <Typography variant="h5" gutterBottom>6. Propiedad Intelectual</Typography>
               <Typography variant="body1" paragraph>
-                Todos los contenidos de este sitio, incluidos textos, gráficos, logotipos, imágenes y software, son propiedad de Vatiaco o de sus licenciantes y están protegidos por las leyes de derechos de autor y propiedad intelectual. No se permite la reproducción, distribución o modificación de ningún contenido sin el consentimiento previo por escrito de Vatiaco.
+                Todos los contenidos de este sitio, incluidos textos, gráficos, logotipos, imágenes y software, son propiedad de IT o de sus licenciantes y están protegidos por las leyes de derechos de autor y propiedad intelectual. No se permite la reproducción, distribución o modificación de ningún contenido sin el consentimiento previo por escrito de IT.
               </Typography>
 
               <Typography variant="h5" gutterBottom>7. Limitación de Responsabilidad</Typography>
               <Typography variant="body1" paragraph>
-                En la máxima medida permitida por la ley, Vatiaco no será responsable de ningún daño directo, indirecto, incidental, especial, punitivo o consecuente que surja de su acceso o uso del sitio, incluyendo, pero no limitado a, la pérdida de beneficios o ingresos, o la interrupción del negocio.
+                En la máxima medida permitida por la ley, IT no será responsable de ningún daño directo, indirecto, incidental, especial, punitivo o consecuente que surja de su acceso o uso del sitio, incluyendo, pero no limitado a, la pérdida de beneficios o ingresos, o la interrupción del negocio.
               </Typography>
 
               <Typography variant="h5" gutterBottom>8. Enlaces a Sitios de Terceros</Typography>
               <Typography variant="body1" paragraph>
-                Este sitio puede contener enlaces a otros sitios web que no son propiedad ni están controlados por Vatiaco. No somos responsables del contenido de dichos sitios y no asumimos ninguna responsabilidad por las prácticas de privacidad de los mismos. Le recomendamos que revise los términos y políticas de privacidad de cualquier sitio web de terceros que visite.
+                Este sitio puede contener enlaces a otros sitios web que no son propiedad ni están controlados por IT. No somos responsables del contenido de dichos sitios y no asumimos ninguna responsabilidad por las prácticas de privacidad de los mismos. Le recomendamos que revise los términos y políticas de privacidad de cualquier sitio web de terceros que visite.
               </Typography>
 
               <Typography variant="h5" gutterBottom>9. Sanciones por Incumplimiento</Typography>
               <Typography variant="body1" paragraph>
-                En caso de que se descubra que ha proporcionado información falsa, inexacta o engañosa, Vatiaco se reserva el derecho de suspender o eliminar su cuenta sin previo aviso. Dependiendo de la gravedad del caso, Vatiaco se reserva el derecho de tomar medidas legales adicionales para proteger sus derechos y los de otros usuarios.
+                En caso de que se descubra que ha proporcionado información falsa, inexacta o engañosa, IT se reserva el derecho de suspender o eliminar su cuenta sin previo aviso. Dependiendo de la gravedad del caso, IT se reserva el derecho de tomar medidas legales adicionales para proteger sus derechos y los de otros usuarios.
               </Typography>
 
               <Typography variant="h5" gutterBottom>10. Ley Aplicable</Typography>
@@ -1102,7 +1102,7 @@ const HomePage = ({
               }
             }}>
               <Typography variant="h4" sx={{ fontWeight: "bold", mb: 3, textAlign: "center" }}>
-                Sobre Vatiaco
+                Sobre IT
               </Typography>
 
               {false && (
