@@ -182,21 +182,58 @@ const NavigationBarDocs = () => {
             <Box sx={{ textAlign: 'center', mb: 1 }}>
 
               {/* 🏷 Título */}
-              <Typography
-                variant="h9"
-                sx={{
-                  fontWeight: "bold",
-                  color: "#000",
-                  mb: 0,
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  gap: 0
-                }}
-              >
-                {/* Aplicación Web para la generación de documentos técnicos en formato PDF */}
-                Informes Técnicos
-              </Typography>
+
+
+
+    <Typography
+      variant="h5"
+      sx={{
+        fontWeight: 600,
+        color: "#222",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: 1.5,
+        letterSpacing: "0.5px",
+      }}
+    >
+      {/* Logo cuadrado negro con letras IT */}
+      <Box
+        sx={{
+          width: 40,
+          height: 40,
+          backgroundColor: "#000",
+          color: "#fff",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          fontWeight: 700,
+          borderRadius: "1px",
+          fontSize: "2.1rem",
+          boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+        }}
+      >
+        IT
+      </Box>
+
+      {/* Texto dentro de un recuadro negro con fondo blanco */}
+      <Box
+        sx={{
+          backgroundColor: "#fff",
+          color: "#000",
+          border: "2px solid #000",
+          borderRadius: "1px",
+          px: 2,
+          py: 0.5,
+          fontWeight: 600,
+          fontSize: "1.2rem",
+          fontFamily: "'Poppins', sans-serif",
+          boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+        }}
+      >
+        Informe Técnico
+      </Box>
+    </Typography>
 
 
               {/* 🏷 Nombre del Blog */}
@@ -235,7 +272,7 @@ const NavigationBarDocs = () => {
                       },
                     }}
                   >
-                    Listos para personalizar y descargar en PDF.{" "}
+                    Informes Técnicos Listos para personalizar y descargar en PDF.{"   "}
 
                   </Box>
                     
@@ -249,7 +286,7 @@ const NavigationBarDocs = () => {
                     <img
                       src="https://licensebuttons.net/l/by/4.0/88x31.png"
                       alt="Creative Commons Attribution 4.0 License"
-                      style={{ verticalAlign: "middle", height: 20 }}
+                      style={{ verticalAlign: "middle", height: 15 }}
                     />
                   </Link>
                 </Typography>
