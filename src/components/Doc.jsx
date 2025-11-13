@@ -34,6 +34,8 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/legacy/build/pdf.worker.min.js",
   import.meta.url
 ).toString();
+// ✅ Añade esta línea:
+
 
 const fuchsiaColor = "#D100D1";
 
