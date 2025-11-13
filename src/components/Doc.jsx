@@ -390,7 +390,7 @@ const Doc = forwardRef((props, ref) => {
             try {
               setUpdating(true); // 🔹 mostrar mensaje mientras actualiza
               const pdfData = await fetchPdfData();
-              await renderPdfWithPdfJs(pdfData);
+              await renderPdfWithPdfJs(pdfData.slice(0));
             } catch (err) {
               console.error("Error al recalcular:", err);
               setError("Error al recalcular PDF.");
