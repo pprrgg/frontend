@@ -272,7 +272,7 @@ const NavigationBarDocs = () => {
                       },
                     }}
                   >
-                    Informes Técnicos Listos para personalizar y descargar en PDF.{"   "}
+                    Informes Técnicos listos para personalizar y descargar en PDF.{"   "}
 
                   </Box>
                     

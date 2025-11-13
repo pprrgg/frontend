@@ -12,38 +12,38 @@
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 
-<script>
-  window.web = "Informe Técnico";
-  var initials = web.match(/[A-Z]/g)?.join("").slice(0, 2) || "A";
-  generateFavicon(initials);
-  document.title = web; // Asignar dinámicamente el título
+  <script>
+    window.web = "Informe Técnico";
+    var initials = web.match(/[A-Z]/g)?.join("").slice(0, 2) || "A";
+    generateFavicon(initials);
+    document.title = web; // Asignar dinámicamente el título
 
-  // Función para generar el favicon
-  function generateFavicon(initials) {
-    var canvas = document.createElement('canvas');
-    var context = canvas.getContext('2d');
+    // Función para generar el favicon
+    function generateFavicon(initials) {
+      var canvas = document.createElement('canvas');
+      var context = canvas.getContext('2d');
 
-    canvas.width = 64;
-    canvas.height = 64;
+      canvas.width = 64;
+      canvas.height = 64;
 
-    // Fondo rojo
-    context.fillStyle = "black"; // rojo
-    context.fillRect(0, 0, canvas.width, canvas.height);
+      // Fondo rojo
+      context.fillStyle = "black"; // rojo
+      context.fillRect(0, 0, canvas.width, canvas.height);
 
-    // Texto en color claro sobre el fondo rojo
-    context.font = "bold 60px sans-serif";
-    context.textAlign = "center";
-    context.textBaseline = "middle";
-    context.fillStyle = "white"; // Color del texto
-    context.fillText(initials, canvas.width / 2, canvas.height / 2);
+      // Texto en color claro sobre el fondo rojo
+      context.font = "bold 60px sans-serif";
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+      context.fillStyle = "white"; // Color del texto
+      context.fillText(initials, canvas.width / 2, canvas.height / 2);
 
-    // Crear el favicon
-    var link = document.createElement('link');
-    link.rel = 'icon';
-    link.href = canvas.toDataURL('image/png');
-    document.head.appendChild(link);
-  }
-</script>
+      // Crear el favicon
+      var link = document.createElement('link');
+      link.rel = 'icon';
+      link.href = canvas.toDataURL('image/png');
+      document.head.appendChild(link);
+    }
+  </script>
 
 </body>
 

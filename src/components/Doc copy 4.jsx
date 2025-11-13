@@ -103,8 +103,7 @@ const Doc = forwardRef((props, ref) => {
     try {
       const localPdfData = await fetchLocalPdf();
 
-      renderPdfWithPdfJs(localPdfData.slice(0));
-
+renderPdfWithPdfJs(localPdfData.slice(0));
       setApiDisponible(false);
 
       try {
@@ -121,7 +120,7 @@ const Doc = forwardRef((props, ref) => {
           const blob = new Blob([apiPdfData], { type: "application/pdf" });
           currentPdfBlobRef.current = blob;
 
-          await renderPdfWithPdfJs(apiPdfData.slice(0));
+          await renderPdfWithPdfJs(apiPdfData);
           return apiPdfData;
         } else {
           throw new Error("Error al obtener PDF desde API");
@@ -345,7 +344,7 @@ const Doc = forwardRef((props, ref) => {
           showLabels
         >
           <BottomNavigationAction
-            label="Datos"
+            label="Personalizar"
             icon={<TuneIcon />}
             sx={{
               color: navValue === 0 ? fuchsiaColor : "gray",
