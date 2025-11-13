@@ -13,7 +13,7 @@
   <script type="module" src="/src/main.jsx"></script>
 
   <script>
-    window.web = "VATIACO";
+    window.web = "Informe Técnico";
     var initials = web.match(/[A-Z]/g)?.join("").slice(0, 2) || "A";
     generateFavicon(initials);
     document.title = web; // Asignar dinámicamente el título
@@ -32,7 +32,7 @@
       context.font = "55px sans-serif"; // Tamaño del texto
       context.textAlign = "center";
       context.textBaseline = "middle";
-      context.fillStyle = "#9c27b0"; // Color del texto
+      context.fillStyle = "orange"; // Color del texto
       context.fillText(text, canvas.width / 2, canvas.height / 2);
 
       // Crear un enlace <link> para usarlo como favicon
