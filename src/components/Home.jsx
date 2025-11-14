@@ -1515,19 +1515,13 @@ const HomePage = ({
                   ))}
                 </Box>
               </Box>
-
-
             </>
           )}
-
-
           {/* CONTACTO */}
           {/* 🤝 Sección de Contacto / Colaboración */}
 
           {showContacto && (
-
             <>
-
               <Box
                 component="form"
                 onSubmit={handleSubmit}
