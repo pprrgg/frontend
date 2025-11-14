@@ -46,13 +46,6 @@ import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import BuildIcon from '@mui/icons-material/Build';
 import SettingsIcon from '@mui/icons-material/Settings';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
-import CircularProgress from "@mui/material/CircularProgress";
-
-import { toast, ToastContainer } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
-import config from "./configURL";
-
-const PDF_API_URL = `${config.API_URL}/contacto`;
 
 const HomePage = ({
   showSEO = false,
@@ -294,78 +287,6 @@ const HomePage = ({
   const handleAccordionChange = (panel) => (event, isExpanded) => {
     setExpandedAccordion(isExpanded ? panel : false);
   };
-
-
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    organization: "",
-    requestType: "",
-    area: "",
-    message: "",
-  });
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true); // ⬅️ activa spinner
-
-    try {
-      const formDataToSend = new FormData();
-      formDataToSend.append("name", formData.name);
-      formDataToSend.append("email", formData.email);
-      formDataToSend.append("organization", formData.organization);
-      formDataToSend.append("request_type", formData.requestType);
-      formDataToSend.append("area", formData.area);
-      formDataToSend.append("message", formData.message);
-
-      const response = await fetch(PDF_API_URL, {
-        method: "POST",
-        body: formDataToSend,
-      });
-
-      const data = await response.json();
-
-      if (data.status === "ok") {
-        toast.success("Formulario enviado correctamente");
-
-        setFormData({
-          name: "",
-          email: "",
-          organization: "",
-          requestType: "",
-          area: "",
-          message: "",
-        });
-      } else {
-        toast.error("Error al enviar el formulario");
-      }
-    } catch (error) {
-      console.error("Error enviando formulario:", error);
-      toast.error("Ocurrió un error al enviar el formulario");
-    } finally {
-      setLoading(false); // ⬅️ desactiva spinner sí o sí
-    }
-  };
-
-
-
-
-  const [loading, setLoading] = useState(false);
-
-
-
-
-
-
-
-
-
-
 
   return (
     <Box sx={{ position: 'relative', width: '100%', minHeight: '100vh', overflow: 'hidden', backgroundColor: 'white' }}>
@@ -1526,169 +1447,216 @@ const HomePage = ({
 
           {showContacto && (
 
-            <>
-
-              <Box
-                component="form"
-                onSubmit={handleSubmit}
-                sx={{
-                  backgroundColor: "#fff",
-                  p: 4,
-                  borderRadius: "12px",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-                }}
-              >
-
-                <Typography variant="h4" sx={{ fontWeight: "bold", mb: 4, color: "#000", textAlign: "center" }}>
+            <Box
+              component="section"
+              id="contacto"
+              sx={{
+                backgroundColor: "#f9fafc",
+                py: 8,
+                px: { xs: 2, md: 6 },
+                borderTop: "2px solid #031dadff",
+                mt: 8,
+              }}
+            >
+              <Container maxWidth="lg">
+                <Typography
+                  variant="h6"
+                  align="center"
+                  sx={{
+                    fontWeight: 800,
+                    mb: 4,
+                    color: "#031dadff",
+                    textTransform: "uppercase",
+                  }}
+                >
                   Contacto
                 </Typography>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Nombre completo"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                    />
+
+                <Grid container spacing={4} alignItems="flex-start">
+                  {/* 📞 Información de Contacto */}
+                  <Grid item xs={12} md={5}>
+                    <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                      {/* <Typography variant="h6" sx={{ fontWeight: 700, color: "#000" }}>
+                      Participa en el desarrollo de fichas o pide asistencia técnica
+                    </Typography> */}
+
+                      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                        <PhoneIcon sx={{ color: "#031dadff" }} />
+                        <Box>
+                          <Typography variant="subtitle1" fontWeight={600}>
+                            Teléfono
+                          </Typography>
+                          <Typography variant="body2">+34 951 73 34 91</Typography>
+                        </Box>
+                      </Box>
+
+                      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                        <EmailIcon sx={{ color: "#031dadff" }} />
+                        <Box>
+                          <Typography variant="subtitle1" fontWeight={600}>
+                            Email
+                          </Typography>
+                          <Typography variant="body2">
+                            <Link
+                              href="mailto:info@informetecnico.app?subject=Colaboración%20o%20Solicitud%20de%20Metodología"
+                              underline="hover"
+                              color="primary"
+                            >
+                              info@informetecnico.app
+
+                            </Link>
+                          </Typography>
+                        </Box>
+                      </Box>
+
+                      <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                        <ScheduleIcon sx={{ color: "#031dadff" }} />
+                        <Box>
+                          <Typography variant="subtitle1" fontWeight={600}>
+                            Horario
+                          </Typography>
+                          <Typography variant="body2">Lun - Vie: 8:00 - 14:00</Typography>
+                        </Box>
+                      </Box>
+
+                    </Box>
                   </Grid>
 
-                  <Grid item xs={12} md={6}>
-                    <TextField
-                      fullWidth
-                      label="Email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Grid>
-
-                  <Grid item xs={12} md={6}>
-                    <TextField
-                      fullWidth
-                      label="Entidad / Empresa"
-                      name="organization"
-                      value={formData.organization}
-                      onChange={handleChange}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12} md={6}>
-                    <FormControl fullWidth required>
-                      <InputLabel id="request-type-label">Objeto</InputLabel>
-                      <Select
-                        labelId="request-type-label"
-                        id="request-type"
-                        name="requestType"
-                        value={formData.requestType}
-                        onChange={handleChange}
-                      >
-                        <MenuItem value="">
-                          <em>Selecciona una opción</em>
-                        </MenuItem>
-                        <MenuItem value="contribuir">Contribuir</MenuItem>
-                        <MenuItem value="modificar">Modificar</MenuItem>
-                        <MenuItem value="asesoria">Asesoría</MenuItem>
-                        <MenuItem value="otros">Otros</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12} md={6}>
-                    <FormControl fullWidth>
-                      <InputLabel id="area-label">Área</InputLabel>
-                      <Select
-                        labelId="area-label"
-                        id="area"
-                        name="area"
-                        value={formData.area}
-                        onChange={handleChange}
-                      >
-                        <MenuItem value="">
-                          <em>Selecciona un área</em>
-                        </MenuItem>
-                        <MenuItem value="contratos">Contratos de energía</MenuItem>
-                        <MenuItem value="instalaciones">Instalaciones</MenuItem>
-                        <MenuItem value="energias-renovables">Energías renovables</MenuItem>
-                        <MenuItem value="CAEs">Certificados de ahorro energético</MenuItem>
-                      </Select>
-                    </FormControl>
-                  </Grid>
-
-                  <Grid item xs={12}>
-                    <TextField
-                      fullWidth
-                      label="Mensaje"
-                      name="message"
-                      multiline
-                      rows={4}
-                      placeholder="Describe tu propuesta de colaboración o la metodología que deseas solicitar"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                    />
-                  </Grid>
-
-                  <Grid item xs={12} textAlign="center" mt={2}>
+                  {/* 📨 Formulario de Colaboración / Solicitud */}
+                  <Grid item xs={12} md={7}>
                     <Box
-                      component="button"
-                      type="submit"
-                      disabled={loading}
+                      component="form"
+                      action="mailto:nfo@informetecnico.app?subject=Colaboración%20o%20Solicitud%20de%20Metodología"
+                      method="POST"
+                      encType="text/plain"
                       sx={{
-                        backgroundColor: "#031dadff",
-                        color: "#fff",
-                        px: 4,
-                        py: 1.5,
-                        border: "none",
-                        borderRadius: "8px",
-                        fontWeight: 700,
-                        fontSize: "1rem",
-                        cursor: loading ? "not-allowed" : "pointer",
-                        opacity: loading ? 0.7 : 1,
-                        transition: "0.3s",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        gap: 1,
-                        "&:hover": {
-                          backgroundColor: !loading && "#0220a0",
-                          transform: !loading && "translateY(-2px)",
-                        },
+                        backgroundColor: "#fff",
+                        p: 4,
+                        borderRadius: "12px",
+                        boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                       }}
                     >
-                      {loading ? (
-                        <CircularProgress size={20} sx={{ color: "#fff" }} />
-                      ) : (
-                        "Enviar"
-                      )}
-                    </Box>
+                      <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                          <TextField
+                            fullWidth
+                            label="Nombre completo"
+                            name="name"
+                            required
+                          />
+                        </Grid>
 
+                        <Grid item xs={12} md={6}>
+                          <TextField
+                            fullWidth
+                            label="Email"
+                            name="email"
+                            type="email"
+                            required
+                          />
+                        </Grid>
+
+                        <Grid item xs={12} md={6}>
+                          <TextField fullWidth label="Entidad / Empresa" name="organization" />
+                        </Grid>
+
+                        {/* Tipo de solicitud */}
+                        <Grid item xs={12} md={6}>
+                          <FormControl fullWidth required>
+                            <InputLabel id="request-type-label">Objeto</InputLabel>
+                            <Select
+                              labelId="request-type-label"
+                              id="request-type"
+                              name="request-type"
+                              defaultValue=""
+                              label="Objeto"
+                            >
+                              <MenuItem value="">
+                                <em>Selecciona una opción</em>
+                              </MenuItem>
+                              <MenuItem value="contribuir">
+                                Contribuir
+                              </MenuItem>
+                              <MenuItem value="modificar">
+                                Modificar
+                              </MenuItem>
+                              <MenuItem value="asesoria">
+                                Asesoría
+                              </MenuItem>
+                              <MenuItem value="otros">Otros</MenuItem>
+                            </Select>
+                          </FormControl>
+                        </Grid>
+
+                        {/* Área de interés */}
+                        <Grid item xs={12} md={6}>
+                          <FormControl fullWidth>
+                            <InputLabel id="area-label">Área</InputLabel>
+                            <Select
+                              labelId="area-label"
+                              id="area"
+                              name="area"
+                              defaultValue=""
+                              label="Área"
+                            >
+                              <MenuItem value="">
+                                <em>Selecciona un área</em>
+                              </MenuItem>
+                              <MenuItem value="contratos">Contratos de energía</MenuItem>
+                              <MenuItem value="instalaciones">Instalaciones</MenuItem>
+                              <MenuItem value="energias-renovables">Energías renovables</MenuItem>
+                              <MenuItem value="CAEs">Certificados de ahorro energético</MenuItem>
+                              {/* <MenuItem value="software">Automatización documental</MenuItem> */}
+                            </Select>
+                          </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12}>
+                          <TextField
+                            fullWidth
+                            label="Mensaje"
+                            name="message"
+                            multiline
+                            rows={4}
+                            placeholder="Describe tu propuesta de colaboración o la metodología que deseas solicitar"
+                            required
+                          />
+                        </Grid>
+
+                        <Grid item xs={12} textAlign="center" mt={2}>
+                          <Box
+                            component="button"
+                            type="submit"
+                            sx={{
+                              backgroundColor: "#031dadff",
+                              color: "#fff",
+                              px: 4,
+                              py: 1.5,
+                              border: "none",
+                              borderRadius: "8px",
+                              fontWeight: 700,
+                              fontSize: "1rem",
+                              cursor: "pointer",
+                              transition: "0.3s",
+                              "&:hover": {
+                                backgroundColor: "#0220a0",
+                                transform: "translateY(-2px)",
+                              },
+                            }}
+                          >
+                            Enviar
+                          </Box>
+                        </Grid>
+                      </Grid>
+                    </Box>
                   </Grid>
                 </Grid>
-              </Box>
+              </Container>
+            </Box>
 
 
-
-            </>
           )}
         </Container>
-        <ToastContainer
-          position="top-right"
-          autoClose={4000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          style={{ top: 70 }} // 70px para dejar espacio debajo del navbar
-
-        />
-
       </Box>
     </Box>
   );

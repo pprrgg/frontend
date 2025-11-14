@@ -1525,9 +1525,7 @@ const HomePage = ({
           {/* 🤝 Sección de Contacto / Colaboración */}
 
           {showContacto && (
-
             <>
-
               <Box
                 component="form"
                 onSubmit={handleSubmit}
@@ -1538,10 +1536,6 @@ const HomePage = ({
                   boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                 }}
               >
-
-                <Typography variant="h4" sx={{ fontWeight: "bold", mb: 4, color: "#000", textAlign: "center" }}>
-                  Contacto
-                </Typography>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
                     <TextField

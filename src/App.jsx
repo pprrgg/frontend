@@ -77,7 +77,7 @@ const App = () => {
           </Routes>
         </Box>
         {/* <Footer /> */}
-        <WhatsAppWrapper />
+        {/* <WhatsAppWrapper /> */}
 
 
       </Router>
