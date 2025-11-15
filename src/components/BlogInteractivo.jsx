@@ -272,7 +272,7 @@ const NavigationBarDocs = () => {
                       },
                     }}
                   >
-                    Personaliza y descarga.{"   "}
+                    Bienvenido. Selecciona un informe, personalizalo y descargalo.{"   "}
 
                   </Box>
                     

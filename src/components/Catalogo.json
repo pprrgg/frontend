@@ -1,97 +1,97 @@
 [
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "RES020_Rehabilitación_de_la_parte_opaca_de_la_envolvente_térmica_de_edificios_de_viviendas_con_superficie_afectada_inferior_o_igual_al_25_por_ciento_de_la_envolvente_térmica_final",
         "descripcion": []
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "RES092_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_C1_C2_C3_o_C4",
         "descripcion": []
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "RES090_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_A3_o_A4",
         "descripcion": []
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "RES010_Rehabilitación_de_la_envolvente_térmica_de_edificios_de_viviendas_con_superficie_afectada_mayor_del_25_por_ciento",
         "descripcion": []
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "RES093_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_D1_D2_o_D3",
         "descripcion": []
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "RES060_Sustitución_de_caldera_de_combustión_por_una_bomba_de_calor_de_accionamiento_eléctrico",
         "descripcion": []
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "RES094_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_E1",
         "descripcion": []
     },
     {
         "sector": "A52_Residencial",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "RES091_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_B3_o_B4",
         "descripcion": []
     },
     {
         "sector": "A51_Industrial",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "IND260_Sustitución_de_un_Sistema_de_Alimentación_Ininterrumpida_SAI",
         "descripcion": []
     },
     {
         "sector": "A51_Industrial",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "IND090_Sustitución_o_reemplazo_de_compresor_de_aire_por_uno_más_eficiente",
         "descripcion": []
     },
     {
         "sector": "A51_Industrial",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "IND240_Implantación_de_variador_de_velocidad",
-        "descripcion": []
+        "descripcion": [
+            "'El presente estudio técnico-económico evalúa la implementación de una Medida de Ahorro Energético (MAE) ' + 'consistente en la instalación de variadores de velocidad en motores eléctricos, en cumplimiento de los ' + 'requisitos establecidos en la norma ISO 50001 de Sistemas de Gestión de la Energía.' + ' '",
+            "'El análisis demuestra que la instalación de variadores de velocidad en los motores existentes, ' + f'con una potencia total de {ss.Estudio_MAE.loc['Potencia total motores', 'Valor']} kW distribuida en ' + f'{ss.Estudio_MAE.loc['Número de motores', 'Valor']} equipos, permite alcanzar ahorros energéticos significativos ' + 'mediante la regulación de la velocidad en función de la demanda real del proceso.' + ' '",
+            "f'La inversión requerida asciende a €{ss.inversion_total:,.0f}, generando un ahorro anual estimado de ' + f'€{ss.ahorro_total_anual:,.0f}, lo que se traduce en un período de retorno de la inversión de {ss.payback:.2f} años. ' + 'Los indicadores financieros confirman la viabilidad del proyecto, con un Valor Actual Neto de ' + f'€{ss.van:,.0f} y una Tasa Interna de Retorno del {ss.tir:.1f}%, muy por encima del costo de capital considerado.' + ' '",
+            "f'En términos energéticos, se prevé una reducción del consumo de {ss.ahorro_energetico:,.0f} kWh anuales, ' + f'equivalente a una disminución del {ss.ahorro_energetico / ss.consumo_actual * 100:.1f}% respecto al consumo actual. ' + 'Esta mejora en la eficiencia energética contribuye directamente al cumplimiento de los objetivos ' + 'establecidos en el Sistema de Gestión de la Energía de la organización.' + ' '",
+            "'De acuerdo con los criterios de evaluación establecidos en la norma ISO 50001, se recomienda la ' + 'implementación de esta MAE por su contribución significativa a la mejora continua del desempeño ' + 'energético y su demostrada rentabilidad económica.' + ' '"
+        ]
     },
     {
         "sector": "A51_Industrial",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "IND290_Recuperación_de_calor_en_circuito_frigorifico",
         "descripcion": []
     },
     {
-        "sector": "A54_Agrario",
-        "grupo": "A5_Certificado_de_ahorro_energético",
-        "cod": "AGR010_Pantallas_térmicas_en_invernaderos",
-        "descripcion": []
-    },
-    {
         "sector": "A53_Terciario",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "TER280_Sustitución_de_bomba_por_otra_más_eficiente",
         "descripcion": []
     },
     {
         "sector": "A53_Terciario",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "TER260_Sustitución_de_un_Sistema_de_Alimentación_Ininterrumpida_SAI",
         "descripcion": []
     },
     {
         "sector": "A53_Terciario",
-        "grupo": "A5_Certificado_de_ahorro_energético",
+        "grupo": "A5_Medida_de_ahorro_energético",
         "cod": "TER040_Sustitución_de_generador_de_climatización_por_bomba_de_calor_de_accionamiento_eléctrico",
         "descripcion": []
     },
