@@ -1,0 +1,2984 @@
+{
+    "PDF": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Variable",
+            "valor"
+        ],
+        [
+            "Proy",
+            "Proyecto",
+            "nombre",
+            "Mi Proyecto"
+        ],
+        [
+            "Proy",
+            "Autor",
+            "nombre",
+            "Pepe Perez"
+        ],
+        [
+            "Proy",
+            "Autor",
+            "N Registro",
+            "N.12345"
+        ],
+        [
+            "Proy",
+            "Organización",
+            "nombre",
+            "Instalaciones"
+        ],
+        [
+            "Proy",
+            "Organización",
+            "CIF",
+            "A12345678"
+        ],
+        [
+            "Proy",
+            "Organización",
+            "dirección",
+            "Calle Iglesia, 123"
+        ],
+        [
+            "Proy",
+            "Organización",
+            "teléfono",
+            "912 34 56 78"
+        ],
+        [
+            "Proy",
+            "Organización",
+            "correo",
+            "pperez@instalaciones.com"
+        ],
+        [
+            "Proy",
+            "Destinatario",
+            "nombre",
+            "Ayto. Villanueva"
+        ],
+        [
+            "Proy",
+            "Destinatario",
+            "CIF",
+            ""
+        ],
+        [
+            "Proy",
+            "Destinatario",
+            "dirección",
+            ""
+        ],
+        [
+            "Proy",
+            "Destinatario",
+            "teléfono",
+            ""
+        ],
+        [
+            "Proy",
+            "Destinatario",
+            "correo",
+            ""
+        ]
+    ],
+    "Diseño_FV": [
+        [
+            "id",
+            "name",
+            "baseLatLng",
+            "rotation",
+            "config",
+            "paneles",
+            "sombras",
+            "geojson"
+        ],
+        [
+            1778770485220,
+            "G1c",
+            "{'lat':36.66597702653782,'lng':-4.459865168903794}",
+            -4.573921259900861,
+            "{'width':1.1,'height':1.9,'tilt':0,'slope':0,'orientation':'vertical','potenciaW':450,'tipoEstructura':'coplanar','rows':1,'cols':1}",
+            "['0,0','0,1','0,2','0,3','0,4','0,5','0,6','0,7','0,8','0,9','-1,9','-1,8','-1,7','-1,6','-1,5','-1,4','-1,3','-1,2','-1,1','-1,0','-1,-1','-1,-2','0,-2','0,-1','0,10','0,11','-1,11','-1,10','-2,11','-2,10','-2,9','-2,8','-2,7','-2,12','-2,13','-1,12','0,-3']",
+            "[1,1,1,1,1,1,1,9,18,1,1,1,1,1,1,1]",
+            "{'type':'FeatureCollection','features':[{'type':'Feature','properties':{'area':'G2','block':'0,0'},'geometry':{'type':'Polygon','coordinates':[[[-4.459667209566484,36.66593410508092],[-4.45965491586719,36.66593473836605],[-4.459656096855709,36.6659494892925],[-4.459668390555003,36.665948856007375],[-4.459667209566484,36.66593410508092]]]}},{'type':'Feature','properties':{'area':'G2','block':'0,-1'},'geometry':{'type':'Polygon','coordinates':[[[-4.459679503265778,36.66593347179579],[-4.459667209566484,36.66593410508092],[-4.459668390555003,36.665948856007375],[-4.459680684254296,36.66594822272224],[-4.459679503265778,36.66593347179579]]]}},{'type':'Feature','properties':{'area':'G2','block':'0,1'},'geometry':{'type':'Polygon','coordinates':[[[-4.45965491586719,36.66593473836605],[-4.459642622167896,36.66593537165118],[-4.459643803156415,36.665950122577634],[-4.459656096855709,36.6659494892925],[-4.45965491586719,36.66593473836605]]]}},{'type':'Feature','properties':{'area':'G2','block':'-1,0'},'geometry':{'type':'Polygon','coordinates':[[[-4.459668390555003,36.665948856007375],[-4.459656096855709,36.6659494892925],[-4.459657277844228,36.665964240218955],[-4.459669571543522,36.66596360693383],[-4.459668390555003,36.665948856007375]]]}},{'type':'Feature','properties':{'area':'G2','block':'-1,-1'},'geometry':{'type':'Polygon','coordinates':[[[-4.459680684254296,36.66594822272224],[-4.459668390555003,36.665948856007375],[-4.459669571543522,36.66596360693383],[-4.459681865242816,36.665962973648696],[-4.459680684254296,36.66594822272224]]]}},{'type':'Feature','properties':{'area':'G2','block':'0,-2'},'geometry':{'type':'Polygon','coordinates':[[[-4.459691796965072,36.665932838510656],[-4.459679503265778,36.66593347179579],[-4.459680684254296,36.66594822272224],[-4.4596929779535905,36.66594758943711],[-4.459691796965072,36.665932838510656]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,0'},'geometry':{'type':'Polygon','coordinates':[[[-4.459870460380043,36.66596812572108],[-4.45985818058284,36.66596891372095],[-4.459859877427545,36.665985927354555],[-4.459872157224748,36.66598513935468],[-4.459870460380043,36.66596812572108]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,1'},'geometry':{'type':'Polygon','coordinates':[[[-4.45985818058284,36.66596891372095],[-4.459845900785637,36.665969701720826],[-4.4598475976303416,36.66598671535443],[-4.459859877427545,36.665985927354555],[-4.45985818058284,36.66596891372095]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,2'},'geometry':{'type':'Polygon','coordinates':[[[-4.459845900785637,36.665969701720826],[-4.459833620988434,36.6659704897207],[-4.4598353178331385,36.6659875033543],[-4.4598475976303416,36.66598671535443],[-4.459845900785637,36.665969701720826]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,3'},'geometry':{'type':'Polygon','coordinates':[[[-4.459833620988434,36.6659704897207],[-4.459821341191231,36.665971277720566],[-4.459823038035935,36.66598829135417],[-4.4598353178331385,36.6659875033543],[-4.459833620988434,36.6659704897207]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,4'},'geometry':{'type':'Polygon','coordinates':[[[-4.459821341191231,36.665971277720566],[-4.4598090613940276,36.66597206572044],[-4.459810758238732,36.66598907935404],[-4.459823038035935,36.66598829135417],[-4.459821341191231,36.665971277720566]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,5'},'geometry':{'type':'Polygon','coordinates':[[[-4.4598090613940276,36.66597206572044],[-4.4597967815968245,36.66597285372031],[-4.459798478441528,36.665989867353915],[-4.459810758238732,36.66598907935404],[-4.4598090613940276,36.66597206572044]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,6'},'geometry':{'type':'Polygon','coordinates':[[[-4.4597967815968245,36.66597285372031],[-4.459784501799621,36.665973641720186],[-4.459786198644325,36.66599065535379],[-4.459798478441528,36.665989867353915],[-4.4597967815968245,36.66597285372031]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,7'},'geometry':{'type':'Polygon','coordinates':[[[-4.459784501799621,36.665973641720186],[-4.459772222002418,36.66597442972006],[-4.459773918847122,36.66599144335366],[-4.459786198644325,36.66599065535379],[-4.459784501799621,36.665973641720186]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,8'},'geometry':{'type':'Polygon','coordinates':[[[-4.459772222002418,36.66597442972006],[-4.459759942205215,36.66597521771993],[-4.459761639049919,36.665992231353535],[-4.459773918847122,36.66599144335366],[-4.459772222002418,36.66597442972006]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,9'},'geometry':{'type':'Polygon','coordinates':[[[-4.459759942205215,36.66597521771993],[-4.459747662408012,36.6659760057198],[-4.459749359252716,36.6659930193534],[-4.459761639049919,36.665992231353535],[-4.459759942205215,36.66597521771993]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,9'},'geometry':{'type':'Polygon','coordinates':[[[-4.459761639049919,36.665992231353535],[-4.459749359252716,36.6659930193534],[-4.459751056097421,36.666010032987],[-4.459763335894624,36.66600924498714],[-4.459761639049919,36.665992231353535]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,8'},'geometry':{'type':'Polygon','coordinates':[[[-4.459773918847122,36.66599144335366],[-4.459761639049919,36.665992231353535],[-4.459763335894624,36.66600924498714],[-4.459775615691827,36.666008456987264],[-4.459773918847122,36.66599144335366]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,7'},'geometry':{'type':'Polygon','coordinates':[[[-4.459786198644325,36.66599065535379],[-4.459773918847122,36.66599144335366],[-4.459775615691827,36.666008456987264],[-4.45978789548903,36.66600766898739],[-4.459786198644325,36.66599065535379]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,6'},'geometry':{'type':'Polygon','coordinates':[[[-4.459798478441528,36.665989867353915],[-4.459786198644325,36.66599065535379],[-4.45978789548903,36.66600766898739],[-4.459800175286233,36.66600688098752],[-4.459798478441528,36.665989867353915]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,5'},'geometry':{'type':'Polygon','coordinates':[[[-4.459810758238732,36.66598907935404],[-4.459798478441528,36.665989867353915],[-4.459800175286233,36.66600688098752],[-4.459812455083436,36.666006092987644],[-4.459810758238732,36.66598907935404]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,4'},'geometry':{'type':'Polygon','coordinates':[[[-4.459823038035935,36.66598829135417],[-4.459810758238732,36.66598907935404],[-4.459812455083436,36.666006092987644],[-4.459824734880639,36.66600530498778],[-4.459823038035935,36.66598829135417]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,3'},'geometry':{'type':'Polygon','coordinates':[[[-4.4598353178331385,36.6659875033543],[-4.459823038035935,36.66598829135417],[-4.459824734880639,36.66600530498778],[-4.459837014677842,36.666004516987904],[-4.4598353178331385,36.6659875033543]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,2'},'geometry':{'type':'Polygon','coordinates':[[[-4.4598475976303416,36.66598671535443],[-4.4598353178331385,36.6659875033543],[-4.459837014677842,36.666004516987904],[-4.459849294475045,36.66600372898803],[-4.4598475976303416,36.66598671535443]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,1'},'geometry':{'type':'Polygon','coordinates':[[[-4.459859877427545,36.665985927354555],[-4.4598475976303416,36.66598671535443],[-4.459849294475045,36.66600372898803],[-4.4598615742722485,36.66600294098816],[-4.459859877427545,36.665985927354555]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,0'},'geometry':{'type':'Polygon','coordinates':[[[-4.459872157224748,36.66598513935468],[-4.459859877427545,36.665985927354555],[-4.4598615742722485,36.66600294098816],[-4.4598738540694525,36.666002152988284],[-4.459872157224748,36.66598513935468]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,-1'},'geometry':{'type':'Polygon','coordinates':[[[-4.459884437021951,36.66598435135481],[-4.459872157224748,36.66598513935468],[-4.4598738540694525,36.666002152988284],[-4.4598861338666556,36.66600136498841],[-4.459884437021951,36.66598435135481]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,-2'},'geometry':{'type':'Polygon','coordinates':[[[-4.459896716819154,36.665983563354935],[-4.459884437021951,36.66598435135481],[-4.4598861338666556,36.66600136498841],[-4.459898413663859,36.666000576988544],[-4.459896716819154,36.665983563354935]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,-2'},'geometry':{'type':'Polygon','coordinates':[[[-4.459895019974449,36.66596654972133],[-4.459882740177246,36.665967337721206],[-4.459884437021951,36.66598435135481],[-4.459896716819154,36.665983563354935],[-4.459895019974449,36.66596654972133]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,-1'},'geometry':{'type':'Polygon','coordinates':[[[-4.459882740177246,36.665967337721206],[-4.459870460380043,36.66596812572108],[-4.459872157224748,36.66598513935468],[-4.459884437021951,36.66598435135481],[-4.459882740177246,36.665967337721206]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,10'},'geometry':{'type':'Polygon','coordinates':[[[-4.459747662408012,36.6659760057198],[-4.459735382610808,36.66597679371967],[-4.459737079455513,36.665993807353274],[-4.459749359252716,36.6659930193534],[-4.459747662408012,36.6659760057198]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,11'},'geometry':{'type':'Polygon','coordinates':[[[-4.459735382610808,36.66597679371967],[-4.459723102813605,36.665977581719545],[-4.45972479965831,36.66599459535315],[-4.459737079455513,36.665993807353274],[-4.459735382610808,36.66597679371967]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,11'},'geometry':{'type':'Polygon','coordinates':[[[-4.459737079455513,36.665993807353274],[-4.45972479965831,36.66599459535315],[-4.459726496503015,36.66601160898675],[-4.459738776300218,36.66601082098688],[-4.459737079455513,36.665993807353274]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,10'},'geometry':{'type':'Polygon','coordinates':[[[-4.459749359252716,36.6659930193534],[-4.459737079455513,36.665993807353274],[-4.459738776300218,36.66601082098688],[-4.459751056097421,36.666010032987],[-4.459749359252716,36.6659930193534]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-2,11'},'geometry':{'type':'Polygon','coordinates':[[[-4.459738776300218,36.66601082098688],[-4.459726496503015,36.66601160898675],[-4.459728193347718,36.66602862262035],[-4.4597404731449215,36.66602783462048],[-4.459738776300218,36.66601082098688]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-2,10'},'geometry':{'type':'Polygon','coordinates':[[[-4.459751056097421,36.666010032987],[-4.459738776300218,36.66601082098688],[-4.4597404731449215,36.66602783462048],[-4.459752752942125,36.66602704662061],[-4.459751056097421,36.666010032987]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-2,9'},'geometry':{'type':'Polygon','coordinates':[[[-4.459763335894624,36.66600924498714],[-4.459751056097421,36.666010032987],[-4.459752752942125,36.66602704662061],[-4.459765032739329,36.66602625862074],[-4.459763335894624,36.66600924498714]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-2,8'},'geometry':{'type':'Polygon','coordinates':[[[-4.459775615691827,36.666008456987264],[-4.459763335894624,36.66600924498714],[-4.459765032739329,36.66602625862074],[-4.459777312536532,36.666025470620866],[-4.459775615691827,36.666008456987264]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-2,7'},'geometry':{'type':'Polygon','coordinates':[[[-4.45978789548903,36.66600766898739],[-4.459775615691827,36.666008456987264],[-4.459777312536532,36.666025470620866],[-4.459789592333735,36.66602468262099],[-4.45978789548903,36.66600766898739]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-2,12'},'geometry':{'type':'Polygon','coordinates':[[[-4.459726496503015,36.66601160898675],[-4.4597142167058115,36.66601239698662],[-4.459715913550515,36.666029410620226],[-4.459728193347718,36.66602862262035],[-4.459726496503015,36.66601160898675]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-2,13'},'geometry':{'type':'Polygon','coordinates':[[[-4.4597142167058115,36.66601239698662],[-4.459701936908608,36.6660131849865],[-4.459703633753312,36.6660301986201],[-4.459715913550515,36.666029410620226],[-4.4597142167058115,36.66601239698662]]]}},{'type':'Feature','properties':{'area':'G1c','block':'-1,12'},'geometry':{'type':'Polygon','coordinates':[[[-4.45972479965831,36.66599459535315],[-4.459712519861107,36.66599538335302],[-4.4597142167058115,36.66601239698662],[-4.459726496503015,36.66601160898675],[-4.45972479965831,36.66599459535315]]]}},{'type':'Feature','properties':{'area':'G1c','block':'0,-3'},'geometry':{'type':'Polygon','coordinates':[[[-4.459907299771652,36.665965761721466],[-4.459895019974449,36.66596654972133],[-4.459896716819154,36.665983563354935],[-4.459908996616357,36.66598277535507],[-4.459907299771652,36.665965761721466]]]}}]}"
+        ]
+    ],
+    "CONSUMO": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Subcategoría",
+            "Consumo_diario_kWh",
+            "Perfil_24h"
+        ],
+        [
+            "Residencial",
+            "Vivienda Estándar",
+            "Uso General",
+            10,
+            [
+                0.024,
+                0.016,
+                0.016,
+                0.016,
+                0.016,
+                0.024,
+                0.032,
+                0.145,
+                0.04,
+                0.032,
+                0.024,
+                0.024,
+                0.032,
+                0.04,
+                0.032,
+                0.024,
+                0.032,
+                0.047,
+                0.063,
+                0.08,
+                0.095,
+                0.071,
+                0.047,
+                0.032
+            ]
+        ],
+        [
+            "Residencial",
+            "Vivienda Unifamiliar",
+            "Aire Acondicionado",
+            12,
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.02,
+                0.05,
+                0.08,
+                0.12,
+                0.15,
+                0.15,
+                0.12,
+                0.1,
+                0.08,
+                0.06,
+                0.04,
+                0.02,
+                0.01,
+                0.0,
+                0.0,
+                0.0
+            ]
+        ],
+        [
+            "Residencial",
+            "Vivienda Unifamiliar",
+            "Calefacción (B. Calor)",
+            20,
+            [
+                0.05,
+                0.06,
+                0.07,
+                0.07,
+                0.07,
+                0.08,
+                0.1,
+                0.12,
+                0.08,
+                0.05,
+                0.03,
+                0.02,
+                0.02,
+                0.02,
+                0.02,
+                0.02,
+                0.02,
+                0.03,
+                0.04,
+                0.05,
+                0.06,
+                0.06,
+                0.04,
+                0.04
+            ]
+        ],
+        [
+            "Residencial",
+            "Vivienda Unifamiliar",
+            "Cargador Coche Eléctrico",
+            15,
+            [
+                0.12,
+                0.12,
+                0.12,
+                0.12,
+                0.12,
+                0.12,
+                0.12,
+                0.12,
+                0.04,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.04
+            ]
+        ],
+        [
+            "Residencial",
+            "Bloque Pisos",
+            "Servicios Comunes",
+            30,
+            [
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416
+            ]
+        ],
+        [
+            "Terciario",
+            "Oficina Moderna",
+            "Iluminación LED",
+            15,
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.05,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.05,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        ],
+        [
+            "Terciario",
+            "Oficina Moderna",
+            "Climatización",
+            50,
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.05,
+                0.1,
+                0.12,
+                0.12,
+                0.12,
+                0.12,
+                0.05,
+                0.12,
+                0.12,
+                0.06,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        ],
+        [
+            "Terciario",
+            "Comercio",
+            "Rótulos Luminosos",
+            5,
+            [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.05,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.05,
+                0.1,
+                0.1,
+                0.1,
+                0.1
+            ]
+        ],
+        [
+            "Industrial",
+            "Nave Producción",
+            "Maquinaria Pesada",
+            350,
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.05,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.05,
+                0.15,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        ],
+        [
+            "Industrial",
+            "Nave Producción",
+            "Aire Comprimido",
+            40,
+            [
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416
+            ]
+        ],
+        [
+            "Industrial",
+            "Almacén Logístico",
+            "Carga Carretillas",
+            60,
+            [
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.1,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.1,
+                0.1,
+                0.1,
+                0.1
+            ]
+        ],
+        [
+            "Agrario",
+            "Explotación Agrícola",
+            "Bombeo Riego",
+            150,
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.1,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.15,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        ],
+        [
+            "Agrario",
+            "Granja Ganadera",
+            "Ventilación Forzada",
+            25,
+            [
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416,
+                0.0416
+            ]
+        ],
+        [
+            "Agrario",
+            "Granja Ganadera",
+            "Ordeño Automático",
+            15,
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.2,
+                0.2,
+                0.1,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.2,
+                0.2,
+                0.1,
+                0.0,
+                0.0,
+                0.0,
+                0.0
+            ]
+        ]
+    ],
+    "COSTES_DE_INSTALACION": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Variable",
+            "Fijo (€)",
+            "valor",
+            "Variable_Ud",
+            "MO (%)"
+        ],
+        [
+            "Coste Directo",
+            "Equipos Principales",
+            "Paneles fotovoltaicos monocristalinos",
+            0,
+            0.22,
+            "€/Wdc",
+            5
+        ],
+        [
+            "Coste Directo",
+            "Equipos Principales",
+            "Inversor string/híbrido",
+            150,
+            0.12,
+            "€/Wdc",
+            5
+        ],
+        [
+            "Coste Directo",
+            "Equipos Principales",
+            "Sistema de almacenamiento (Batería)",
+            3000,
+            0.15,
+            "€/kWh",
+            5
+        ],
+        [
+            "Coste Directo",
+            "Balance de Sistema (BOS)",
+            "Soportes, cableado y protecciones",
+            750,
+            0.19,
+            "€/Wdc",
+            40
+        ],
+        [
+            "Coste Directo",
+            "Balance de Sistema (BOS)",
+            "Sistema de monitorización",
+            150,
+            0.02,
+            "€/Wdc",
+            10
+        ],
+        [
+            "Coste Directo",
+            "Obra Civil",
+            "Adecuación y pequeñas adaptaciones",
+            200,
+            0.005,
+            "€/Wdc",
+            80
+        ],
+        [
+            "Coste Indirecto",
+            "Ingeniería",
+            "Proyecto, dirección y legalización",
+            900,
+            0.02,
+            "€/Wdc",
+            100
+        ],
+        [
+            "Coste Indirecto",
+            "Interconexión",
+            "Trámites con distribuidora y tasas",
+            500,
+            0.01,
+            "€/Wdc",
+            90
+        ],
+        [
+            "Coste Indirecto",
+            "Gastos Generales",
+            "Margen comercial y overhead",
+            0,
+            0.18,
+            "€/Wdc",
+            0
+        ],
+        [
+            "Coste Indirecto",
+            "Contingencias",
+            "Reserva para imprevistos (3-5%)",
+            0,
+            0.04,
+            "€/Wdc",
+            0
+        ],
+        [
+            "Otros",
+            "Otros",
+            "@",
+            0,
+            0.0,
+            "@",
+            0
+        ]
+    ],
+    "COSTES_DE_OPERACION": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Concepto",
+            "Año_inicio",
+            "Año_fin",
+            "Fijo (€/año)",
+            "Variable",
+            "Unidad_variable"
+        ],
+        [
+            "Operación FV",
+            "Energía fotovoltaica",
+            "PV_Fijo_Anual",
+            1,
+            25,
+            0.0,
+            0,
+            "€/año"
+        ],
+        [
+            "Operación FV",
+            "Energía fotovoltaica",
+            "PV_Fijo_por_Capacidad",
+            1,
+            25,
+            19.0,
+            0,
+            "€/Wdc"
+        ],
+        [
+            "Operación FV",
+            "Energía fotovoltaica",
+            "PV_Variable_Generacion",
+            1,
+            25,
+            0.0,
+            0,
+            "€/kWh"
+        ],
+        [
+            "Batería",
+            "Almacenamiento",
+            "Bateria_Fijo_Anual",
+            1,
+            15,
+            0.0,
+            0,
+            "€/año"
+        ],
+        [
+            "Batería",
+            "Almacenamiento",
+            "Bateria_Fijo_por_Capacidad",
+            1,
+            15,
+            7.25,
+            0,
+            "€/kWh_instalada"
+        ],
+        [
+            "Batería",
+            "Almacenamiento",
+            "Bateria_Variable_Descarga",
+            1,
+            15,
+            0.0,
+            0,
+            "€/kWh_descargado"
+        ],
+        [
+            "Batería",
+            "Reemplazo de activos",
+            "Bateria_Coste_Reemplazo",
+            10,
+            10,
+            252.0,
+            0,
+            "€/kWh_instalada"
+        ],
+        [
+            "Infraestructura",
+            "Uso de suelo",
+            "Arrendamiento_Anual_Terreno",
+            1,
+            25,
+            0.0,
+            0,
+            "€/año"
+        ],
+        [
+            "@Otros",
+            "@Otros",
+            "@Otros",
+            1,
+            25,
+            0.0,
+            0,
+            "@€"
+        ]
+    ],
+    "INGRESOS": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Concepto",
+            "Año_inicio",
+            "Año_fin",
+            "Ingreso_fijo (€/año)",
+            "Ingreso_variable",
+            "Unidad_variable"
+        ],
+        [
+            "Ingresos de explotación",
+            "Autoconsumo",
+            "Ahorro autoconsumo",
+            1,
+            25,
+            0,
+            0.18,
+            "€/kWh autoconsumido"
+        ],
+        [
+            "Ingresos de explotación",
+            "Excedentes",
+            "Venta excedentes",
+            1,
+            25,
+            0,
+            0.08,
+            "€/kWh exportado"
+        ],
+        [
+            "Ingresos de explotación",
+            "Excedentes",
+            "Compensación simplificada",
+            1,
+            25,
+            0,
+            0.06,
+            "€/kWh compensado"
+        ],
+        [
+            "Ingresos regulados",
+            "Certificados",
+            "CAE",
+            1,
+            10,
+            0,
+            0.14,
+            "€/kWh generado"
+        ],
+        [
+            "Ingresos regulados",
+            "Certificados",
+            "Garantías de origen",
+            1,
+            25,
+            0,
+            0.005,
+            "€/kWh generado"
+        ],
+        [
+            "Subvenciones",
+            "Bonificaciones fiscales",
+            "Bonificación IBI",
+            1,
+            5,
+            100,
+            0.0,
+            "€/año"
+        ],
+        [
+            "Subvenciones",
+            "Deducciones fiscales",
+            "Deducción IRPF",
+            1,
+            1,
+            200,
+            0.0,
+            "€/año"
+        ],
+        [
+            "Subvenciones",
+            "Inversión",
+            "Next Generation",
+            1,
+            1,
+            0,
+            0.3,
+            "% CAPEX"
+        ],
+        [
+            "Subvenciones",
+            "Locales/autonómicas",
+            "ICIO",
+            1,
+            1,
+            100,
+            0.0,
+            "€/año"
+        ],
+        [
+            "Otros",
+            "@Otros",
+            "@Otros",
+            1,
+            25,
+            0,
+            0.0,
+            "@€"
+        ]
+    ],
+    "FINANCIEROS": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Parámetro",
+            "Valor",
+            "Unidad"
+        ],
+        [
+            "Análisis Financiero",
+            "Proyecto",
+            "Duración de la actuación",
+            2033.0,
+            "años"
+        ],
+        [
+            "Análisis Financiero",
+            "Proyecto",
+            "Impuestos (IVA)",
+            21.0,
+            "%"
+        ],
+        [
+            "Análisis Financiero",
+            "Mercado",
+            "Tasa de inflación",
+            2.5,
+            "%/año"
+        ],
+        [
+            "Análisis Financiero",
+            "Mercado",
+            "Precio de la energía",
+            0.12,
+            "€/kWh"
+        ],
+        [
+            "Análisis Financiero",
+            "Mercado",
+            "Tasa de descuento (VAN)",
+            0.08,
+            "-"
+        ],
+        [
+            "Análisis Financiero",
+            "Financiación",
+            "Porcentaje financiado",
+            27.0,
+            "%"
+        ],
+        [
+            "Análisis Financiero",
+            "Financiación",
+            "Años de financiación",
+            10.0,
+            "años"
+        ],
+        [
+            "Análisis Financiero",
+            "Financiación",
+            "Tipo de interés anual",
+            7.0,
+            "%"
+        ],
+        [
+            "Análisis Financiero",
+            "Operación",
+            "Tasa seguro anual",
+            0.0,
+            "% de instalación"
+        ]
+    ],
+    "Referencias": [
+        [
+            "<para alignment='center'><b>REFERENCIAS</b></para>"
+        ],
+        [
+            "<a href='https://www.ree.es/es/clientes/generador/gestion-medidas-electricas/consulta-perfiles-de-consumo'>- Consulta los perfiles de consumo — Red Eléctrica publica los perfiles finales de consumo y la demanda del sistema eléctrico peninsular, válidos exclusivamente a efectos de la determinación de estos perfiles finales.</a><br/>"
+        ],
+        [
+            "<a href='https://www.boe.es/eli/es/res/2025/03/06/(5)'>- Resolución de 6 de marzo de 2025, de la CNMC — Modifica el anexo II de la Resolución de 4 de diciembre de 2024, actualizando los valores de los peajes de acceso a las redes eléctricas a partir del 1 de enero de 2025.</a><br/>"
+        ],
+        [
+            "<a href='https://www.cnmc.es/sites/default/files/5747565.pdf'>- CNMC Circular 1/2025 — Modifica la Circular 3/2020, actualizando la metodología para el cálculo de los peajes de transporte y distribución de electricidad.</a><br/>"
+        ],
+        [
+            "<a href='https://www.boe.es/boe/dias/2025/02/05/pdfs/BOE-A-2025-2044.pdf'>- Orden TED/95/2025, de 3 de febrero — Actualiza las tarifas y cargos del sistema eléctrico para el ejercicio 2025.</a><br/>"
+        ],
+        [
+            "<a href='https://www.boe.es/diario_boe/txt.php?id=BOE-A-2024-26218'>- Resolución de 4 de diciembre de 2024, de la CNMC — Establece los valores de los peajes de acceso a las redes eléctricas de transporte y distribución aplicables desde 2025.</a><br/>"
+        ],
+        [
+            "<a href='https://www.miteco.gob.es/es/energia/energia-electrica/electricidad/peajes.html'>- Peajes de acceso a las redes de transporte y distribución — Información general del MITECO sobre los peajes y cargos aplicables al sistema eléctrico español.</a><br/>"
+        ],
+        [
+            "<a href='https://www.cnmc.es/sites/default/files/3596445_0.pdf'>- Anexo I. Acuerdo sobre la aplicación de la Circular 3/2020 — Recoge las respuestas de la CNMC a consultas sobre la interpretación y aplicación de la Circular 3/2020.</a><br/>"
+        ],
+        [
+            "<a href='https://www.boe.es/buscar/doc.php?id=BOE-A-2020-1066'>- Circular 3/2020, de 15 de enero, de la CNMC — Establece la metodología de cálculo de los peajes de transporte y distribución de electricidad.</a><br/>"
+        ]
+    ],
+    "Mes": [
+        [
+            "N",
+            "Mes"
+        ],
+        [
+            1,
+            "Ene"
+        ],
+        [
+            2,
+            "Feb"
+        ],
+        [
+            3,
+            "Mar"
+        ],
+        [
+            4,
+            "Abr"
+        ],
+        [
+            5,
+            "May"
+        ],
+        [
+            6,
+            "Jun"
+        ],
+        [
+            7,
+            "Jul"
+        ],
+        [
+            8,
+            "Ago"
+        ],
+        [
+            9,
+            "Sep"
+        ],
+        [
+            10,
+            "Oct"
+        ],
+        [
+            11,
+            "Nov"
+        ],
+        [
+            12,
+            "Dic"
+        ]
+    ],
+    "Festivos2025": [
+        [
+            "mes",
+            "dia",
+            "festivo"
+        ],
+        [
+            1,
+            1,
+            "Año Nuevo"
+        ],
+        [
+            1,
+            6,
+            "Reyes Magos"
+        ],
+        [
+            4,
+            18,
+            "Viernes Santo"
+        ],
+        [
+            5,
+            1,
+            "Día del Trabajo"
+        ],
+        [
+            8,
+            15,
+            "Asunción de la Virgen"
+        ],
+        [
+            10,
+            12,
+            "Fiesta Nacional de España"
+        ],
+        [
+            11,
+            1,
+            "Todos los Santos"
+        ],
+        [
+            12,
+            6,
+            "Día de la Constitución"
+        ],
+        [
+            12,
+            8,
+            "Inmaculada Concepción"
+        ],
+        [
+            12,
+            25,
+            "Navidad"
+        ]
+    ],
+    "TiposMedida": [
+        [
+            "Tipo",
+            "Descripción",
+            "Potencia",
+            "Control"
+        ],
+        [
+            "1, 2, 3",
+            "Medición cuartohoraria",
+            "> 50 kW",
+            "Maxímetro"
+        ],
+        [
+            "4",
+            "Potencia máxima demandada",
+            "≤ 50 kW",
+            "Registro máximo"
+        ],
+        [
+            "5",
+            "Control por ICP",
+            "≤ 15 kW",
+            "ICP/Telegestión"
+        ]
+    ],
+    "tep": [
+        [
+            "Tarifa",
+            "Te"
+        ],
+        [
+            "2.0 TD",
+            0.078858
+        ],
+        [
+            "3.0 TD",
+            0.081164
+        ],
+        [
+            "6.1 TD",
+            0.118186
+        ],
+        [
+            "6.2 TD",
+            0.082554
+        ],
+        [
+            "6.3 TD",
+            0.07458
+        ],
+        [
+            "6.4 TD",
+            0.073806
+        ]
+    ],
+    "Tarifa": [
+        [
+            "Unnamed: 0",
+            "Valor"
+        ],
+        [
+            "Tarifa",
+            "3.0 TD;6.1 TD;6.2 TD;6.3 TD;6.4 TD;2.0 TD"
+        ]
+    ],
+    "Pc": [
+        [
+            "Unnamed: 0",
+            "Potencia contratada [kW]"
+        ],
+        [
+            "P1",
+            200
+        ],
+        [
+            "P2",
+            200
+        ],
+        [
+            "P3",
+            200
+        ],
+        [
+            "P4",
+            200
+        ],
+        [
+            "P5",
+            200
+        ],
+        [
+            "P6",
+            200
+        ]
+    ],
+    "DH6": [
+        [
+            0,
+            "Ene",
+            "Feb",
+            "Mar",
+            "Abr",
+            "May",
+            "Jun",
+            "Jul",
+            "Ago",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dic"
+        ],
+        [
+            0,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+        ],
+        [
+            1,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+        ],
+        [
+            2,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+        ],
+        [
+            3,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+        ],
+        [
+            4,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+        ],
+        [
+            5,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+        ],
+        [
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+        ],
+        [
+            7,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6,
+            6
+        ],
+        [
+            8,
+            2,
+            2,
+            3,
+            5,
+            5,
+            4,
+            2,
+            4,
+            4,
+            5,
+            3,
+            2
+        ],
+        [
+            9,
+            1,
+            1,
+            2,
+            4,
+            4,
+            3,
+            1,
+            3,
+            3,
+            4,
+            2,
+            1
+        ],
+        [
+            10,
+            1,
+            1,
+            2,
+            4,
+            4,
+            3,
+            1,
+            3,
+            3,
+            4,
+            2,
+            1
+        ],
+        [
+            11,
+            1,
+            1,
+            2,
+            4,
+            4,
+            3,
+            1,
+            3,
+            3,
+            4,
+            2,
+            1
+        ],
+        [
+            12,
+            1,
+            1,
+            2,
+            4,
+            4,
+            3,
+            1,
+            3,
+            3,
+            4,
+            2,
+            1
+        ],
+        [
+            13,
+            1,
+            1,
+            2,
+            4,
+            4,
+            3,
+            1,
+            3,
+            3,
+            4,
+            2,
+            1
+        ],
+        [
+            14,
+            2,
+            2,
+            3,
+            5,
+            5,
+            4,
+            2,
+            4,
+            4,
+            5,
+            3,
+            2
+        ],
+        [
+            15,
+            2,
+            2,
+            3,
+            5,
+            5,
+            4,
+            2,
+            4,
+            4,
+            5,
+            3,
+            2
+        ],
+        [
+            16,
+            2,
+            2,
+            3,
+            5,
+            5,
+            4,
+            2,
+            4,
+            4,
+            5,
+            3,
+            2
+        ],
+        [
+            17,
+            2,
+            2,
+            3,
+            5,
+            5,
+            4,
+            2,
+            4,
+            4,
+            5,
+            3,
+            2
+        ],
+        [
+            18,
+            1,
+            1,
+            2,
+            4,
+            4,
+            3,
+            1,
+            3,
+            3,
+            4,
+            2,
+            1
+        ],
+        [
+            19,
+            1,
+            1,
+            2,
+            4,
+            4,
+            3,
+            1,
+            3,
+            3,
+            4,
+            2,
+            1
+        ],
+        [
+            20,
+            1,
+            1,
+            2,
+            4,
+            4,
+            3,
+            1,
+            3,
+            3,
+            4,
+            2,
+            1
+        ],
+        [
+            21,
+            1,
+            1,
+            2,
+            4,
+            4,
+            3,
+            1,
+            3,
+            3,
+            4,
+            2,
+            1
+        ],
+        [
+            22,
+            2,
+            2,
+            3,
+            5,
+            5,
+            4,
+            2,
+            4,
+            4,
+            5,
+            3,
+            2
+        ],
+        [
+            23,
+            2,
+            2,
+            3,
+            5,
+            5,
+            4,
+            2,
+            4,
+            4,
+            5,
+            3,
+            2
+        ]
+    ],
+    "DH3": [
+        [
+            "H",
+            "Ene",
+            "Feb",
+            "Mar",
+            "Abr",
+            "May",
+            "Jun",
+            "Jul",
+            "Ago",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dic",
+            "SDF"
+        ],
+        [
+            0,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        [
+            1,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        [
+            2,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        [
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        [
+            4,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        [
+            5,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        [
+            6,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        [
+            7,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3,
+            3
+        ],
+        [
+            8,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3
+        ],
+        [
+            9,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3
+        ],
+        [
+            10,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3
+        ],
+        [
+            11,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3
+        ],
+        [
+            12,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3
+        ],
+        [
+            13,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3
+        ],
+        [
+            14,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3
+        ],
+        [
+            15,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3
+        ],
+        [
+            16,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3
+        ],
+        [
+            17,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3
+        ],
+        [
+            18,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3
+        ],
+        [
+            19,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3
+        ],
+        [
+            20,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3
+        ],
+        [
+            21,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            3
+        ],
+        [
+            22,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3
+        ],
+        [
+            23,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            3
+        ]
+    ],
+    "Tpp2022": [
+        [
+            "p",
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+        ],
+        [
+            "2.0 TD",
+            27.958789,
+            1.258556,
+            null,
+            null,
+            null,
+            null
+        ],
+        [
+            "3.0 TD",
+            16.670219,
+            12.243338,
+            5.934083,
+            5.04831,
+            3.368404,
+            2.152216
+        ],
+        [
+            "6.1 TD",
+            24.732072,
+            21.529345,
+            12.319941,
+            9.897259,
+            2.83392,
+            1.571094
+        ],
+        [
+            "6.2 TD",
+            17.357804,
+            15.477352,
+            8.018016,
+            7.417831,
+            1.787506,
+            1.045932
+        ],
+        [
+            "6.3 TD",
+            13.035548,
+            11.529584,
+            6.639168,
+            4.336971,
+            1.734158,
+            1.140563
+        ],
+        [
+            "6.4 TD",
+            11.788959,
+            8.631973,
+            4.33345,
+            3.331505,
+            1.064335,
+            0.773885
+        ]
+    ],
+    "TP_2": [
+        [
+            "p",
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+        ],
+        [
+            "2.0 TD",
+            23.469833,
+            0.96113,
+            null,
+            null,
+            null,
+            null
+        ],
+        [
+            "3.0 TD",
+            10.646876,
+            9.302956,
+            3.751315,
+            2.852114,
+            1.145308,
+            1.145308
+        ],
+        [
+            "6.1 TD",
+            21.245192,
+            21.245192,
+            11.530748,
+            8.716048,
+            0.560259,
+            0.560259
+        ],
+        [
+            "6.2 TD",
+            15.272489,
+            15.272489,
+            7.484607,
+            6.767931,
+            0.459003,
+            0.459003
+        ],
+        [
+            "6.3 TD",
+            11.548232,
+            11.548232,
+            6.320362,
+            3.694683,
+            0.708338,
+            0.708338
+        ],
+        [
+            "6.4 TD",
+            12.051156,
+            9.236539,
+            4.442575,
+            3.369751,
+            0.628452,
+            0.628452
+        ]
+    ],
+    "tae": [
+        [
+            "Tarifa",
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+        ],
+        [
+            "2.0 TD",
+            0.034234,
+            0.01654,
+            7.9e-05,
+            null,
+            null,
+            null
+        ],
+        [
+            "3.0 TD",
+            0.028528,
+            0.012343,
+            0.004673,
+            0.002682,
+            0.000119,
+            3.1e-05
+        ],
+        [
+            "6.1 TD",
+            0.027104,
+            0.011894,
+            0.004726,
+            0.002739,
+            0.000122,
+            2.9e-05
+        ],
+        [
+            "6.2 TD",
+            0.01477,
+            0.00684,
+            0.002279,
+            0.001219,
+            6.3e-05,
+            2e-05
+        ],
+        [
+            "6.3 TD",
+            0.012294,
+            0.00547,
+            0.001931,
+            0.001063,
+            5.5e-05,
+            1.5e-05
+        ],
+        [
+            "6.4 TD",
+            0.007944,
+            0.003569,
+            0.001288,
+            0.000681,
+            3.6e-05,
+            4e-06
+        ]
+    ],
+    "Tpp2025": [
+        [
+            "Tarifa",
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+        ],
+        [
+            "2.0 TD",
+            22.958932,
+            0.442165,
+            null,
+            null,
+            null,
+            null
+        ],
+        [
+            "3.0 TD",
+            14.723431,
+            7.781964,
+            2.468252,
+            1.887267,
+            0.533883,
+            0.533883
+        ],
+        [
+            "6.1 TD",
+            23.669055,
+            12.513915,
+            4.69633,
+            3.309245,
+            0.069965,
+            0.062286
+        ],
+        [
+            "6.2 TD",
+            16.620368,
+            9.426053,
+            2.481516,
+            1.512028,
+            0.059278,
+            0.052654
+        ],
+        [
+            "6.3 TD",
+            10.791377,
+            6.502236,
+            2.118318,
+            1.380541,
+            0.045332,
+            0.039905
+        ],
+        [
+            "6.4 TD",
+            6.590215,
+            3.93998,
+            0.956817,
+            0.665081,
+            0.019779,
+            0.013181
+        ]
+    ],
+    "tep2022": [
+        [
+            "Tarifa",
+            "tep"
+        ],
+        [
+            "2.0 TD",
+            2.39861
+        ],
+        [
+            "3.0 TD",
+            2.468725
+        ],
+        [
+            "6.1 TD",
+            2.500611
+        ],
+        [
+            "6.2 TD",
+            2.511007
+        ],
+        [
+            "6.3 TD",
+            2.268489
+        ],
+        [
+            "6.4 TD",
+            2.244925
+        ]
+    ],
+    "cKp2022": [
+        [
+            "ttttitul;columa;fasdfas;6",
+            "2.0 TD",
+            "3.0 TD",
+            "6.1 TD",
+            "6.2 TD",
+            "6.3 TD",
+            "6.4 TD"
+        ],
+        [
+            "P1",
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ],
+        [
+            "P2",
+            0.040842,
+            0.872171,
+            1.0,
+            1.0,
+            1.0,
+            0.765346
+        ],
+        [
+            "P3",
+            null,
+            0.35149,
+            0.545204,
+            0.48915,
+            0.553151,
+            0.36815
+        ],
+        [
+            "P4",
+            null,
+            0.267082,
+            0.412967,
+            0.444995,
+            0.323415,
+            0.271009
+        ],
+        [
+            "P5",
+            null,
+            0.106998,
+            0.027431,
+            0.030784,
+            0.063681,
+            0.051202
+        ],
+        [
+            "P6",
+            null,
+            0.106998,
+            0.027431,
+            0.030784,
+            0.063681,
+            0.051202
+        ]
+    ],
+    "Kp_2": [
+        [
+            "Periodo",
+            "2.0 TD",
+            "3.0 TD",
+            "6.1 TD",
+            "6.2 TD",
+            "6.3 TD",
+            "6.4 TD"
+        ],
+        [
+            "P1",
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0,
+            1.0
+        ],
+        [
+            "P2",
+            0.019259,
+            0.528543,
+            0.528704,
+            0.567139,
+            0.60254,
+            0.597853
+        ],
+        [
+            "P3",
+            null,
+            0.167641,
+            0.198416,
+            0.149306,
+            0.196297,
+            0.145188
+        ],
+        [
+            "P4",
+            null,
+            0.128181,
+            0.139813,
+            0.090974,
+            0.12793,
+            0.100919
+        ],
+        [
+            "P5",
+            null,
+            0.036261,
+            0.002956,
+            0.003567,
+            0.004201,
+            0.003001
+        ],
+        [
+            "P6",
+            null,
+            0.036261,
+            0.002632,
+            0.003168,
+            0.003698,
+            0.002
+        ]
+    ],
+    "tepp45": [
+        [
+            "Período",
+            "2.0 TD",
+            "3.0 TD",
+            "6.1 TD",
+            "6.2 TD",
+            "6.3 TD",
+            "6.4 TD"
+        ],
+        [
+            "P1",
+            0.275041,
+            0.168944,
+            0.27254,
+            0.171493,
+            0.247625,
+            0.185913
+        ],
+        [
+            "P2",
+            0.005297,
+            0.089294,
+            0.144093,
+            0.09726,
+            0.149204,
+            0.111149
+        ],
+        [
+            "P3",
+            null,
+            0.028322,
+            0.054076,
+            0.025605,
+            0.048608,
+            0.026992
+        ],
+        [
+            "P4",
+            null,
+            0.021656,
+            0.038105,
+            0.015601,
+            0.031679,
+            0.018762
+        ],
+        [
+            "P5",
+            null,
+            0.006126,
+            0.000806,
+            0.000612,
+            0.00104,
+            0.000558
+        ],
+        [
+            "P6",
+            null,
+            0.006126,
+            0.000717,
+            0.000543,
+            0.000916,
+            0.000372
+        ]
+    ],
+    "tepp13": [
+        [
+            "Período",
+            "2.0 TD",
+            "3.0 TD",
+            "6.1 TD",
+            "6.2 TD",
+            "6.3 TD",
+            "6.4 TD"
+        ],
+        [
+            "P1",
+            2.953979,
+            3.361213,
+            3.332942,
+            3.292963,
+            3.099043,
+            2.73262
+        ],
+        [
+            "P2",
+            0.056891,
+            1.776545,
+            1.762138,
+            1.867567,
+            1.867297,
+            1.633705
+        ],
+        [
+            "P3",
+            null,
+            0.563477,
+            0.661311,
+            0.491658,
+            0.608334,
+            0.396742
+        ],
+        [
+            "P4",
+            null,
+            0.430844,
+            0.465989,
+            0.299575,
+            0.396461,
+            0.275775
+        ],
+        [
+            "P5",
+            null,
+            0.12188,
+            0.009852,
+            0.011745,
+            0.013018,
+            0.008201
+        ],
+        [
+            "P6",
+            null,
+            0.12188,
+            0.008771,
+            0.010432,
+            0.01146,
+            0.005465
+        ]
+    ],
+    "Precio_del_exceso_de_potencia": [
+        [
+            "Tipo",
+            "2.0 TD",
+            "3.0 TD",
+            "6.1 TD",
+            "6.2 TD",
+            "6.3 TD",
+            "6.4 TD"
+        ],
+        [
+            "Precio del exceso de potencia PS45",
+            0.097117,
+            0.110506,
+            0.109576,
+            0.108262,
+            0.101886,
+            0.08984
+        ],
+        [
+            "Precio del exceso de potencia PS123",
+            2.953979,
+            3.361213,
+            3.332942,
+            3.292963,
+            3.099043,
+            2.73262
+        ]
+    ],
+    "energia_peaje_30TDVE": [
+        [
+            "Peaje TyD",
+            "Periodo 1",
+            "Periodo 2",
+            "Periodo 3",
+            "Periodo 4",
+            "Periodo 5",
+            "Periodo 6"
+        ],
+        [
+            "Transporte",
+            0.015835,
+            0.006713,
+            0.002269,
+            0.001172,
+            6.1e-05,
+            7e-06
+        ],
+        [
+            "Distribución",
+            0.096869,
+            0.042157,
+            0.016444,
+            0.009672,
+            0.000413,
+            0.000123
+        ],
+        [
+            "Peaje TyD",
+            0.112704,
+            0.04887,
+            0.018713,
+            0.010844,
+            0.000474,
+            0.00013
+        ]
+    ],
+    "energia_peaje_61TDVE": [
+        [
+            "Peaje TyD",
+            "Periodo 1",
+            "Periodo 2",
+            "Periodo 3",
+            "Periodo 4",
+            "Periodo 5",
+            "Periodo 6"
+        ],
+        [
+            "Transporte",
+            0.037332,
+            0.016051,
+            0.005694,
+            0.002971,
+            0.000155,
+            1.6e-05
+        ],
+        [
+            "Distribución",
+            0.125585,
+            0.055433,
+            0.022696,
+            0.013477,
+            0.000578,
+            0.000158
+        ],
+        [
+            "Peaje TyD",
+            0.162917,
+            0.071484,
+            0.02839,
+            0.016448,
+            0.000733,
+            0.000174
+        ]
+    ],
+    "potencia_peaje_61TDVE": [
+        [
+            "Peaje TyD",
+            "Periodo 1",
+            "Periodo 2",
+            "Periodo 3",
+            "Periodo 4",
+            "Periodo 5",
+            "Periodo 6"
+        ],
+        [
+            "Transporte",
+            1.251966,
+            0.64965,
+            0.223142,
+            0.141577,
+            0.00322,
+            0.001453
+        ],
+        [
+            "Distribución",
+            4.208634,
+            2.237433,
+            0.860422,
+            0.622008,
+            0.012923,
+            0.012923
+        ],
+        [
+            "Peaje TyD",
+            5.4606,
+            2.887083,
+            1.083564,
+            0.763585,
+            0.016143,
+            0.014376
+        ]
+    ],
+    "potencia_peaje_30TDVE": [
+        [
+            "Peaje TyD",
+            "Periodo 1",
+            "Periodo 2",
+            "Periodo 3",
+            "Periodo 4",
+            "Periodo 5",
+            "Periodo 6"
+        ],
+        [
+            "Transporte",
+            0.544264,
+            0.275582,
+            0.083967,
+            0.04533,
+            0.000965,
+            0.000965
+        ],
+        [
+            "Distribución",
+            3.152553,
+            1.676249,
+            0.53451,
+            0.424296,
+            0.12983,
+            0.12983
+        ],
+        [
+            "Peaje TyD",
+            3.696817,
+            1.951831,
+            0.618477,
+            0.469626,
+            0.130795,
+            0.130795
+        ]
+    ],
+    "TARIFAS": [
+        [
+            "Nivel de tensión (NT)",
+            "Peaje de TD",
+            "Potencia \\\\contratada (P)",
+            "Discriminación horaria Potencia",
+            "Discriminación horaria Energía"
+        ],
+        [
+            "$NT0: NT \\leq 1 KV$",
+            "2.0 TD",
+            "$P \\leq 15 KW$",
+            2,
+            3
+        ],
+        [
+            "$NT0: NT \\leq 1 KV$",
+            "$.80 \\leq cos \\phi < 0.95$",
+            "$P > 15 KW$",
+            6,
+            6
+        ],
+        [
+            "$NT1: 1 KV < NT < 30 KV$",
+            "6.1 TD",
+            "n.a.",
+            6,
+            6
+        ],
+        [
+            "$NT2: 30 KV \\leq NT < 72,5 KV$",
+            "6.2 TD",
+            "n.a.",
+            6,
+            6
+        ],
+        [
+            "$NT3: 72,5 KV \\leq NT < 145 KV$",
+            "6.3 TD",
+            "n.a.",
+            6,
+            6
+        ],
+        [
+            "$NT4: NT \\geq 145 KV $",
+            "6.4 TD",
+            "n.a.",
+            6,
+            6
+        ]
+    ],
+    "pte": [
+        [
+            "Grupo Tarifario",
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+        ],
+        [
+            "2.0 TD",
+            0.100756,
+            0.03374,
+            0.004351,
+            0.0,
+            0.0,
+            0.0
+        ],
+        [
+            "3.0 TD",
+            0.05843,
+            0.044686,
+            0.024226,
+            0.013497,
+            0.005536,
+            0.003575
+        ],
+        [
+            "6.1 TD",
+            0.039483,
+            0.030631,
+            0.016972,
+            0.009852,
+            0.003151,
+            0.002085
+        ],
+        [
+            "6.2 TD",
+            0.019546,
+            0.015216,
+            0.008379,
+            0.00503,
+            0.001505,
+            0.001004
+        ],
+        [
+            "6.3 TD",
+            0.016281,
+            0.012817,
+            0.00732,
+            0.003581,
+            0.001326,
+            0.000916
+        ],
+        [
+            "6.4 TD",
+            0.010278,
+            0.008137,
+            0.004356,
+            0.003079,
+            0.00057,
+            0.000415
+        ]
+    ],
+    "ppp": [
+        [
+            "Nivel de tensión",
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+        ],
+        [
+            "2.0 TD",
+            0.167,
+            0.163,
+            0.18,
+            null,
+            null,
+            null
+        ],
+        [
+            "3.0 TD",
+            0.166,
+            0.175,
+            0.165,
+            0.165,
+            0.138,
+            0.18
+        ],
+        [
+            "6.1 TD",
+            0.067,
+            0.068,
+            0.065,
+            0.065,
+            0.043,
+            0.077
+        ],
+        [
+            "6.2 TD",
+            0.052,
+            0.054,
+            0.049,
+            0.049,
+            0.035,
+            0.054
+        ],
+        [
+            "6.3 TD",
+            0.042,
+            0.043,
+            0.04,
+            0.04,
+            0.03,
+            0.044
+        ],
+        [
+            "6.4 TD",
+            0.016,
+            0.016,
+            0.016,
+            0.016,
+            0.015,
+            0.017
+        ]
+    ],
+    "ppc": [
+        [
+            "Nivel de tensión",
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+        ],
+        [
+            "2.0 TD",
+            0.001444,
+            0.000241,
+            0.0,
+            0.0,
+            0.0,
+            0
+        ],
+        [
+            "3.0 TD",
+            0.001952,
+            0.000902,
+            0.000601,
+            0.00045,
+            0.00045,
+            0
+        ],
+        [
+            "6.1 TD",
+            0.000837,
+            0.000386,
+            0.000257,
+            0.000193,
+            0.000193,
+            0
+        ],
+        [
+            "6.2 TD",
+            0.000837,
+            0.000386,
+            0.000257,
+            0.000193,
+            0.000193,
+            0
+        ],
+        [
+            "6.3 TD",
+            0.000837,
+            0.000386,
+            0.000257,
+            0.000193,
+            0.000193,
+            0
+        ],
+        [
+            "6.4 TD",
+            0.000837,
+            0.000386,
+            0.000257,
+            0.000193,
+            0.000193,
+            0
+        ]
+    ],
+    "eurkvar": [
+        [
+            "p",
+            "P1",
+            "P2",
+            "P3",
+            "P4",
+            "P5",
+            "P6"
+        ],
+        [
+            "L",
+            0.04155,
+            0.04156,
+            0.04157,
+            0.04158,
+            0.04159,
+            0.0
+        ],
+        [
+            "C",
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.05
+        ]
+    ]
+}

@@ -1,0 +1,4 @@
+# sudo apt install ffmpeg python3-pip -y
+PyPDF2
+openpyxl
+pdf2image

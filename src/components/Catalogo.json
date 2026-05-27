@@ -1,0 +1,134 @@
+[
+    {
+        "sector": "A52_Sector_Residencial",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "RES060_Sustitución_de_caldera_de_combustión_por_una_bomba_de_calor_de_accionamiento_eléctrico",
+        "descripcion": []
+    },
+    {
+        "sector": "A52_Sector_Residencial",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "RES092_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_C1_C2_C3_o_C4",
+        "descripcion": []
+    },
+    {
+        "sector": "A52_Sector_Residencial",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "RES091_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_B3_o_B4",
+        "descripcion": []
+    },
+    {
+        "sector": "A52_Sector_Residencial",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "RES094_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_E1",
+        "descripcion": []
+    },
+    {
+        "sector": "A52_Sector_Residencial",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "RES090_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_A3_o_A4",
+        "descripcion": []
+    },
+    {
+        "sector": "A52_Sector_Residencial",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "RES093_Hibridación_en_modo_paralelo_de_caldera_s_de_combustión_con_bomba_de_calor_de_accionamiento_eléctrico_en_edificios_residenciales_ubicados_en_la_zona_climática_D1_D2_o_D3",
+        "descripcion": []
+    },
+    {
+        "sector": "A53_Sector_Terciario",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "TER260_Sustitución_de_un_Sistema_de_Alimentación_Ininterrumpida_SAI",
+        "descripcion": []
+    },
+    {
+        "sector": "A53_Sector_Terciario",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "TER040_Sustitución_de_generador_de_climatización_por_bomba_de_calor_de_accionamiento_eléctrico",
+        "descripcion": []
+    },
+    {
+        "sector": "A53_Sector_Terciario",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "TER280_Sustitución_de_bomba_por_otra_más_eficiente",
+        "descripcion": []
+    },
+    {
+        "sector": "A54_Sector_Agrario",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "AGR010_Pantallas_térmicas_en_invernaderos",
+        "descripcion": []
+    },
+    {
+        "sector": "A51_Sector_Industrial",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "IND240_Implantación_de_variador_de_velocidad",
+        "descripcion": []
+    },
+    {
+        "sector": "A51_Sector_Industrial",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "IND090_Sustitución_o_reemplazo_de_compresor_de_aire_por_uno_más_eficiente",
+        "descripcion": []
+    },
+    {
+        "sector": "A51_Sector_Industrial",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "IND290_Recuperación_de_calor_en_circuito_frigorifico",
+        "descripcion": []
+    },
+    {
+        "sector": "A51_Sector_Industrial",
+        "grupo": "A5_Medida_de_ahorro_energético",
+        "cod": "IND260_Sustitución_de_un_Sistema_de_Alimentación_Ininterrumpida_SAI",
+        "descripcion": []
+    },
+    {
+        "sector": "A12_Mayor_de_50_kW",
+        "grupo": "A2_Contrato_de_energía_eléctrica",
+        "cod": "A122_Facturación_por_potencia",
+        "descripcion": []
+    },
+    {
+        "sector": "A12_Mayor_de_50_kW",
+        "grupo": "A2_Contrato_de_energía_eléctrica",
+        "cod": "A121_Optimización_de_la_potencia_contratada",
+        "descripcion": []
+    },
+    {
+        "sector": "A11_Hasta_50_kW",
+        "grupo": "A2_Contrato_de_energía_eléctrica",
+        "cod": "A111_Optimización_de_la_potencia_contratada",
+        "descripcion": []
+    },
+    {
+        "sector": "A11_Hasta_50_kW",
+        "grupo": "A2_Contrato_de_energía_eléctrica",
+        "cod": "A112_Facturación_por_potencia",
+        "descripcion": []
+    },
+    {
+        "sector": "A62_Aislado_de_la_red",
+        "grupo": "A0_Sistema_FV",
+        "cod": "FV01_Autoconsumos",
+        "descripcion": []
+    },
+    {
+        "sector": "A61_Conectado_a_red",
+        "grupo": "A0_Sistema_FV",
+        "cod": "FV01_Autoconsumo_sin_excedentes",
+        "descripcion": []
+    },
+    {
+        "sector": "A61_Conectado_a_red",
+        "grupo": "A0_Sistema_FV",
+        "cod": "FV03_pvgis6",
+        "descripcion": []
+    },
+    {
+        "sector": "A61_Conectado_a_red",
+        "grupo": "A0_Sistema_FV",
+        "cod": "FV02_Autoconsumo_con_excedentes",
+        "descripcion": []
+    }
+]
