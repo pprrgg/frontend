@@ -1,0 +1,177 @@
+{
+    "PDF": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Variable",
+            "valor"
+        ],
+        [
+            "",
+            "Proyecto",
+            "nombre",
+            "Mi rrrr Real"
+        ],
+        [
+            "",
+            "Autor",
+            "nombre",
+            "Pepe Perez"
+        ],
+        [
+            "",
+            "Autor",
+            "N Registro",
+            "N.12345"
+        ],
+        [
+            "",
+            "Organización",
+            "nombre",
+            "Instalaciones S.A."
+        ],
+        [
+            "",
+            "Organización",
+            "CIF",
+            "A12345678"
+        ],
+        [
+            "",
+            "Organización",
+            "dirección",
+            "Calle Iglesia, 123"
+        ],
+        [
+            "",
+            "Organización",
+            "teléfono",
+            "912 34 56 78"
+        ],
+        [
+            "",
+            "Organización",
+            "correo",
+            "pperez@instalaciones.com"
+        ],
+        [
+            "",
+            "Destinatario",
+            "nombre",
+            "Ayto. Villanueva"
+        ],
+        [
+            "",
+            "Destinatario",
+            "CIF",
+            ""
+        ],
+        [
+            "",
+            "Destinatario",
+            "dirección",
+            "Plaza Mayor, 1"
+        ]
+    ],
+    "COSTES_DE_INSTALACION": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Variable",
+            "Fijo (€)",
+            "valor",
+            "Ud",
+            "MO (%)"
+        ],
+        [
+            "Coste Directo",
+            "Equipos Principales",
+            "Paneles fotovoltaicos monocristalinos",
+            0,
+            0.22,
+            "€/Wdc",
+            5
+        ],
+        [
+            "Coste Directo",
+            "Equipos Principales",
+            "Inversor string/híbrido",
+            150,
+            0.12,
+            "€/Wdc",
+            5
+        ],
+        [
+            "Coste Directo",
+            "Equipos Principales",
+            "Sistema de almacenamiento (Batería)",
+            3000,
+            0.15,
+            "€/kWh",
+            5
+        ],
+        [
+            "Coste Directo",
+            "Balance de Sistema (BOS)",
+            "Soportes, cableado y protecciones",
+            750,
+            0.19,
+            "€/Wdc",
+            40
+        ],
+        [
+            "Coste Directo",
+            "Balance de Sistema (BOS)",
+            "Sistema de monitorización",
+            150,
+            0.02,
+            "€/Wdc",
+            10
+        ],
+        [
+            "Coste Directo",
+            "Obra Civil",
+            "Adecuación y pequeñas adaptaciones",
+            200,
+            0.005,
+            "€/Wdc",
+            80
+        ],
+        [
+            "Coste Indirecto",
+            "Ingeniería",
+            "Proyecto, dirección y legalización",
+            900,
+            0.02,
+            "€/Wdc",
+            100
+        ],
+        [
+            "Coste Indirecto",
+            "Interconexión",
+            "Trámites con distribuidora y tasas",
+            500,
+            0.01,
+            "€/Wdc",
+            90
+        ],
+        [
+            "Coste Indirecto",
+            "Gastos Generales",
+            "Margen comercial y overhead",
+            0,
+            0.18,
+            "€/Wdc",
+            0
+        ],
+        [
+            "Coste Indirecto",
+            "Contingencias",
+            "Reserva para imprevistos (3-5%)",
+            0,
+            0.04,
+            "€/Wdc",
+            0
+        ]
+    ]
+}

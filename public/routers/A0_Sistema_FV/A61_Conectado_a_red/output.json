@@ -1691,7 +1691,7 @@
                 "Variable": "Adecuación y pequeñas adaptaciones",
                 "Fijo (€)": 200,
                 "valor": 0.005,
-                "Variable_Ud": "€/Wdc",
+                "Ud": "€/Wdc",
                 "MO (%)": 80
             },
             "Coste Indirecto": {
@@ -1700,7 +1700,7 @@
                 "Variable": "Reserva para imprevistos (3-5%)",
                 "Fijo (€)": 0,
                 "valor": 0.04,
-                "Variable_Ud": "€/Wdc",
+                "Ud": "€/Wdc",
                 "MO (%)": 0
             },
             "Otros": {
@@ -1709,7 +1709,7 @@
                 "Variable": "@",
                 "Fijo (€)": 0,
                 "valor": 0.0,
-                "Variable_Ud": "@",
+                "Ud": "@",
                 "MO (%)": 0
             }
         },
