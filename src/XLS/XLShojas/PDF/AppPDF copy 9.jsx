@@ -14,64 +14,7 @@ let globalLastData = null;
 let globalLastUrl = null;
 let globalCachedBlob = null;
 
-// Porcentajes de recorte
-const CROP = { top: 9, bottom: 8, left: 9, right: 9 };
-
-// Componente interno para gestionar las dimensiones reales de cada página individualmente
-const CroppedPage = ({ pageNumber, containerWidth, currentFullUrl }) => {
-  const [pageSize, setPageSize] = useState(null);
-
-  const handlePageLoadSuccess = (page) => {
-    // page.view contiene [x, y, width, height] original del PDF
-    const [, , originalWidth, originalHeight] = page.view;
-    setPageSize({ width: originalWidth, height: originalHeight });
-  };
-
-  // Ancho útil visible (en porcentaje)
-  const visibleWidthPct = 100 - CROP.left - CROP.right;
-  // Multiplicador para escalar el PDF original y que la zona visible ocupe el 100% del contenedor
-  const scaleFactor = 100 / visibleWidthPct;
-  const pdfFullWidth = containerWidth * scaleFactor;
-
-  // Calculamos la altura total proporcional basándonos en la relación de aspecto real del PDF
-  const aspectRatio = pageSize ? pageSize.height / pageSize.width : 1.4142; // Fallback a A4 (1:√2)
-  const pdfFullHeight = pdfFullWidth * aspectRatio;
-
-  // Altura final visible aplicando los crops superior e inferior
-  const visibleHeightPct = 100 - CROP.top - CROP.bottom;
-  const finalVisibleHeight = (pdfFullHeight * visibleHeightPct) / 100;
-
-  return (
-    <Box 
-      sx={{ 
-        position: 'relative', 
-        width: "100%", 
-        height: pageSize ? `${finalVisibleHeight}px` : "auto", 
-        overflow: 'hidden', 
-        bgcolor: '#ffffff' 
-      }}
-    >
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: `-${(CROP.top / 100) * pdfFullHeight}px`, 
-          left: `-${(CROP.left / 100) * pdfFullWidth}px`, 
-          width: `${pdfFullWidth}px` 
-        }}
-      >
-        <Page 
-          pageNumber={pageNumber} 
-          width={pdfFullWidth} 
-          onLoadSuccess={handlePageLoadSuccess}
-          renderTextLayer={true} 
-          renderAnnotationLayer={true} 
-        />
-      </Box>
-      {/* Marcador de posición mientras carga el tamaño real para evitar saltos bruscos */}
-      {!pageSize && <Box sx={{ height: "1000px", display: 'flex', alignItems: 'center', justifyContent: 'center' }}><CircularProgress size={24} /></Box>}
-    </Box>
-  );
-};
+const CROP = { top: 5, bottom: 5, left: 12, right: 10 };
 
 export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGrupo, cod: propCod }, ref) => {
   const params = useParams();
@@ -97,7 +40,8 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
   const containerRef = useRef(null);
   const isRestoringRef = useRef(false);
 
-  // --- 1. FUNCIÓN DE ACTUALIZACIÓN (API FETCH) ---
+  // --- 1. FUNCIÓN DE ACTUALIZACIÓN (Definida primero) ---
+// --- 1. FUNCIÓN DE ACTUALIZACIÓN (API FETCH) ---
   const fetchApiUpdate = useCallback(async () => {
     if (isFetchingRef.current) return;
     const currentData = sessionStorage.getItem("excelData");
@@ -121,8 +65,11 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
       const rawBlob = await response.blob();
       const newUrl = URL.createObjectURL(rawBlob);
 
+      // Limpieza de memoria
       if (globalCachedBlob) URL.revokeObjectURL(globalCachedBlob);
       
+      // ACTUALIZACIÓN DE FOTO DE REFERENCIA
+      // Solo aquí actualizamos globalLastData para que el botón desaparezca
       globalCachedBlob = newUrl;
       globalLastData = currentData; 
       globalLastUrl = currentFullUrl;
@@ -141,10 +88,13 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
     }
   }, [s, g, c, currentFullUrl]);
 
-  // --- 2. DETECCIÓN DE CAMBIOS ---
+  // --- 2. DETECCIÓN DE CAMBIOS (EL CORAZÓN DEL COMPONENTE) ---
   useEffect(() => {
     const checkChanges = () => {
       const currentData = sessionStorage.getItem("excelData");
+      
+      // Si los datos actuales de sesión son distintos a la última vez
+      // que el PDF fue generado exitosamente, mostramos el botón.
       if (currentData !== globalLastData) {
         setHasPendingChanges(true);
       } else {
@@ -152,11 +102,17 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
       }
     };
 
+    // Escuchamos el evento disparado por el guardado de polígonos
     window.addEventListener("sessionStorageUpdate", checkChanges);
+    // Escuchamos si el usuario vuelve a la pestaña
     window.addEventListener("focus", checkChanges);
+    // Escuchamos cambios de otras pestañas (storage nativo)
     window.addEventListener('storage', checkChanges);
 
+    // Comprobación de seguridad cada 2 segundos por si fallan los eventos
     const interval = setInterval(checkChanges, 2000);
+
+    // Ejecución inmediata al montar/cambiar PDF
     checkChanges();
 
     return () => {
@@ -165,9 +121,9 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
       window.removeEventListener('storage', checkChanges);
       clearInterval(interval);
     };
-  }, [pdfUrl]);
+  }, [pdfUrl]); // Se reinicia cuando el PDF cambia para validar contra el nuevo globalLastData
 
-  // --- 3. CAMBIO DE RUTA ---
+  // --- 3. CAMBIO DE RUTA (LIMPIEZA Y RESET) ---
   useEffect(() => {
     const sessionData = sessionStorage.getItem("excelData");
 
@@ -177,6 +133,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
         globalCachedBlob = null;
       }
 
+      // Al cambiar de ruta, establecemos los datos actuales como "base"
       globalLastUrl = currentFullUrl;
       globalLastData = sessionData; 
 
@@ -190,7 +147,6 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
       }
     }
   }, [currentFullUrl, localPath]);
-
   // --- 4. FUNCIONALIDADES AUXILIARES ---
   const saveScrollPosition = (e) => {
     if (!numPages || isRestoringRef.current || isFetchingRef.current) return;
@@ -213,10 +169,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
 
   useEffect(() => {
     const updateWidth = () => {
-      if (containerRef.current) {
-        // Obtenemos el ancho real del contenedor donde se renderizan las páginas
-        setContainerWidth(Math.min(containerRef.current.offsetWidth, 900));
-      }
+      if (containerRef.current) setContainerWidth(Math.min(containerRef.current.offsetWidth, 900));
     };
     const resizeObserver = new ResizeObserver(updateWidth);
     if (containerRef.current) resizeObserver.observe(containerRef.current);
@@ -237,7 +190,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
   useImperativeHandle(ref, () => ({ refresh: () => fetchApiUpdate() }));
 
   return (
-    <Box ref={containerRef} sx={{ width: "100%", height: "85vh", position: "relative", bgcolor: "#ffffff", display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+    <Box ref={containerRef} sx={{ width: "100%", height: "85vh", position: "relative", bgcolor: "#f5f5f5", display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
       
       <style>{`
         @keyframes pulse-update {
@@ -249,7 +202,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
 
       <Backdrop open={isApiLoading} sx={{ position: 'absolute', zIndex: 2000, color: 'primary.main', backgroundColor: 'rgba(255, 255, 255, 0.6)', display: 'flex', flexDirection: 'column', gap: 2 }}>
         <CircularProgress color="primary" />
-        <Typography variant="button" sx={{ bgcolor: 'white', px: 2, py: 0.5, borderRadius: 2,  color: 'primary.main', fontWeight: 'bold' }}>
+        <Typography variant="button" sx={{ bgcolor: 'white', px: 2, py: 0.5, borderRadius: 2, boxShadow: 2, color: 'primary.main', fontWeight: 'bold' }}>
           Actualizando ...
         </Typography>
       </Backdrop>
@@ -277,20 +230,28 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
       )}
 
       <Box ref={scrollContainerRef} onScroll={saveScrollPosition} sx={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <Box sx={{ width: "100%", maxWidth: "900px", bgcolor: "#ffffff"}}>
+        <Box sx={{ width: "100%", maxWidth: "900px", bgcolor: "#ffffff", boxShadow: "0 0 20px rgba(0,0,0,0.05)" }}>
           <Document
             key={currentFullUrl}
             file={pdfUrl}
             onLoadSuccess={({ numPages: total }) => { setNumPages(total); restoreScrollPosition(); }}
           >
-            {Array.from(new Array(numPages), (el, index) => (
-              <CroppedPage 
-                key={`${currentFullUrl}_page_${index}`}
-                pageNumber={index + 1}
-                containerWidth={containerWidth}
-                currentFullUrl={currentFullUrl}
-              />
-            ))}
+            {Array.from(new Array(numPages), (el, index) => {
+              const visibleWidthPct = 100 - CROP.left - CROP.right;
+              const scaleFactor = 100 / visibleWidthPct;
+              const effectiveWidth = Math.min(containerWidth, 900);
+              const pdfFullWidth = effectiveWidth * scaleFactor;
+              const pdfFullHeight = pdfFullWidth * 1.414;
+              const finalVisibleHeight = (pdfFullHeight * (100 - CROP.top - CROP.bottom)) / 100;
+
+              return (
+                <Box key={`${currentFullUrl}_page_${index}`} sx={{ position: 'relative', width: "100%", height: `${finalVisibleHeight}px`, overflow: 'hidden', bgcolor: '#ffffff' }}>
+                  <Box sx={{ position: 'absolute', top: `-${(CROP.top / 100) * pdfFullHeight}px`, left: `-${(CROP.left / 100) * pdfFullWidth}px`, width: `${pdfFullWidth}px` }}>
+                    <Page pageNumber={index + 1} width={pdfFullWidth} renderTextLayer={true} renderAnnotationLayer={true} />
+                  </Box>
+                </Box>
+              );
+            })}
           </Document>
           <Box sx={{ height: '80px', width: '100%', bgcolor: '#ffffff' }} />
         </Box>
