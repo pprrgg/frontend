@@ -120,10 +120,10 @@ const CONFIG = {
 
 const Utils = {
   isNumeric: (val) => /^-?\d*\.?\d*$/.test(String(val)),
-  // Cambio de ! por ~ para identificar strings editables
-  isEditable: (val) => typeof val === "string" && val.startsWith("~"),
-  // Ajustamos el selector para que ignore los que empiezan con ~
-  isSelector: (val) => typeof val === "string" && val.includes(";") && !val.startsWith("~"),
+  // Cambio de ! por @ para identificar strings editables
+  isEditable: (val) => typeof val === "string" && val.startsWith("@"),
+  // Ajustamos el selector para que ignore los que empiezan con @
+  isSelector: (val) => typeof val === "string" && val.includes(";") && !val.startsWith("@"),
   isDistribution: (val) => typeof val === "string" && val.trim().startsWith("[") && val.trim().endsWith("]"),
   isUpperSheet: (name) => name && name === name.toUpperCase(),
 
@@ -377,7 +377,7 @@ const CellRenderer = ({ value, columnWidth, sheetName, rowIndex, colIndex, onUpd
     );
   }
 
-  // 3. LÓGICA DE CELDAS EDITABLES (Numéricas y Texto con ~)
+  // 3. LÓGICA DE CELDAS EDITABLES (Numéricas y Texto con @)
   const isNumericValue = Utils.isNumeric(value);
   const isExplicitEditable = Utils.isEditable(value);
 
@@ -385,7 +385,7 @@ const CellRenderer = ({ value, columnWidth, sheetName, rowIndex, colIndex, onUpd
   // Incluimos el string vacío para que no se bloquee durante el borrado
   const editable = isNumericValue || isExplicitEditable || value === "";
 
-  // Formateamos el valor para mostrarlo (quitando el ~ si existe)
+  // Formateamos el valor para mostrarlo (quitando el @ si existe)
   const displayValue = isExplicitEditable
     ? value.slice(1).replace(/_/g, " ")
     : (value ?? "").toString().replace(/_/g, " ");
@@ -400,7 +400,7 @@ const CellRenderer = ({ value, columnWidth, sheetName, rowIndex, colIndex, onUpd
         onChange={(e) => {
           const newVal = e.target.value;
 
-          // Si es un campo numérico (no tiene ~) y el usuario borra todo:
+          // Si es un campo numérico (no tiene @) y el usuario borra todo:
           if (!isExplicitEditable && newVal.trim() === "") {
             // Mandamos "0" al estado para que Utils.isNumeric siga siendo true
             onUpdate(sheetName, rowIndex, colIndex, "0");
@@ -1222,7 +1222,7 @@ const ExcelUploaderStorage = () => {
             const numRegex = /^-?\d*\.?\d*$/;
             if (!numRegex.test(val)) return row;
           }
-          newRow[c] = isExcl ? `~${val}` : val;
+          newRow[c] = isExcl ? `@${val}` : val;
         }
         return newRow;
       });
@@ -1582,7 +1582,7 @@ const ExcelUploaderStorage = () => {
                         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                           {isChExpanded ? <FolderOpenIcon sx={{ fontSize: 14 }} /> : <FolderIcon sx={{ fontSize: 14 }} />}
                           <Typography sx={{ fontWeight: "bold", fontSize: "0.65rem" }}>
-                            {chapterName.startsWith('~') ? chapterName.substring(1).toUpperCase() : chapterName.toUpperCase()}
+                            {chapterName.startsWith('@') ? chapterName.substring(1).toUpperCase() : chapterName.toUpperCase()}
                           </Typography>
                           <Typography variant="caption" sx={{ ml: 1, color: "text.secondary", fontSize: "0.6rem" }}>
                             ({totalItems} ítems)
@@ -1624,7 +1624,7 @@ const ExcelUploaderStorage = () => {
                                       color: isCatExpanded ? "secondary.main" : "#666",
                                       textTransform: "uppercase"
                                     }}>
-                                      {catName.startsWith('~') ? catName.substring(1) : catName}
+                                      {catName.startsWith('@') ? catName.substring(1) : catName}
                                     </Typography>
                                     <Typography sx={{ fontSize: "0.55rem", color: "#aaa" }}>
                                       ({rows.length})
