@@ -452,7 +452,7 @@ const App = () => {
             // ... dentro de loadDataFromSession en la sección: OBJETO GRID NORMALIZADO ...
             return {
               id: row.id || Date.now(),
-              nombre: row.nombre || "G1",
+              name: row.name || "G1",
               rotation: Number.isFinite(parseFloat(row.rotation)) ? parseFloat(row.rotation) : 0,
               baseLatLng: {
                 lat: validLat,
@@ -783,7 +783,7 @@ const App = () => {
             type: "Feature",
 
             properties: {
-              area: grid.nombre,
+              area: grid.name,
               block: panelId
             },
 
@@ -823,7 +823,7 @@ const App = () => {
       // ... dentro de handleSave ...
       // ... dentro de handleSave ...
       const headers = [
-        "Capítulo", "Categoría", "nombre", "tipoEstructura", "id", "lat", "lng", "rotation",
+        "Capítulo", "Categoría", "name", "tipoEstructura", "id", "lat", "lng", "rotation",
         "width", "height", "tilt", "slope",
         "orientation",  // Vía 12
         "modelo",       // Vía 13 <--- NUEVO
@@ -836,7 +836,7 @@ const App = () => {
       ];
 
       const rowsData = grids.map((g) => [
-        "FV", "Paneles", g.nombre, g.config?.tipoEstructura || "coplanar", g.id,
+        "FV", "Paneles", g.name, g.config?.tipoEstructura || "coplanar", g.id,
         g.baseLatLng?.lat || 0, g.baseLatLng?.lng || 0, g.rotation || 0,
         g.config?.width || 0, g.config?.height || 0, g.config?.tilt || 0, g.config?.slope || 0,
         g.config?.orientation || "vertical", // Mismo orden que el header
@@ -910,7 +910,7 @@ const App = () => {
     const id = Date.now();
     const n = {
       id,
-      nombre: `G${grids.length + 1}`,
+      name: `G${grids.length + 1}`,
       baseLatLng: mapRef.current.getCenter(),
       rotation: 0,
       config: {
@@ -972,7 +972,7 @@ const App = () => {
     const clonedGrid = {
       ...gridToCopy,
       id,
-      nombre: `${gridToCopy.nombre}c`, // Añadimos una 'c' de copia al nombre
+      name: `${gridToCopy.name}c`, // Añadimos una 'c' de copia al nombre
       baseLatLng: {
         lat: gridToCopy.baseLatLng.lat - offset,
         lng: gridToCopy.baseLatLng.lng + offset
@@ -1062,7 +1062,7 @@ const App = () => {
 
         return {
           type: "Feature",
-          properties: { area: grid.nombre, row: r, col: c, structure: tipo },
+          properties: { area: grid.name, row: r, col: c, structure: tipo },
           geometry: { type: "Polygon", coordinates: [coordinates] }
         };
       });
@@ -1189,7 +1189,7 @@ const App = () => {
                 {/* INFO GRUPO */}
                 <Stack direction="row" spacing={0.5} sx={{ alignItems: 'center', flexGrow: 1 }}>
                   <Typography sx={{ fontSize: '0.6rem', fontWeight: 800, whiteSpace: 'nowrap' }}>
-                    {g.nombre}:
+                    {g.name}:
                   </Typography>
                   <Typography sx={{ fontSize: '0.6rem', whiteSpace: 'nowrap', opacity: 0.9 }}>
                     {totalPanelesReal}p | {pwr}kW
@@ -1451,11 +1451,11 @@ const App = () => {
                       size="small"
                       variant="standard"
                       fullWidth
-                      value={activeGrid.nombre}
+                      value={activeGrid.name}
                       onChange={(e) => {
                         const newValue = e.target.value;
                         if (newValue.length <= 3) {
-                          updateGrid(activeGridId, { nombre: newValue });
+                          updateGrid(activeGridId, { name: newValue });
                         }
                       }}
                       sx={{ mb: 1.5 }}
@@ -1760,7 +1760,7 @@ const App = () => {
       {/* DIALOGO SOMBRAS */}
       <Dialog open={shadowModalOpen} onClose={() => setShadowModalOpen(false)} fullWidth>
         <DialogTitle sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          Sombras: {activeGrid?.nombre}
+          Sombras: {activeGrid?.name}
           <IconButton onClick={() => setShadowModalOpen(false)}><CloseIcon /></IconButton>
         </DialogTitle>
         <Box sx={{ p: 3 }}>

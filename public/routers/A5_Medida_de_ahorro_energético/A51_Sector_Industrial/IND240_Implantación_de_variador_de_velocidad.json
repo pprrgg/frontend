@@ -1,5 +1,5 @@
 {
-    "ii": {
+    "inputs": {
         "PDF": [
             [
                 "Capítulo",
@@ -94,7 +94,7 @@
             ],
             [
                 "Potencia nominal motor (P)",
-                11,
+                33.0,
                 "kW"
             ],
             [
@@ -232,7 +232,7 @@
             ]
         ]
     },
-    "aa": {
+    "aux": {
         "Referencias": [
             [
                 "<para alignment='center'><b>REFERENCIAS</b></para>"
