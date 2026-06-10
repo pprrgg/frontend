@@ -116,6 +116,12 @@
     {
         "sector": "A61_Conectado_a_red",
         "grupo": "A0_Sistema_FV",
+        "cod": "FV06_pvgisampliado",
+        "descripcion": []
+    },
+    {
+        "sector": "A61_Conectado_a_red",
+        "grupo": "A0_Sistema_FV",
         "cod": "FV01_Autoconsumo_sin_excedentes",
         "descripcion": []
     },

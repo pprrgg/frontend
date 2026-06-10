@@ -1,5 +1,5 @@
 {
-    "ii": {
+    "inputs": {
         "PDF": [
             [
                 "variable",
@@ -71,7 +71,7 @@
             ],
             [
                 "Demanda calefacción (D_CAL)",
-                80,
+                180.0,
                 "kWh/m²·año"
             ],
             [
@@ -214,7 +214,7 @@
             ]
         ]
     },
-    "aa": {
+    "aux": {
         "Referencias": [
             [
                 "<para alignment='center'><b>REFERENCIAS</b></para>"
