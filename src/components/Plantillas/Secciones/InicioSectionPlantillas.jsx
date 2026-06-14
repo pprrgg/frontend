@@ -163,7 +163,7 @@ const InicioSection = () => {
                   "&:hover": { color: "#0066FF" }
                 }}
               >
-                Informes Técnico-Económicos
+                Informedfasds Técnico-Económicos
               </Typography>
 
 <Stack 
