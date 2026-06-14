@@ -171,7 +171,7 @@ const InicioSection = () => {
       whiteSpace: 'nowrap'
     }}
   >
-    Blog Técnico
+    Blog Técnico Interactivo
   </Typography>
 
   <Stack
@@ -180,8 +180,8 @@ const InicioSection = () => {
     sx={{ justifyContent: "center" }}
   >
     {[
-      { icon: <PictureAsPdfIcon />, label: "Informes en PDF" },
-      { icon: <EditNoteIcon />, label: "Personalizables" },
+      { icon: <PictureAsPdfIcon />, label: "Informes Personalizables en PDF" },
+      // { icon: <EditNoteIcon />, label: "Personalizables" },
       // { icon: <SensorsIcon />, label: "en linea" },
     ].map((item, idx) => (
       <Chip

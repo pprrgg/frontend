@@ -69,7 +69,7 @@ export default function TopNavBar() {
   const sideMenu = [
     { label: "Términos", path: "/terminos", icon: <GavelIcon sx={{ fontSize: 16 }} /> },
     { label: "Privacidad", path: "/privacidad", icon: <PolicyIcon sx={{ fontSize: 16 }} /> },
-    { label: "Sobre ITE", path: "/sobre", icon: <InfoIcon sx={{ fontSize: 16 }} /> },
+    { label: "Sobre PRoman Blog", path: "/sobre", icon: <InfoIcon sx={{ fontSize: 16 }} /> },
   ];
 
   // ---------------- LÓGICA FILTRADO ----------------
@@ -169,13 +169,13 @@ export default function TopNavBar() {
               onClick={() => { navigate("/"); setDrawerOpen(false); }}
             >
               <Typography sx={{ color: "white", fontSize: "9px", fontWeight: 700, lineHeight: 1, textTransform: "uppercase", display: 'flex', justifyContent: 'space-between' }}>
-                {"INFORME".split("").map((char, i) => <span key={i}>{char}</span>)}
+                {"PRoman".split("").map((char, i) => <span key={i}>{char}</span>)}
               </Typography>
               <Typography sx={{ color: "white", fontSize: "11px", fontWeight: 900, lineHeight: 0.9, textTransform: "uppercase", display: 'flex', justifyContent: 'space-between' }}>
-                {"TÉCNICO".split("").map((char, i) => <span key={i}>{char}</span>)}
+                {"Blog".split("").map((char, i) => <span key={i}>{char}</span>)}
               </Typography>
               <Typography sx={{ color: "white", fontSize: "7px", fontWeight: 500, lineHeight: 1, textTransform: "uppercase", display: 'flex', justifyContent: 'space-between' }}>
-                {"ECONÓMICO".split("").map((char, i) => <span key={i}>{char}</span>)}
+                {"TÉCNICO".split("").map((char, i) => <span key={i}>{char}</span>)}
               </Typography>
             </Box>
           </Box>
