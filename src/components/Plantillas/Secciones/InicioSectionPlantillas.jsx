@@ -30,6 +30,7 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import DescriptionIcon from "@mui/icons-material/Description";
+import EditNoteIcon from '@mui/icons-material/EditNote';
 
 import { useNavigate } from "react-router-dom";
 import * as XLSX from "xlsx";
@@ -144,70 +145,72 @@ const InicioSection = () => {
             spacing={{ xs: 1, md: 2 }}
           >
             {/* IZQUIERDA: Título y Micro Badges */}
-            <Stack
-              direction={{ xs: "column", md: "row" }} // Forzado a fila desde MD (Pantallas medias)
-              spacing={{ xs: 0.5, md: 2 }}
-              alignItems="center"
-            >
-              <Typography
-                component="h1"
-                onClick={handleOpenMenu}
-                sx={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontSize: { xs: "1.1rem", md: "1.25rem" },
-                  fontWeight: 900,
-                  lineHeight: 1,
-                  whiteSpace: "nowrap",
-                  cursor: 'pointer',
-                  transition: 'color 0.2s',
-                  "&:hover": { color: "#0066FF" }
-                }}
-              >
-                Informedfasds Técnico-Económicos
-              </Typography>
 
-<Stack 
-  direction="row" 
-  spacing={0.5} // Espacio muy ajustado entre ellos
-  sx={{ flexWrap: 'wrap', justifyContent: "center" }}
+
+<Stack
+  direction="row"
+  spacing={2}
+  alignItems="center"
+  justifyContent="center"
+  sx={{ 
+    py: 2, 
+    width: '100%',
+    flexWrap: 'wrap', 
+    gap: 1.5
+  }}
 >
-  {[
-    { icon: <PictureAsPdfIcon />, label: "EN PDF" },
-    { icon: <SensorsIcon />, label: "ONLINE" },
-    { icon: <PersonOffIcon />, label: "SIN REGISTRO" },
+  <Typography
+    component="h1"
+    onClick={handleOpenMenu}
+    sx={{
+      fontFamily: "'Inter', sans-serif",
+      fontSize: { xs: "1.1rem", md: "1.3rem" },
+      fontWeight: 800,
+      color: '#1e293b',
+      cursor: 'pointer',
+      whiteSpace: 'nowrap'
+    }}
+  >
+    Blog Técnico
+  </Typography>
 
-  ].map((item, idx) => (
-    <Chip
-      key={idx}
-      icon={React.cloneElement(item.icon, { 
-        style: { fontSize: '0.85rem', color: 'inherit', marginLeft: '4px', marginRight: '-4px' } 
-      })}
-      label={item.label}
-      onClick={handleOpenMenu}
-      sx={{ 
-        ...chipStyle, 
-        bgcolor: '#1a237e', 
-        color: 'white',
-        height: 22,            // Altura compacta máxima
-        fontSize: '0.62rem',   // Fuente micro pero clara
-        fontWeight: 800,       // Un poco más de peso para compensar el tamaño
-        borderRadius: '4px',   // Bordes más rectos para que parezcan celdas/cuadros
-        cursor: 'pointer',
-        '& .MuiChip-label': {
-          px: 1,               // Padding lateral mínimo
-        },
-        '& .MuiChip-icon': {
-          margin: 0,           // Reseteo de márgenes del icono
-        },
-        '&:hover': {
-          bgcolor: '#0066FF'
-        }
-      }}
-    />
-  ))}
+  <Stack
+    direction="row"
+    spacing={1}
+    sx={{ justifyContent: "center" }}
+  >
+    {[
+      { icon: <PictureAsPdfIcon />, label: "Informes en PDF" },
+      { icon: <EditNoteIcon />, label: "Personalizables" },
+      // { icon: <SensorsIcon />, label: "en linea" },
+    ].map((item, idx) => (
+      <Chip
+        key={idx}
+        size="small"
+        icon={React.cloneElement(item.icon, {
+          style: { fontSize: '0.8rem', marginRight: '2px' }
+        })}
+        label={item.label}
+        onClick={handleOpenMenu}
+        variant="outlined"
+        sx={{
+          height: 24,
+          fontSize: '0.7rem',
+          fontWeight: 600,
+          borderRadius: '12px',
+          borderColor: '#cbd5e1',
+          color: '#64748b',
+          transition: 'all 0.2s',
+          '&:hover': { 
+            borderColor: '#3b82f6', 
+            color: '#3b82f6',
+            bgcolor: '#f1f5f9'
+          }
+        }}
+      />
+    ))}
+  </Stack>
 </Stack>
-            </Stack>
-
             {/* DERECHA: Botón Guía */}
             <Button
               variant="text"
