@@ -1,0 +1,335 @@
+{
+    "inputs": {
+        "location": {
+            "latitude": 37.12749320120883,
+            "longitude": -3.2207048813288526,
+            "elevation": 2102.0
+        },
+        "meteo_data": {
+            "radiation_db": "PVGIS-SARAH3",
+            "meteo_db": "ERA5",
+            "year_min": 2005,
+            "year_max": 2023,
+            "use_horizon": true,
+            "horizon_db": "DEM-calculated"
+        },
+        "mounting_system": {
+            "fixed": {
+                "slope": {
+                    "value": 0,
+                    "optimal": false
+                },
+                "azimuth": {
+                    "value": 0,
+                    "optimal": false
+                },
+                "type": "free-standing"
+            }
+        },
+        "pv_module": {
+            "technology": "c-Si",
+            "peak_power": 5400.0,
+            "system_loss": 14.0
+        },
+        "economic_data": {
+            "system_cost": 8.0,
+            "interest": 5.0,
+            "lifetime": 20
+        }
+    },
+    "outputs": {
+        "monthly": {
+            "fixed": [
+                {
+                    "month": 1,
+                    "E_d": 4392.63,
+                    "E_m": 136171.49,
+                    "H(i)_d": 1.05,
+                    "H(i)_m": 32.61,
+                    "SD_m": 15304.66
+                },
+                {
+                    "month": 2,
+                    "E_d": 6308.71,
+                    "E_m": 176643.96,
+                    "H(i)_d": 1.48,
+                    "H(i)_m": 41.32,
+                    "SD_m": 15680.88
+                },
+                {
+                    "month": 3,
+                    "E_d": 8323.61,
+                    "E_m": 258031.92,
+                    "H(i)_d": 1.93,
+                    "H(i)_m": 59.89,
+                    "SD_m": 28142.78
+                },
+                {
+                    "month": 4,
+                    "E_d": 10148.56,
+                    "E_m": 304456.91,
+                    "H(i)_d": 2.38,
+                    "H(i)_m": 71.45,
+                    "SD_m": 28440.89
+                },
+                {
+                    "month": 5,
+                    "E_d": 10449.01,
+                    "E_m": 323919.34,
+                    "H(i)_d": 2.5,
+                    "H(i)_m": 77.58,
+                    "SD_m": 28905.58
+                },
+                {
+                    "month": 6,
+                    "E_d": 10081.95,
+                    "E_m": 302458.46,
+                    "H(i)_d": 2.51,
+                    "H(i)_m": 75.35,
+                    "SD_m": 27702.51
+                },
+                {
+                    "month": 7,
+                    "E_d": 8334.27,
+                    "E_m": 258362.46,
+                    "H(i)_d": 2.16,
+                    "H(i)_m": 66.89,
+                    "SD_m": 19393.87
+                },
+                {
+                    "month": 8,
+                    "E_d": 8125.61,
+                    "E_m": 251893.82,
+                    "H(i)_d": 2.08,
+                    "H(i)_m": 64.51,
+                    "SD_m": 20439.9
+                },
+                {
+                    "month": 9,
+                    "E_d": 7759.1,
+                    "E_m": 232773.07,
+                    "H(i)_d": 1.92,
+                    "H(i)_m": 57.52,
+                    "SD_m": 15985.15
+                },
+                {
+                    "month": 10,
+                    "E_d": 6085.27,
+                    "E_m": 188643.5,
+                    "H(i)_d": 1.49,
+                    "H(i)_m": 46.34,
+                    "SD_m": 16407.5
+                },
+                {
+                    "month": 11,
+                    "E_d": 4633.92,
+                    "E_m": 139017.6,
+                    "H(i)_d": 1.13,
+                    "H(i)_m": 33.87,
+                    "SD_m": 17591.15
+                },
+                {
+                    "month": 12,
+                    "E_d": 4101.29,
+                    "E_m": 127140.08,
+                    "H(i)_d": 1.0,
+                    "H(i)_m": 30.92,
+                    "SD_m": 15947.49
+                }
+            ]
+        },
+        "totals": {
+            "fixed": {
+                "E_d": 7395.92,
+                "E_m": 224959.38,
+                "E_y": 2699512.62,
+                "H(i)_d": 1.8,
+                "H(i)_m": 54.86,
+                "H(i)_y": 658.27,
+                "SD_m": 9767.02,
+                "SD_y": 117204.19,
+                "l_aoi": -4.4,
+                "l_spec": "0.59",
+                "l_tg": -8.17,
+                "l_total": -24.06,
+                "LCOE_pv": 0.0
+            }
+        }
+    },
+    "meta": {
+        "inputs": {
+            "location": {
+                "description": "Selected location",
+                "variables": {
+                    "latitude": {
+                        "description": "Latitude",
+                        "units": "decimal degree"
+                    },
+                    "longitude": {
+                        "description": "Longitude",
+                        "units": "decimal degree"
+                    },
+                    "elevation": {
+                        "description": "Elevation",
+                        "units": "m"
+                    }
+                }
+            },
+            "meteo_data": {
+                "description": "Sources of meteorological data",
+                "variables": {
+                    "radiation_db": {
+                        "description": "Solar radiation database"
+                    },
+                    "meteo_db": {
+                        "description": "Database used for meteorological variables other than solar radiation"
+                    },
+                    "year_min": {
+                        "description": "First year of the calculations"
+                    },
+                    "year_max": {
+                        "description": "Last year of the calculations"
+                    },
+                    "use_horizon": {
+                        "description": "Include horizon shadows"
+                    },
+                    "horizon_db": {
+                        "description": "Source of horizon data"
+                    }
+                }
+            },
+            "mounting_system": {
+                "description": "Mounting system",
+                "choices": "fixed, vertical_axis, inclined_axis, two_axis",
+                "fields": {
+                    "slope": {
+                        "description": "Inclination angle from the horizontal plane",
+                        "units": "degree"
+                    },
+                    "azimuth": {
+                        "description": "Orientation (azimuth) angle of the (fixed) PV system (0 = S, 90 = W, -90 = E)",
+                        "units": "degree"
+                    }
+                }
+            },
+            "pv_module": {
+                "description": "PV module parameters",
+                "variables": {
+                    "technology": {
+                        "description": "PV technology"
+                    },
+                    "peak_power": {
+                        "description": "Nominal (peak) power of the PV module",
+                        "units": "kW"
+                    },
+                    "system_loss": {
+                        "description": "Sum of system losses",
+                        "units": "%"
+                    }
+                }
+            },
+            "economic_data": {
+                "description": "Economic inputs",
+                "variables": {
+                    "system_cost": {
+                        "description": "Total cost of the PV system",
+                        "units": "user-defined currency"
+                    },
+                    "interest": {
+                        "description": "Annual interest",
+                        "units": "%/y"
+                    },
+                    "lifetime": {
+                        "description": "Expected lifetime of the PV system",
+                        "units": "y"
+                    }
+                }
+            }
+        },
+        "outputs": {
+            "monthly": {
+                "type": "time series",
+                "timestamp": "monthly averages",
+                "variables": {
+                    "E_d": {
+                        "description": "Average daily energy production from the given system",
+                        "units": "kWh/d"
+                    },
+                    "E_m": {
+                        "description": "Average monthly energy production from the given system",
+                        "units": "kWh/mo"
+                    },
+                    "H(i)_d": {
+                        "description": "Average daily sum of global irradiation per square meter received by the modules of the given system",
+                        "units": "kWh/m2/d"
+                    },
+                    "H(i)_m": {
+                        "description": "Average monthly sum of global irradiation per square meter received by the modules of the given system",
+                        "units": "kWh/m2/mo"
+                    },
+                    "SD_m": {
+                        "description": "Standard deviation of the monthly energy production due to year-to-year variation",
+                        "units": "kWh"
+                    }
+                }
+            },
+            "totals": {
+                "type": "time series totals",
+                "variables": {
+                    "E_d": {
+                        "description": "Average daily energy production from the given system",
+                        "units": "kWh/d"
+                    },
+                    "E_m": {
+                        "description": "Average monthly energy production from the given system",
+                        "units": "kWh/mo"
+                    },
+                    "E_y": {
+                        "description": "Average annual energy production from the given system",
+                        "units": "kWh/y"
+                    },
+                    "H(i)_d": {
+                        "description": "Average daily sum of global irradiation per square meter received by the modules of the given system",
+                        "units": "kWh/m2/d"
+                    },
+                    "H(i)_m": {
+                        "description": "Average monthly sum of global irradiation per square meter received by the modules of the given system",
+                        "units": "kWh/m2/mo"
+                    },
+                    "H(i)_y": {
+                        "description": "Average annual sum of global irradiation per square meter received by the modules of the given system",
+                        "units": "kWh/m2/y"
+                    },
+                    "SD_m": {
+                        "description": "Standard deviation of the monthly energy production due to year-to-year variation",
+                        "units": "kWh"
+                    },
+                    "SD_y": {
+                        "description": "Standard deviation of the annual energy production due to year-to-year variation",
+                        "units": "kWh"
+                    },
+                    "l_aoi": {
+                        "description": "Angle of incidence loss",
+                        "units": "%"
+                    },
+                    "l_spec": {
+                        "description": "Spectral loss",
+                        "units": "%"
+                    },
+                    "l_tg": {
+                        "description": "Temperature and irradiance loss",
+                        "units": "%"
+                    },
+                    "l_total": {
+                        "description": "Total loss",
+                        "units": "%"
+                    },
+                    "LCOE_pv": {
+                        "description": "Levelized cost of the PV electricity",
+                        "units": "system_cost_currency/kWh"
+                    }
+                }
+            }
+        }
+    }
+}
