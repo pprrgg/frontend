@@ -92,7 +92,7 @@ export default function TermsOfUse() {
               Modificaciones a los Términos
             </Typography>
             <Typography variant="body1" paragraph>
-              ITE se reserva el derecho de modificar estos Términos de Uso en cualquier momento.
+              PRoman.blog se reserva el derecho de modificar estos Términos de Uso en cualquier momento.
               Los cambios entrarán en vigor una vez que se publiquen en este sitio. Es su responsabilidad
               revisar periódicamente los términos para estar al tanto de cualquier modificación.
             </Typography>
@@ -111,7 +111,7 @@ export default function TermsOfUse() {
               Limitación de Responsabilidad
             </Typography>
             <Typography variant="body1" paragraph>
-              En la máxima medida permitida por la ley, ITE no será responsable de ningún daño directo,
+              En la máxima medida permitida por la ley, PRoman.blog no será responsable de ningún daño directo,
               indirecto, incidental, especial, punitivo o consecuente que surja de su acceso o uso
               del sitio, incluyendo, pero no limitado a, la pérdida de beneficios o ingresos, o la interrupción del negocio.
             </Typography>
@@ -121,7 +121,7 @@ export default function TermsOfUse() {
             </Typography>
             <Typography variant="body1" paragraph>
               Este sitio puede contener enlaces a otros sitios web que no son propiedad ni están
-              controlados por ITE. No somos responsables del contenido de dichos sitios y no asumimos
+              controlados por PRoman.blog. No somos responsables del contenido de dichos sitios y no asumimos
               ninguna responsabilidad por las prácticas de privacidad de los mismos. Le recomendamos
               que revise los términos y políticas de privacidad de cualquier sitio web de terceros que visite.
             </Typography>
@@ -131,8 +131,8 @@ export default function TermsOfUse() {
             </Typography>
             <Typography variant="body1" paragraph>
               En caso de que se descubra que ha proporcionado información falsa, inexacta o engañosa,
-              ITE se reserva el derecho de suspender o eliminar su cuenta sin previo aviso. Dependiendo
-              de la gravedad del caso, ITE se reserva el derecho de tomar medidas legales adicionales para
+              PRoman.blog se reserva el derecho de suspender o eliminar su cuenta sin previo aviso. Dependiendo
+              de la gravedad del caso, PRoman.blog se reserva el derecho de tomar medidas legales adicionales para
               proteger sus derechos y los de otros usuarios.
             </Typography>
 

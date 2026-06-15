@@ -332,7 +332,7 @@ const ExcelUploaderStorage = () => {
         const finalValue = JSON.stringify(parsed);
         sessionStorage.setItem("excelData", finalValue);
         window.dispatchEvent(new StorageEvent('storage', { key: 'excelData', newValue: finalValue, storageArea: sessionStorage }));
-        toast.success("Proyecto ITE cargado correctamente");
+        toast.success("Proyecto PRoman.blog cargado correctamente");
       } catch (err) { toast.error("Error al procesar el archivo"); }
     };
     reader.readAsArrayBuffer(file);

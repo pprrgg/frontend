@@ -68,7 +68,7 @@ const InicioSection = () => {
                   letterSpacing: "-0.2em",   // ❗ Acerca las letras
                 }}
               >
-                ITE
+                PRoman.blog
               </Typography>
 
             </Box>
