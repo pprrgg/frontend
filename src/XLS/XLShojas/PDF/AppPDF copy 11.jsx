@@ -4,7 +4,6 @@ import { Box, CircularProgress, Backdrop, Typography, Tooltip, Fab } from "@mui/
 import WifiOffIcon from '@mui/icons-material/WifiOff';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import UpdateIcon from '@mui/icons-material/Update';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
@@ -16,7 +15,7 @@ let globalLastUrl = null;
 let globalCachedBlob = null;
 
 // Porcentajes de recorte
-const CROP = { top: 8, bottom: 7, left: 9, right: 4 };
+const CROP = { top: 9, bottom: 8, left: 9, right: 4 };
 
 // Componente interno para gestionar las dimensiones reales de cada página individualmente
 const CroppedPage = ({ pageNumber, containerWidth, currentFullUrl }) => {
@@ -91,7 +90,6 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
   const [isOffline, setIsOffline] = useState(false);
   const [containerWidth, setContainerWidth] = useState(800);
   const [hasPendingChanges, setHasPendingChanges] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false); // Nuevo estado para mostrar/ocultar flecha
 
   // --- REFS ---
   const scrollContainerRef = useRef(null);
@@ -186,7 +184,6 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
       setHasPendingChanges(false);
       setIsOffline(false);
       setNumPages(null);
-      setShowScrollTop(false); // Resetear estado de flecha al cambiar de ruta
       
       if (scrollContainerRef.current) {
         scrollContainerRef.current.scrollTop = 0;
@@ -195,25 +192,10 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
   }, [currentFullUrl, localPath]);
 
   // --- 4. FUNCIONALIDADES AUXILIARES ---
-  const handleScroll = (e) => {
-    const scrollTop = e.target.scrollTop;
-    const scrollThreshold = 300; // Mostrar flecha después de 300px de scroll
-    
-    // Guardar posición
+  const saveScrollPosition = (e) => {
     if (!numPages || isRestoringRef.current || isFetchingRef.current) return;
+    const scrollTop = e.target.scrollTop;
     if (scrollTop > 10) localStorage.setItem(storageKey, scrollTop.toString());
-    
-    // Mostrar/ocultar flecha según posición del scroll
-    setShowScrollTop(scrollTop > scrollThreshold);
-  };
-
-  const scrollToTop = () => {
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
   };
 
   const restoreScrollPosition = useCallback(() => {
@@ -263,28 +245,6 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
           70% { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(25, 118, 210, 0); }
           100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(25, 118, 210, 0); }
         }
-        
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes fadeOutDown {
-          from {
-            opacity: 1;
-            transform: translateY(0);
-          }
-          to {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-        }
       `}</style>
 
       <Backdrop open={isApiLoading} sx={{ position: 'absolute', zIndex: 2000, color: 'primary.main', backgroundColor: 'rgba(255, 255, 255, 0.6)', display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -309,37 +269,6 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
         </Tooltip>
       </Box>
 
-      {/* Flecha para volver al inicio - Centrada horizontalmente */}
-      {showScrollTop && (
-        <Box 
-          sx={{ 
-            position: 'absolute', 
-            bottom: 24, 
-            left: '50%', 
-            transform: 'translateX(-50%)', 
-            zIndex: 1500,
-            animation: showScrollTop ? 'fadeInUp 0.3s ease-out' : 'fadeOutDown 0.3s ease-out'
-          }}
-        >
-          <Tooltip title="Volver al inicio" placement="top">
-<Fab 
-  onClick={scrollToTop}
-  sx={{ 
-    bgcolor: 'rgba(0, 0, 0, 0.5)', // Negro semitransparente
-    color: 'white',
-    '&:hover': {
-      bgcolor: 'rgba(0, 0, 0, 0.4)', // Más opaco al hacer hover
-      transform: 'scale(1.1)',
-      transition: 'transform 0.2s'
-    }
-  }}
->
-  <ArrowUpwardIcon />
-</Fab>
-          </Tooltip>
-        </Box>
-      )}
-
       {isOffline && (
         <Box sx={{ position: "absolute", top: 16, right: "calc(50% - 450px)", zIndex: 1500, display: "flex", alignItems: "center", gap: 1, bgcolor: "rgba(211, 47, 47, 0.9)", color: "white", px: 2, py: 0.5, borderRadius: 5 }}>
           <WifiOffIcon fontSize="small" />
@@ -347,22 +276,25 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
         </Box>
       )}
 
-      <Box ref={scrollContainerRef} onScroll={handleScroll} sx={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", alignItems: "center" }}>
+      <Box ref={scrollContainerRef} onScroll={saveScrollPosition} sx={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Box sx={{ width: "100%", maxWidth: "900px", bgcolor: "#ffffff"}}>
-          <Document
-            key={currentFullUrl}
-            file={pdfUrl}
-            onLoadSuccess={({ numPages: total }) => { setNumPages(total); restoreScrollPosition(); }}
-          >
-            {Array.from(new Array(numPages), (el, index) => (
-              <CroppedPage 
-                key={`${currentFullUrl}_page_${index}`}
-                pageNumber={index + 1}
-                containerWidth={containerWidth}
-                currentFullUrl={currentFullUrl}
-              />
-            ))}
-          </Document>
+<Document
+  key={currentFullUrl}
+  file={pdfUrl}
+  onLoadSuccess={({ numPages: total }) => { setNumPages(total); restoreScrollPosition(); }}
+>
+  {/* 1. Si numPages es mayor a 2, creamos un array con (numPages - 2) elementos.
+     2. Usamos el índice para empezar a renderizar desde la página 3 (index + 3).
+  */}
+  {numPages > 2 && Array.from(new Array(numPages - 2), (el, index) => (
+    <CroppedPage 
+      key={`${currentFullUrl}_page_${index + 2}`}
+      pageNumber={index + 3} // Sumamos 3 porque 'index' empieza en 0
+      containerWidth={containerWidth}
+      currentFullUrl={currentFullUrl}
+    />
+  ))}
+</Document>
           <Box sx={{ height: '80px', width: '100%', bgcolor: '#ffffff' }} />
         </Box>
       </Box>
