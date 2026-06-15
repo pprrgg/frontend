@@ -43,29 +43,29 @@ const CroppedPage = ({ pageNumber, containerWidth, currentFullUrl }) => {
   const finalVisibleHeight = (pdfFullHeight * visibleHeightPct) / 100;
 
   return (
-    <Box 
-      sx={{ 
-        position: 'relative', 
-        width: "100%", 
-        height: pageSize ? `${finalVisibleHeight}px` : "auto", 
-        overflow: 'hidden', 
-        bgcolor: '#ffffff' 
+    <Box
+      sx={{
+        position: 'relative',
+        width: "100%",
+        height: pageSize ? `${finalVisibleHeight}px` : "auto",
+        overflow: 'hidden',
+        bgcolor: '#ffffff'
       }}
     >
-      <Box 
-        sx={{ 
-          position: 'absolute', 
-          top: `-${(CROP.top / 100) * pdfFullHeight}px`, 
-          left: `-${(CROP.left / 100) * pdfFullWidth}px`, 
-          width: `${pdfFullWidth}px` 
+      <Box
+        sx={{
+          position: 'absolute',
+          top: `-${(CROP.top / 100) * pdfFullHeight}px`,
+          left: `-${(CROP.left / 100) * pdfFullWidth}px`,
+          width: `${pdfFullWidth}px`
         }}
       >
-        <Page 
-          pageNumber={pageNumber} 
-          width={pdfFullWidth} 
+        <Page
+          pageNumber={pageNumber}
+          width={pdfFullWidth}
           onLoadSuccess={handlePageLoadSuccess}
-          renderTextLayer={true} 
-          renderAnnotationLayer={true} 
+          renderTextLayer={true}
+          renderAnnotationLayer={true}
         />
       </Box>
       {/* Marcador de posición mientras carga el tamaño real para evitar saltos bruscos */}
@@ -103,7 +103,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
   const fetchApiUpdate = useCallback(async () => {
     if (isFetchingRef.current) return;
     const currentData = sessionStorage.getItem("excelData");
-    
+
     isFetchingRef.current = true;
     setIsApiLoading(true);
 
@@ -124,15 +124,15 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
       const newUrl = URL.createObjectURL(rawBlob);
 
       if (globalCachedBlob) URL.revokeObjectURL(globalCachedBlob);
-      
+
       globalCachedBlob = newUrl;
-      globalLastData = currentData; 
+      globalLastData = currentData;
       globalLastUrl = currentFullUrl;
 
       setPdfUrl(newUrl);
       setIsOffline(false);
-      setHasPendingChanges(false); 
-      
+      setHasPendingChanges(false);
+
       console.log("PDF Actualizado y sincronizado con excelData");
     } catch (err) {
       console.error("Error en fetchApiUpdate:", err);
@@ -180,14 +180,14 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
       }
 
       globalLastUrl = currentFullUrl;
-      globalLastData = sessionData; 
+      globalLastData = sessionData;
 
       setPdfUrl(localPath);
       setHasPendingChanges(false);
       setIsOffline(false);
       setNumPages(null);
       setShowScrollTop(false); // Resetear estado de flecha al cambiar de ruta
-      
+
       if (scrollContainerRef.current) {
         scrollContainerRef.current.scrollTop = 0;
       }
@@ -198,11 +198,11 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
   const handleScroll = (e) => {
     const scrollTop = e.target.scrollTop;
     const scrollThreshold = 300; // Mostrar flecha después de 300px de scroll
-    
+
     // Guardar posición
     if (!numPages || isRestoringRef.current || isFetchingRef.current) return;
     if (scrollTop > 10) localStorage.setItem(storageKey, scrollTop.toString());
-    
+
     // Mostrar/ocultar flecha según posición del scroll
     setShowScrollTop(scrollTop > scrollThreshold);
   };
@@ -256,7 +256,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
 
   return (
     <Box ref={containerRef} sx={{ width: "100%", height: "85vh", position: "relative", bgcolor: "#ffffff", display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
-      
+
       <style>{`
         @keyframes pulse-update {
           0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(25, 118, 210, 0.7); }
@@ -289,7 +289,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
 
       <Backdrop open={isApiLoading} sx={{ position: 'absolute', zIndex: 2000, color: 'primary.main', backgroundColor: 'rgba(255, 255, 255, 0.6)', display: 'flex', flexDirection: 'column', gap: 2 }}>
         <CircularProgress color="primary" />
-        <Typography variant="button" sx={{ bgcolor: 'white', px: 2, py: 0.5, borderRadius: 2,  color: 'primary.main', fontWeight: 'bold' }}>
+        <Typography variant="button" sx={{ bgcolor: 'white', px: 2, py: 0.5, borderRadius: 2, color: 'primary.main', fontWeight: 'bold' }}>
           Actualizando ...
         </Typography>
       </Backdrop>
@@ -311,31 +311,31 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
 
       {/* Flecha para volver al inicio - Centrada horizontalmente */}
       {showScrollTop && (
-        <Box 
-          sx={{ 
-            position: 'absolute', 
-            bottom: 24, 
-            left: '50%', 
-            transform: 'translateX(-50%)', 
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: 24,
+            left: '50%',
+            transform: 'translateX(-50%)',
             zIndex: 1500,
             animation: showScrollTop ? 'fadeInUp 0.3s ease-out' : 'fadeOutDown 0.3s ease-out'
           }}
         >
           <Tooltip title="Volver al inicio" placement="top">
-<Fab 
-  onClick={scrollToTop}
-  sx={{ 
-    bgcolor: 'rgba(0, 0, 0, 0.5)', // Negro semitransparente
-    color: 'white',
-    '&:hover': {
-      bgcolor: 'rgba(0, 0, 0, 0.4)', // Más opaco al hacer hover
-      transform: 'scale(1.1)',
-      transition: 'transform 0.2s'
-    }
-  }}
->
-  <ArrowUpwardIcon />
-</Fab>
+            <Fab
+              onClick={scrollToTop}
+              sx={{
+                bgcolor: 'rgba(0, 0, 0, 0.5)', // Negro semitransparente
+                color: 'white',
+                '&:hover': {
+                  bgcolor: 'rgba(0, 0, 0, 0.4)', // Más opaco al hacer hover
+                  transform: 'scale(1.1)',
+                  transition: 'transform 0.2s'
+                }
+              }}
+            >
+              <ArrowUpwardIcon />
+            </Fab>
           </Tooltip>
         </Box>
       )}
@@ -348,21 +348,24 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
       )}
 
       <Box ref={scrollContainerRef} onScroll={handleScroll} sx={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <Box sx={{ width: "100%", maxWidth: "900px", bgcolor: "#ffffff"}}>
-          <Document
-            key={currentFullUrl}
-            file={pdfUrl}
-            onLoadSuccess={({ numPages: total }) => { setNumPages(total); restoreScrollPosition(); }}
-          >
-            {Array.from(new Array(numPages), (el, index) => (
-              <CroppedPage 
-                key={`${currentFullUrl}_page_${index}`}
-                pageNumber={index + 1}
-                containerWidth={containerWidth}
-                currentFullUrl={currentFullUrl}
-              />
-            ))}
-          </Document>
+        <Box sx={{ width: "100%", maxWidth: "900px", bgcolor: "#ffffff" }}>
+<Document
+  key={currentFullUrl}
+  file={pdfUrl}
+  onLoadSuccess={({ numPages: total }) => { setNumPages(total); restoreScrollPosition(); }}
+>
+  {/* 1. Si numPages es mayor a 2, creamos un array con (numPages - 2) elementos.
+     2. Usamos el índice para empezar a renderizar desde la página 3 (index + 3).
+  */}
+  {numPages > 2 && Array.from(new Array(numPages - 2), (el, index) => (
+    <CroppedPage 
+      key={`${currentFullUrl}_page_${index + 2}`}
+      pageNumber={index + 3} // Sumamos 3 porque 'index' empieza en 0
+      containerWidth={containerWidth}
+      currentFullUrl={currentFullUrl}
+    />
+  ))}
+</Document>
           <Box sx={{ height: '80px', width: '100%', bgcolor: '#ffffff' }} />
         </Box>
       </Box>

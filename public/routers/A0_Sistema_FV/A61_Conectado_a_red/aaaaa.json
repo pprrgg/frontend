@@ -1,8 +1,8 @@
 {
     "inputs": {
         "location": {
-            "latitude": 37.12749320120883,
-            "longitude": -3.2207048813288526,
+            "latitude": 37.12749149567267,
+            "longitude": -3.2207044046461677,
             "elevation": 2102.0
         },
         "horizon_db": "DEM-calculated"
