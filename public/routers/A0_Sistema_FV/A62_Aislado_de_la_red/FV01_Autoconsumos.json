@@ -1,5 +1,5 @@
 {
-    "ii": {
+    "inputs": {
         "PDF": [
             [
                 "Capítulo",
@@ -962,7 +962,7 @@
             ]
         ]
     },
-    "aa": {
+    "aux": {
         "Referencias": [
             [
                 "<para alignment='center'><b>REFERENCIAS</b></para>"

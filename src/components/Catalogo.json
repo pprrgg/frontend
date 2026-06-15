@@ -128,24 +128,6 @@
     {
         "sector": "A61_Conectado_a_red",
         "grupo": "A0_Sistema_FV",
-        "cod": "FV03_pvgis6",
-        "descripcion": []
-    },
-    {
-        "sector": "A61_Conectado_a_red",
-        "grupo": "A0_Sistema_FV",
-        "cod": "FV05_pvgis",
-        "descripcion": []
-    },
-    {
-        "sector": "A61_Conectado_a_red",
-        "grupo": "A0_Sistema_FV",
-        "cod": "FV04_Probando",
-        "descripcion": []
-    },
-    {
-        "sector": "A61_Conectado_a_red",
-        "grupo": "A0_Sistema_FV",
         "cod": "FV02_Autoconsumo_con_excedentes",
         "descripcion": []
     }
