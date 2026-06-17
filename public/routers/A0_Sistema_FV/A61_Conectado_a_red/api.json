@@ -1,0 +1,641 @@
+{
+    "PDF": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Variable",
+            "valor"
+        ],
+        [
+            "",
+            "Proyecto",
+            "nombre",
+            "Mi rrrr Real"
+        ],
+        [
+            "",
+            "Autor",
+            "nombre",
+            "P. Román"
+        ],
+        [
+            "",
+            "Autor",
+            "N Registro",
+            "N.12345"
+        ],
+        [
+            "",
+            "Organización",
+            "nombre",
+            "Instalaciones S.."
+        ],
+        [
+            "",
+            "Organización",
+            "CIF",
+            "A12345678"
+        ],
+        [
+            "",
+            "Organización",
+            "dirección",
+            "Calle Iglesia, 123"
+        ],
+        [
+            "",
+            "Organización",
+            "teléfono",
+            "912 34 56 78"
+        ],
+        [
+            "",
+            "Organización",
+            "correo",
+            "pperezinstalaciones.com"
+        ],
+        [
+            "",
+            "Destinatario",
+            "nombre",
+            "Ayto. Villanueva"
+        ],
+        [
+            "",
+            "Destinatario",
+            "CIF",
+            ""
+        ],
+        [
+            "",
+            "Destinatario",
+            "dirección",
+            "Plaza Mayor, 1"
+        ]
+    ],
+    "Diseño_FV": [
+        [
+            "Capítulo",
+            "Categoría",
+            "nombre",
+            "tipoEstructura",
+            "id",
+            "lat",
+            "lng",
+            "rotation",
+            "width",
+            "height",
+            "tilt",
+            "slope",
+            "orientation",
+            "modelo",
+            "potenciaW",
+            "rows",
+            "cols",
+            "inverterModel",
+            "inverterPower",
+            "FVcost",
+            "mpptCount",
+            "vOc",
+            "vMp",
+            "iSc",
+            "iMp",
+            "coefVoc",
+            "vMax",
+            "vMinMppt",
+            "vMaxMppt",
+            "iMaxInverter",
+            "iScMaxInverter",
+            "paneles",
+            "sombras",
+            "geojson"
+        ],
+        [
+            "FV",
+            "Paneles",
+            "G3",
+            "coplanar",
+            1780997168256,
+            36.66622525312856,
+            -4.461580440402032,
+            0,
+            1.1,
+            1.9,
+            26,
+            26,
+            "vertical",
+            "",
+            500,
+            1,
+            1,
+            "",
+            0,
+            333,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            666,
+            333,
+            0,
+            0,
+            "['1,-2','1,-1','2,-1','3,-1']",
+            "[1,1,21,21,1,1,1,1,1,1,1,1,1,1,1,1]",
+            "{'type':'FeatureCollection','features':[{'type':'Feature','properties':{'area':'G3','block':'1,-2'},'geometry':{'type':'Polygon','coordinates':[[[-4.461611238076068,36.66620224221633],[-4.461598919006454,36.66620224221633],[-4.461598919006454,36.66621758282448],[-4.461611238076068,36.66621758282448],[-4.461611238076068,36.66620224221633]]]}},{'type':'Feature','properties':{'area':'G3','block':'1,-1'},'geometry':{'type':'Polygon','coordinates':[[[-4.461598919006454,36.66620224221633],[-4.461586599936839,36.66620224221633],[-4.461586599936839,36.66621758282448],[-4.461598919006454,36.66621758282448],[-4.461598919006454,36.66620224221633]]]}},{'type':'Feature','properties':{'area':'G3','block':'2,-1'},'geometry':{'type':'Polygon','coordinates':[[[-4.461598919006454,36.66618690160818],[-4.461586599936839,36.66618690160818],[-4.461586599936839,36.66620224221633],[-4.461598919006454,36.66620224221633],[-4.461598919006454,36.66618690160818]]]}},{'type':'Feature','properties':{'area':'G3','block':'3,-1'},'geometry':{'type':'Polygon','coordinates':[[[-4.461598919006454,36.66617156100003],[-4.461586599936839,36.66617156100003],[-4.461586599936839,36.66618690160818],[-4.461598919006454,36.66618690160818],[-4.461598919006454,36.66617156100003]]]}}]}"
+        ]
+    ],
+    "CONSUMO": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Subcategoría",
+            "Consumo_diario_kWh",
+            "Perfil_24h"
+        ],
+        [
+            "Residencial",
+            "Vivienda Estándar",
+            "Uso General",
+            10,
+            "[0.024, 0.016, 0.016, 0.016, 0.016, 0.024, 0.032, 0.145, 0.04, 0.032, 0.024, 0.024, 0.032, 0.04, 0.032, 0.024, 0.032, 0.047, 0.063, 0.08, 0.095, 0.071, 0.047, 0.032]"
+        ],
+        [
+            "Residencial",
+            "Vivienda Unifamiliar",
+            "Aire Acondicionado",
+            12,
+            "[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.02, 0.05, 0.08, 0.12, 0.15, 0.15, 0.12, 0.1, 0.08, 0.06, 0.04, 0.02, 0.01, 0.0, 0.0, 0.0]"
+        ],
+        [
+            "Residencial",
+            "Vivienda Unifamiliar",
+            "Calefacción (B. Calor)",
+            20,
+            "[0.05, 0.06, 0.07, 0.07, 0.07, 0.08, 0.1, 0.12, 0.08, 0.05, 0.03, 0.02, 0.02, 0.02, 0.02, 0.02, 0.02, 0.03, 0.04, 0.05, 0.06, 0.06, 0.04, 0.04]"
+        ],
+        [
+            "Residencial",
+            "Vivienda Unifamiliar",
+            "Cargador Coche Eléctrico",
+            15,
+            "[0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.12, 0.04, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.04]"
+        ],
+        [
+            "Residencial",
+            "Bloque Pisos",
+            "Servicios Comunes",
+            30,
+            "[0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416]"
+        ],
+        [
+            "Terciario",
+            "Oficina Moderna",
+            "Iluminación LED",
+            15,
+            "[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
+        ],
+        [
+            "Terciario",
+            "Oficina Moderna",
+            "Climatización",
+            50,
+            "[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 0.1, 0.12, 0.12, 0.12, 0.12, 0.05, 0.12, 0.12, 0.06, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
+        ],
+        [
+            "Terciario",
+            "Comercio",
+            "Rótulos Luminosos",
+            5,
+            "[0.1, 0.1, 0.1, 0.1, 0.1, 0.05, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 0.1, 0.1, 0.1, 0.1]"
+        ],
+        [
+            "Industrial",
+            "Nave Producción",
+            "Maquinaria Pesada",
+            350,
+            "[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.05, 0.15, 0.15, 0.15, 0.15, 0.15, 0.05, 0.15, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
+        ],
+        [
+            "Industrial",
+            "Nave Producción",
+            "Aire Comprimido",
+            40,
+            "[0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416]"
+        ],
+        [
+            "Industrial",
+            "Almacén Logístico",
+            "Carga Carretillas",
+            60,
+            "[0.1, 0.1, 0.1, 0.1, 0.1, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.1, 0.1, 0.1]"
+        ],
+        [
+            "Agrario",
+            "Explotación Agrícola",
+            "Bombeo Riego",
+            150,
+            "[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.1, 0.15, 0.15, 0.15, 0.15, 0.15, 0.15, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]"
+        ],
+        [
+            "Agrario",
+            "Granja Ganadera",
+            "Ventilación Forzada",
+            25,
+            "[0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416, 0.0416]"
+        ],
+        [
+            "Agrario",
+            "Granja Ganadera",
+            "Ordeño Automático",
+            15,
+            "[0.0, 0.0, 0.0, 0.0, 0.0, 0.2, 0.2, 0.1, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.2, 0.2, 0.1, 0.0, 0.0, 0.0, 0.0]"
+        ]
+    ],
+    "COSTES_DE_INSTALACION": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Variable",
+            "Fijo (€)",
+            "€/Wdc",
+            "MO (%)"
+        ],
+        [
+            "Coste Directo",
+            "Equipos Principales",
+            "Paneles fotovoltaicos monocristalinos",
+            0,
+            0.22,
+            5
+        ],
+        [
+            "Coste Directo",
+            "Equipos Principales",
+            "Inversor string/híbrido",
+            150,
+            0.12,
+            5
+        ],
+        [
+            "Coste Directo",
+            "Equipos Principales",
+            "Sistema de almacenamiento (Batería)",
+            3000,
+            0.15,
+            5
+        ],
+        [
+            "Coste Directo",
+            "Balance de Sistema (BOS)",
+            "Soportes, cableado y protecciones",
+            750,
+            0.19,
+            40
+        ],
+        [
+            "Coste Directo",
+            "Balance de Sistema (BOS)",
+            "Sistema de monitorización",
+            150,
+            0.02,
+            10
+        ],
+        [
+            "Coste Directo",
+            "Obra Civil",
+            "Adecuación y pequeñas adaptaciones",
+            200,
+            0.005,
+            80
+        ],
+        [
+            "Coste Indirecto",
+            "Ingeniería",
+            "Proyecto, dirección y legalización",
+            900,
+            0.02,
+            100
+        ],
+        [
+            "Coste Indirecto",
+            "Interconexión",
+            "Trámites con distribuidora y tasas",
+            500,
+            0.01,
+            90
+        ],
+        [
+            "Coste Indirecto",
+            "Gastos Generales",
+            "Margen comercial y overhead",
+            0,
+            0.18,
+            0
+        ],
+        [
+            "Coste Indirecto",
+            "Contingencias",
+            "Reserva para imprevistos (3-5%)",
+            0,
+            0.04,
+            0
+        ],
+        [
+            "Otros",
+            "Otros",
+            "~",
+            0,
+            0,
+            0
+        ]
+    ],
+    "COSTES_DE_OPERACION": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Concepto",
+            "Año_inicio",
+            "Año_fin",
+            "Fijo (€/año)",
+            "Variable",
+            "Unidad_variable"
+        ],
+        [
+            "Operación FV",
+            "Energía fotovoltaica",
+            "PV_Fijo_Anual",
+            1,
+            25,
+            0,
+            0,
+            "€/año"
+        ],
+        [
+            "Operación FV",
+            "Energía fotovoltaica",
+            "PV_Fijo_por_Capacidad",
+            1,
+            25,
+            19,
+            0,
+            "€/Wdc"
+        ],
+        [
+            "Operación FV",
+            "Energía fotovoltaica",
+            "PV_Variable_Generacion",
+            1,
+            25,
+            0,
+            0,
+            "€/kWh"
+        ],
+        [
+            "Batería",
+            "Almacenamiento",
+            "Bateria_Fijo_Anual",
+            1,
+            15,
+            0,
+            0,
+            "€/año"
+        ],
+        [
+            "Batería",
+            "Almacenamiento",
+            "Bateria_Fijo_por_Capacidad",
+            1,
+            15,
+            7.25,
+            0,
+            "€/kWh_instalada"
+        ],
+        [
+            "Batería",
+            "Almacenamiento",
+            "Bateria_Variable_Descarga",
+            1,
+            15,
+            0,
+            0,
+            "€/kWh_descargado"
+        ],
+        [
+            "Batería",
+            "Reemplazo de activos",
+            "Bateria_Coste_Reemplazo",
+            10,
+            10,
+            252,
+            0,
+            "€/kWh_instalada"
+        ],
+        [
+            "Infraestructura",
+            "Uso de suelo",
+            "Arrendamiento_Anual_Terreno",
+            1,
+            25,
+            0,
+            0,
+            "€/año"
+        ],
+        [
+            "~Otrsos",
+            "~Otdros",
+            "~Otros",
+            1,
+            25,
+            0,
+            0,
+            "~€"
+        ]
+    ],
+    "INGRESOS": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Concepto",
+            "Año_inicio",
+            "Año_fin",
+            "Ingreso_fijo (€/año)",
+            "Ingreso_variable",
+            "Unidad_variable"
+        ],
+        [
+            "Ingresos de explotación",
+            "Autoconsumo",
+            "Ahorro autoconsumo",
+            1,
+            25,
+            0,
+            0.18,
+            "€/kWh autoconsumido"
+        ],
+        [
+            "Ingresos de explotación",
+            "Excedentes",
+            "Venta excedentes",
+            1,
+            25,
+            0,
+            0.08,
+            "€/kWh exportado"
+        ],
+        [
+            "Ingresos de explotación",
+            "Excedentes",
+            "Compensación simplificada",
+            1,
+            25,
+            0,
+            0.06,
+            "€/kWh compensado"
+        ],
+        [
+            "Ingresos regulados",
+            "Certificados",
+            "CAE",
+            1,
+            10,
+            0,
+            0.14,
+            "€/kWh generado"
+        ],
+        [
+            "Ingresos regulados",
+            "Certificados",
+            "Garantías de origen",
+            1,
+            25,
+            0,
+            0.005,
+            "€/kWh generado"
+        ],
+        [
+            "Subvenciones",
+            "Bonificaciones fiscales",
+            "Bonificación IBI",
+            1,
+            5,
+            100,
+            0,
+            "€/año"
+        ],
+        [
+            "Subvenciones",
+            "Deducciones fiscales",
+            "Deducción IRPF",
+            1,
+            1,
+            200,
+            0,
+            "€/año"
+        ],
+        [
+            "Subvenciones",
+            "Inversión",
+            "Next Generation",
+            1,
+            1,
+            0,
+            0.3,
+            "% CAPEX"
+        ],
+        [
+            "Subvenciones",
+            "Locales/autonómicas",
+            "ICIO",
+            1,
+            1,
+            100,
+            0,
+            "€/año"
+        ],
+        [
+            "Otros",
+            "~Otros",
+            "~Otros",
+            1,
+            25,
+            0,
+            0,
+            "~€"
+        ]
+    ],
+    "FINANCIEROS": [
+        [
+            "Capítulo",
+            "Categoría",
+            "Parámetro",
+            "Valor",
+            "Unidad"
+        ],
+        [
+            "Análisis Financiero",
+            "Proyecto",
+            "Duración de la actuación",
+            2033,
+            "años"
+        ],
+        [
+            "Análisis Financiero",
+            "Proyecto",
+            "Impuestos (IVA)",
+            21,
+            "%"
+        ],
+        [
+            "Análisis Financiero",
+            "Mercado",
+            "Tasa de inflación",
+            2.5,
+            "%/año"
+        ],
+        [
+            "Análisis Financiero",
+            "Mercado",
+            "Precio de la energía",
+            0.12,
+            "€/kWh"
+        ],
+        [
+            "Análisis Financiero",
+            "Mercado",
+            "Tasa de descuento (VAN)",
+            0.08,
+            "-"
+        ],
+        [
+            "Análisis Financiero",
+            "Financiación",
+            "Porcentaje financiado",
+            27,
+            "%"
+        ],
+        [
+            "Análisis Financiero",
+            "Financiación",
+            "Años de financiación",
+            10,
+            "años"
+        ],
+        [
+            "Análisis Financiero",
+            "Financiación",
+            "Tipo de interés anual",
+            7,
+            "%"
+        ],
+        [
+            "Análisis Financiero",
+            "Operación",
+            "Tasa seguro anual",
+            0,
+            "% de instalación"
+        ]
+    ]
+}

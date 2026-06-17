@@ -10,7 +10,6 @@ import {
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
-import InfoIcon from '@mui/icons-material/Info';
 
 import {
   Add as AddIcon, Delete as DeleteIcon, Save as SaveIcon,
@@ -1378,424 +1377,408 @@ const App = () => {
       </Box>
 
       {/* MODAL CONFIGURACIÓN (LATERAL IZQUIERDO) */}
-  <Dialog
-  open={configModalOpen}
-  onClose={() => setConfigModalOpen(false)}
-  hideBackdrop={true}
-  disableEnforceFocus={true}
-  PaperProps={{
-    sx: {
-      position: 'fixed',
-      left: 20,
-      top: 150,
-      m: 0,
-      width: 245,
-      maxHeight: '80vh',
-      borderRadius: 2,
-      border: '1px solid #1a237e',
-      boxShadow: 6,
-      transform: 'scale(0.75)',
-      transformOrigin: '0 0',
-      margin: 0,
-    }
-  }}
->
-  <Box sx={{ bgcolor: '#1a237e', color: 'white', p: 1.5, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-      <SettingsIcon fontSize="small" />
-      <Typography variant="subtitle2" fontWeight={900}>Configuración</Typography>
-    </Box>
+      <Dialog
+        open={configModalOpen}
+        onClose={() => setConfigModalOpen(false)}
+        hideBackdrop={true}
+        disableEnforceFocus={true}
+        PaperProps={{
+          sx: {
+            position: 'fixed',
+            left: 20,
+            top: 150,
+            m: 0,
+            width: 245, // Ajustado sutilmente para dar aire a los textfields en paralelo
+            maxHeight: '80vh',
+            borderRadius: 2,
+            border: '1px solid #1a237e',
+            boxShadow: 6,
+            transform: 'scale(0.75)',
+            transformOrigin: '0 0',
+            margin: 0,
+          }
+        }}
+      >
+        <Box sx={{ bgcolor: '#1a237e', color: 'white', p: 1.5, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          {/* Contenedor flex para el icono y el texto */}
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <SettingsIcon fontSize="small" />
+            <Typography variant="subtitle2" fontWeight={900}>Configuración</Typography>
+          </Box>
 
-    <IconButton size="small" onClick={() => setConfigModalOpen(false)} sx={{ color: 'white' }}>
-      <CloseIcon fontSize="small" />
-    </IconButton>
-  </Box>
+          <IconButton size="small" onClick={() => setConfigModalOpen(false)} sx={{ color: 'white' }}>
+            <CloseIcon fontSize="small" />
+          </IconButton>
+        </Box>
 
-  {activeGrid && (
-    <Box sx={{ display: 'flex', flexDirection: 'row', bgcolor: 'white' }}>
-      {/* BARRA LATERAL DE PESTAÑAS CON TOOLTIPS */}
-      <Box sx={{ borderRight: 1, borderColor: 'divider', bgcolor: '#f9f9f9', width: 45 }}>
-        <Tabs
-          orientation="vertical"
-          value={innerTab}
-          onChange={(_, v) => setInnerTab(v)}
-          sx={{ minWidth: 45, '& .MuiTab-root': { minWidth: 45, py: 2 } }}
-        >
-          {/* NUEVA PESTAÑA GENÉRICA */}
-          <Tooltip title="Información General" placement="right" arrow>
-            <Tab icon={<InfoIcon fontSize="small" />} />
-          </Tooltip>
-
-          <Tooltip title="Configuración de Paneles" placement="right" arrow>
-            <Tab icon={<PanelIcon fontSize="small" />} />
-          </Tooltip>
-
-          <Tooltip title="Estructura y Montaje" placement="right" arrow>
-            <Tab icon={<MountIcon fontSize="small" />} />
-          </Tooltip>
-
-          <Tooltip title="Configuración de Inversor" placement="right" arrow>
-            <Tab icon={<InverterIcon fontSize="small" />} />
-          </Tooltip>
-        </Tabs>
-      </Box>
-
-      <Box sx={{ flexGrow: 1, p: 1.5, overflow: 'hidden' }}>
-        {innerTab === 0 ? (
-          /* NUEVA PESTAÑA 0: INFORMACIÓN GENERAL */
-          <Stack spacing={2}>
-            <Box sx={{
-              width: '100%',
-              bgcolor: '#f8f9fa',
-              p: 1.5,
-              borderRadius: 2,
-              border: '1px solid #eef0f2'
-            }}>
-              <TextField
-                label="Nombre Grupo"
-                size="small"
-                variant="standard"
-                fullWidth
-                value={activeGrid.nombre}
-                onChange={(e) => {
-                  const newValue = e.target.value;
-                  if (newValue.length <= 3) {
-                    updateGrid(activeGridId, { nombre: newValue });
-                  }
-                }}
-                sx={{ mb: 1.5 }}
-              />
-              
-              <TextField
-                label="Coste (EUR)"
-                size="small"
-                variant="standard"
-                fullWidth
-                type="number"
-                value={activeGrid.config.FVcost || ''}
-                onChange={(e) => updateGrid(activeGridId, { config: { FVcost: parseFloat(e.target.value) || 0 } })}
-                sx={{ mb: 1.5 }}
-              />
-
-              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 1 }}>
-                <IconButton 
-                  size="small" 
-                  onClick={() => setShadowModalOpen(true)} 
-                  sx={{ border: "1px solid #ddd", bgcolor: '#fff' }}
-                >
-                  <ShadowIcon fontSize="small" />
-                </IconButton>
-                <Typography variant="caption" sx={{ ml: 1, alignSelf: 'center', color: '#666' }}>
-                  Configurar sombras
-                </Typography>
-              </Box>
-            </Box>
-          </Stack>
-        ) : innerTab === 1 ? (
-          /* PESTAÑA 1: PANEL Y MATRIZ (antes era 0) */
-          <Stack spacing={2} alignItems="center">
-            <Box sx={{
-              width: '100%',
-              bgcolor: '#f8f9fa',
-              p: 1.5,
-              borderRadius: 2,
-              border: '1px solid #eef0f2'
-            }}>
-              <TextField
-                label="Modelo de Panel"
-                size="small"
-                variant="standard"
-                fullWidth
-                value={activeGrid.config.modelo || ''}
-                onChange={(e) => updateGrid(activeGridId, { config: { modelo: e.target.value } })}
-                sx={{ mb: 1.5 }}
-              />
-              <TextField
-                label="Potencia (Wp)"
-                size="small"
-                variant="standard"
-                fullWidth
-                type="number"
-                value={activeGrid.config.potenciaW || ''}
-                onChange={(e) => updateGrid(activeGridId, { config: { potenciaW: parseFloat(e.target.value) || 0 } })}
-              />
-            </Box>
-
-            {/* VARIABLES ELÉCTRICAS PANEL (STC) */}
-            <Box sx={{ width: '100%', p: 0.5 }}>
-              <Divider sx={{ mb: 1.5, fontSize: '0.6rem', color: '#999', fontWeight: 700 }}>FICHA TÉCNICA PANEL (STC)</Divider>
-              <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
-                <TextField
-                  label="Voc (V)" size="small" variant="outlined" type="number" fullWidth
-                  value={activeGrid.config.vOc || ''}
-                  onChange={(e) => updateGrid(activeGridId, { config: { vOc: parseFloat(e.target.value) || 0 } })}
-                  inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
-                />
-                <TextField
-                  label="Vmp (V)" size="small" variant="outlined" type="number" fullWidth
-                  value={activeGrid.config.vMp || ''}
-                  onChange={(e) => updateGrid(activeGridId, { config: { vMp: parseFloat(e.target.value) || 0 } })}
-                  inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
-                />
-              </Stack>
-              <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
-                <TextField
-                  label="Isc (A)" size="small" variant="outlined" type="number" fullWidth
-                  value={activeGrid.config.iSc || ''}
-                  onChange={(e) => updateGrid(activeGridId, { config: { iSc: parseFloat(e.target.value) || 0 } })}
-                  inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
-                />
-                <TextField
-                  label="Imp (A)" size="small" variant="outlined" type="number" fullWidth
-                  value={activeGrid.config.iMp || ''}
-                  onChange={(e) => updateGrid(activeGridId, { config: { iMp: parseFloat(e.target.value) || 0 } })}
-                  inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
-                />
-              </Stack>
-              <TextField
-                label="Coef. Temp Voc (%/°C ó mV/°C)" size="small" variant="outlined" type="number" fullWidth
-                value={activeGrid.config.coefVoc || ''}
-                onChange={(e) => updateGrid(activeGridId, { config: { coefVoc: parseFloat(e.target.value) || 0 } })}
-                inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
-              />
-            </Box>
-
-            {/* ORIENTACIÓN Y GEOMETRÍA */}
-            <Box sx={{ width: '100%', p: 0.5, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
-              <IconButton
-                onClick={() => updateGrid(activeGridId, {
-                  config: { orientation: activeGrid.config.orientation === 'vertical' ? 'horizontal' : 'vertical' }
-                })}
-                sx={{ border: '1px solid #ddd', bgcolor: '#fff', width: 36, height: 36 }}
+        {activeGrid && (
+          <Box sx={{ display: 'flex', flexDirection: 'row', bgcolor: 'white' }}>
+            {/* BARRA LATERAL DE PESTAÑAS CON TOOLTIPS */}
+            <Box sx={{ borderRight: 1, borderColor: 'divider', bgcolor: '#f9f9f9', width: 45 }}>
+              <Tabs
+                orientation="vertical"
+                value={innerTab}
+                onChange={(_, v) => setInnerTab(v)}
+                sx={{ minWidth: 45, '& .MuiTab-root': { minWidth: 45, py: 2 } }}
               >
-                {activeGrid.config.orientation === 'vertical' ? <PortraitIcon fontSize="small" /> : <LandscapeIcon fontSize="small" />}
-              </IconButton>
+                <Tooltip title="Configuración de Paneles" placement="right" arrow>
+                  <Tab icon={<PanelIcon fontSize="small" />} />
+                </Tooltip>
 
-              <Stack direction="row" spacing={1} width="100%">
-                <TextField
-                  label="H (m)"
-                  size="small"
-                  variant="standard"
-                  fullWidth
-                  type="number"
-                  value={activeGrid.config.height}
-                  onChange={(e) => updateGrid(activeGridId, { config: { height: parseFloat(e.target.value) || 0 } })}
-                />
-                <TextField
-                  label="W (m)"
-                  size="small"
-                  variant="standard"
-                  fullWidth
-                  type="number"
-                  value={activeGrid.config.width}
-                  onChange={(e) => updateGrid(activeGridId, { config: { width: parseFloat(e.target.value) || 0 } })}
-                />
-              </Stack>
+                <Tooltip title="Estructura y Montaje" placement="right" arrow>
+                  <Tab icon={<MountIcon fontSize="small" />} />
+                </Tooltip>
 
-              <Typography variant="caption" sx={{ mt: 0.5, fontWeight: 700, color: '#1a237e' }}>
-                Total bloque: {(activeGrid.config.rows || 1) * (activeGrid.config.cols || 1)} paneles
-              </Typography>
-            </Box>
-          </Stack>
-        ) : innerTab === 2 ? (
-          /* PESTAÑA 2: MONTAJE (antes era 1) */
-          <Stack spacing={2} alignItems="center">
-            {/* --- SECCIÓN DE MATRIZ (FILAS x COLUMNAS) --- */}
-            <Divider sx={{ width: '100%', my: 1, fontSize: '0.6rem', color: '#999' }}>ESTRUCTURA MATRIZ</Divider>
-
-            <Stack direction="row" spacing={1} width="100%">
-              <TextField
-                label="Filas"
-                size="small"
-                variant="outlined"
-                type="number"
-                fullWidth
-                value={activeGrid.config.rows || 1}
-                onChange={(e) => updateGrid(activeGridId, {
-                  config: { rows: Math.max(1, parseInt(e.target.value) || 1) }
-                })}
-                inputProps={{ style: { fontSize: '0.8rem', padding: '8px' } }}
-              />
-              <TextField
-                label="Cols"
-                size="small"
-                variant="outlined"
-                type="number"
-                fullWidth
-                value={activeGrid.config.cols || 1}
-                onChange={(e) => updateGrid(activeGridId, {
-                  config: { cols: Math.max(1, parseInt(e.target.value) || 1) }
-                })}
-                inputProps={{ style: { fontSize: '0.8rem', padding: '8px' } }}
-              />
-            </Stack>
-
-            <Box sx={{ width: '100%', bgcolor: '#fcfcfc', p: 1, borderRadius: 2, border: '1px solid #f0f0f0', textAlign: 'center' }}>
-              <AzimutPreview rotation={activeGrid.rotation} />
-              <Typography variant="caption" display="block" fontWeight={700} sx={{ mt: 0.5 }}>
-                Azim: {Math.round(activeGrid.rotation)}°
-              </Typography>
-              <Slider
-                size="small"
-                value={activeGrid.rotation}
-                min={-180} max={180}
-                onChange={(_, v) => updateGrid(activeGridId, { rotation: v })}
-                sx={{ width: '90%' }}
-              />
+                <Tooltip title="Configuración de Inversor" placement="right" arrow>
+                  <Tab icon={<InverterIcon fontSize="small" />} />
+                </Tooltip>
+              </Tabs>
             </Box>
 
-            <Stack spacing={0.5} width="100%">
-              {['coplanar', 'libre', 'doble'].map((tipo) => (
-                <Button
-                  key={tipo}
-                  size="small"
-                  variant={activeGrid.config.tipoEstructura === tipo ? "contained" : "outlined"}
-                  sx={{ fontSize: '0.7rem', py: 0.4, width: '100%', textTransform: 'capitalize' }}
-                  onClick={() => {
-                    let updates = { tipoEstructura: tipo };
-                    if (tipo === 'coplanar') updates.tilt = activeGrid.config.slope;
-                    if (tipo === 'doble') updates.slope = 0;
-                    updateGrid(activeGridId, { config: updates });
-                  }}
-                >
-                  {tipo}
-                </Button>
-              ))}
-            </Stack>
+            <Box sx={{ flexGrow: 1, p: 1.5, overflow: 'hidden' }}>
+              {innerTab === 0 ? (
+                /* PESTAÑA 1: PANEL Y MATRIZ */
+                <Stack spacing={2} alignItems="center">
+                  <Box sx={{
+                    width: '100%',
+                    bgcolor: '#f8f9fa',
+                    p: 1.5,
+                    borderRadius: 2,
+                    border: '1px solid #eef0f2'
+                  }}>
+                    <TextField
+                      label="Nombre Grupo"
+                      size="small"
+                      variant="standard"
+                      fullWidth
+                      value={activeGrid.nombre}
+                      onChange={(e) => {
+                        const newValue = e.target.value;
+                        if (newValue.length <= 3) {
+                          updateGrid(activeGridId, { nombre: newValue });
+                        }
+                      }}
+                      sx={{ mb: 1.5 }}
+                    />
+                    <TextField
+                      label="Modelo de Panel"
+                      size="small"
+                      variant="standard"
+                      fullWidth
+                      value={activeGrid.config.modelo || ''}
+                      onChange={(e) => updateGrid(activeGridId, { config: { modelo: e.target.value } })}
+                      sx={{ mb: 1.5 }}
+                    />
+                    <TextField
+                      label="Potencia (Wp)"
+                      size="small"
+                      variant="standard"
+                      fullWidth
+                      type="number"
+                      value={activeGrid.config.potenciaW || ''}
+                      onChange={(e) => updateGrid(activeGridId, { config: { potenciaW: parseFloat(e.target.value) || 0 } })}
+                    />
+                  </Box>
 
-            <Box sx={{ width: '100%', bgcolor: '#fffdf9', p: 1, borderRadius: 2, border: '1px solid #fff5e6', textAlign: 'center' }}>
-              <Box sx={{ transform: 'scale(0.85)', height: 60, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <AnglePreview tilt={activeGrid.config.tilt} slope={activeGrid.config.slope} isDouble={activeGrid.config.tipoEstructura === 'doble'} />
-              </Box>
-              <Box sx={{ mt: 0.5 }}>
-                <Typography variant="caption" display="block" fontWeight={700} sx={{ color: '#555', fontSize: '0.65rem' }}>
-                  Inc: {activeGrid.config.tilt}°
-                </Typography>
-                <Slider
-                  size="small"
-                  value={activeGrid.config.tilt}
-                  min={0} max={90}
-                  disabled={activeGrid.config.tipoEstructura === 'coplanar'}
-                  onChange={(_, v) => {
-                    const val = activeGrid.config.tipoEstructura === 'libre' ? Math.max(v, activeGrid.config.slope) : v;
-                    updateGrid(activeGridId, { config: { tilt: val } });
-                  }}
-                />
-              </Box>
-              <Box sx={{ mt: -0.5 }}>
-                <Typography variant="caption" display="block" fontWeight={700} color="orange" sx={{ fontSize: '0.65rem' }}>
-                  Suelo: {activeGrid.config.slope}°
-                </Typography>
-                <Slider
-                  size="small"
-                  value={activeGrid.config.slope}
-                  min={0} max={90}
-                  sx={{ color: 'orange' }}
-                  disabled={activeGrid.config.tipoEstructura === 'doble'}
-                  onChange={(_, v) => {
-                    let updates = { slope: v };
-                    if (activeGrid.config.tipoEstructura === 'coplanar') { updates.tilt = v; }
-                    else if (activeGrid.config.tipoEstructura === 'libre') { if (v > activeGrid.config.tilt) updates.tilt = v; }
-                    updateGrid(activeGridId, { config: updates });
-                  }}
-                />
-              </Box>
+                  {/* VARIABLES ELÉCTRICAS PANEL (STC) */}
+                  <Box sx={{ width: '100%', p: 0.5 }}>
+                    <Divider sx={{ mb: 1.5, fontSize: '0.6rem', color: '#999', fontWeight: 700 }}>FICHA TÉCNICA PANEL (STC)</Divider>
+                    <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
+                      <TextField
+                        label="Voc (V)" size="small" variant="outlined" type="number" fullWidth
+                        value={activeGrid.config.vOc || ''}
+                        onChange={(e) => updateGrid(activeGridId, { config: { vOc: parseFloat(e.target.value) || 0 } })}
+                        inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
+                      />
+                      <TextField
+                        label="Vmp (V)" size="small" variant="outlined" type="number" fullWidth
+                        value={activeGrid.config.vMp || ''}
+                        onChange={(e) => updateGrid(activeGridId, { config: { vMp: parseFloat(e.target.value) || 0 } })}
+                        inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
+                      />
+                    </Stack>
+                    <Stack direction="row" spacing={1} sx={{ mb: 1 }}>
+                      <TextField
+                        label="Isc (A)" size="small" variant="outlined" type="number" fullWidth
+                        value={activeGrid.config.iSc || ''}
+                        onChange={(e) => updateGrid(activeGridId, { config: { iSc: parseFloat(e.target.value) || 0 } })}
+                        inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
+                      />
+                      <TextField
+                        label="Imp (A)" size="small" variant="outlined" type="number" fullWidth
+                        value={activeGrid.config.iMp || ''}
+                        onChange={(e) => updateGrid(activeGridId, { config: { iMp: parseFloat(e.target.value) || 0 } })}
+                        inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
+                      />
+                    </Stack>
+                    <TextField
+                      label="Coef. Temp Voc (%/°C ó mV/°C)" size="small" variant="outlined" type="number" fullWidth
+                      value={activeGrid.config.coefVoc || ''}
+                      onChange={(e) => updateGrid(activeGridId, { config: { coefVoc: parseFloat(e.target.value) || 0 } })}
+                      inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
+                    />
+                  </Box>
+
+                  {/* ORIENTACIÓN Y GEOMETRÍA */}
+                  <Box sx={{ width: '100%', p: 0.5, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+                    <IconButton
+                      onClick={() => updateGrid(activeGridId, {
+                        config: { orientation: activeGrid.config.orientation === 'vertical' ? 'horizontal' : 'vertical' }
+                      })}
+                      sx={{ border: '1px solid #ddd', bgcolor: '#fff', width: 36, height: 36 }}
+                    >
+                      {activeGrid.config.orientation === 'vertical' ? <PortraitIcon fontSize="small" /> : <LandscapeIcon fontSize="small" />}
+                    </IconButton>
+
+                    <Stack direction="row" spacing={1} width="100%">
+                      <TextField
+                        label="H (m)"
+                        size="small"
+                        variant="standard"
+                        fullWidth
+                        type="number"
+                        value={activeGrid.config.height}
+                        onChange={(e) => updateGrid(activeGridId, { config: { height: parseFloat(e.target.value) || 0 } })}
+                      />
+                      <TextField
+                        label="W (m)"
+                        size="small"
+                        variant="standard"
+                        fullWidth
+                        type="number"
+                        value={activeGrid.config.width}
+                        onChange={(e) => updateGrid(activeGridId, { config: { width: parseFloat(e.target.value) || 0 } })}
+                      />
+                    </Stack>
+
+
+                    <Typography variant="caption" sx={{ mt: 0.5, fontWeight: 700, color: '#1a237e' }}>
+                      Total bloque: {(activeGrid.config.rows || 1) * (activeGrid.config.cols || 1)} paneles
+                    </Typography>
+                  </Box>
+                </Stack>
+              ) : innerTab === 1 ? (
+                /* PESTAÑA 2: MONTAJE */
+
+
+
+
+
+                <Stack spacing={2} alignItems="center">
+
+                  {/* --- SECCIÓN DE MATRIZ (FILAS x COLUMNAS) --- */}
+                  <Divider sx={{ width: '100%', my: 1, fontSize: '0.6rem', color: '#999' }}>ESTRUCTURA MATRIZ</Divider>
+
+                  <Stack direction="row" spacing={1} width="100%">
+                    <TextField
+                      label="Filas"
+                      size="small"
+                      variant="outlined"
+                      type="number"
+                      fullWidth
+                      value={activeGrid.config.rows || 1}
+                      onChange={(e) => updateGrid(activeGridId, {
+                        config: { rows: Math.max(1, parseInt(e.target.value) || 1) }
+                      })}
+                      inputProps={{ style: { fontSize: '0.8rem', padding: '8px' } }}
+                    />
+                    <TextField
+                      label="Cols"
+                      size="small"
+                      variant="outlined"
+                      type="number"
+                      fullWidth
+                      value={activeGrid.config.cols || 1}
+                      onChange={(e) => updateGrid(activeGridId, {
+                        config: { cols: Math.max(1, parseInt(e.target.value) || 1) }
+                      })}
+                      inputProps={{ style: { fontSize: '0.8rem', padding: '8px' } }}
+                    />
+                  </Stack>
+
+
+                  <Box sx={{ width: '100%', bgcolor: '#fcfcfc', p: 1, borderRadius: 2, border: '1px solid #f0f0f0', textAlign: 'center' }}>
+                    <AzimutPreview rotation={activeGrid.rotation} />
+                    <Typography variant="caption" display="block" fontWeight={700} sx={{ mt: 0.5 }}>
+                      Azim: {Math.round(activeGrid.rotation)}°
+                    </Typography>
+                    <Slider
+                      size="small"
+                      value={activeGrid.rotation}
+                      min={-180} max={180}
+                      onChange={(_, v) => updateGrid(activeGridId, { rotation: v })}
+                      sx={{ width: '90%' }}
+                    />
+                  </Box>
+
+
+
+
+
+                  <Stack spacing={0.5} width="100%">
+                    {['coplanar', 'libre', 'doble'].map((tipo) => (
+                      <Button
+                        key={tipo}
+                        size="small"
+                        variant={activeGrid.config.tipoEstructura === tipo ? "contained" : "outlined"}
+                        sx={{ fontSize: '0.7rem', py: 0.4, width: '100%', textTransform: 'capitalize' }}
+                        onClick={() => {
+                          let updates = { tipoEstructura: tipo };
+                          if (tipo === 'coplanar') updates.tilt = activeGrid.config.slope;
+                          if (tipo === 'doble') updates.slope = 0;
+                          updateGrid(activeGridId, { config: updates });
+                        }}
+                      >
+                        {tipo}
+                      </Button>
+                    ))}
+                  </Stack>
+
+                  <Box sx={{ width: '100%', bgcolor: '#fffdf9', p: 1, borderRadius: 2, border: '1px solid #fff5e6', textAlign: 'center' }}>
+                    <Box sx={{ transform: 'scale(0.85)', height: 60, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                      <AnglePreview tilt={activeGrid.config.tilt} slope={activeGrid.config.slope} isDouble={activeGrid.config.tipoEstructura === 'doble'} />
+                    </Box>
+                    <Box sx={{ mt: 0.5 }}>
+                      <Typography variant="caption" display="block" fontWeight={700} sx={{ color: '#555', fontSize: '0.65rem' }}>
+                        Inc: {activeGrid.config.tilt}°
+                      </Typography>
+                      <Slider
+                        size="small"
+                        value={activeGrid.config.tilt}
+                        min={0} max={90}
+                        disabled={activeGrid.config.tipoEstructura === 'coplanar'}
+                        onChange={(_, v) => {
+                          const val = activeGrid.config.tipoEstructura === 'libre' ? Math.max(v, activeGrid.config.slope) : v;
+                          updateGrid(activeGridId, { config: { tilt: val } });
+                        }}
+                      />
+                    </Box>
+                    <Box sx={{ mt: -0.5 }}>
+                      <Typography variant="caption" display="block" fontWeight={700} color="orange" sx={{ fontSize: '0.65rem' }}>
+                        Suelo: {activeGrid.config.slope}°
+                      </Typography>
+                      <Slider
+                        size="small"
+                        value={activeGrid.config.slope}
+                        min={0} max={90}
+                        sx={{ color: 'orange' }}
+                        disabled={activeGrid.config.tipoEstructura === 'doble'}
+                        onChange={(_, v) => {
+                          let updates = { slope: v };
+                          if (activeGrid.config.tipoEstructura === 'coplanar') { updates.tilt = v; }
+                          else if (activeGrid.config.tipoEstructura === 'libre') { if (v > activeGrid.config.tilt) updates.tilt = v; }
+                          updateGrid(activeGridId, { config: updates });
+                        }}
+                      />
+                    </Box>
+                  </Box>
+
+                  <IconButton size="small" onClick={() => setShadowModalOpen(true)} sx={{ border: "1px solid #ddd", bgcolor: '#fff', mt: -1 }}>
+                    <ShadowIcon fontSize="small" />
+                  </IconButton>
+                </Stack>
+              ) : (
+                /* PESTAÑA 3: CONFIGURACIÓN DE INVERSOR */
+                <Stack spacing={2}>
+                  <Box sx={{
+                    width: '100%',
+                    bgcolor: '#f1f3f9',
+                    p: 1.5,
+                    borderRadius: 2,
+                    border: '1px solid #d0d7de'
+                  }}>
+                    <TextField
+                      label="Modelo Inversor"
+                      size="small"
+                      variant="standard"
+                      fullWidth
+                      value={activeGrid.config.inverterModel || ''}
+                      onChange={(e) => updateGrid(activeGridId, { config: { inverterModel: e.target.value } })}
+                      sx={{ mb: 1.5 }}
+                    />
+                    <TextField
+                      label="Potencia Nominal (W)"
+                      size="small"
+                      variant="standard"
+                      fullWidth
+                      type="number"
+                      value={activeGrid.config.inverterPower || ''}
+                      onChange={(e) => updateGrid(activeGridId, { config: { inverterPower: parseFloat(e.target.value) || 0 } })}
+                    />
+                    <TextField
+                      label="coste (EUR)"
+                      size="small"
+                      variant="standard"
+                      fullWidth
+                      type="number"
+                      value={activeGrid.config.FVcost || ''}
+                      onChange={(e) => updateGrid(activeGridId, { config: { FVcost: parseFloat(e.target.value) || 0 } })}
+                    />
+
+                  </Box>
+
+                  <Box sx={{ width: '100%', p: 0.5 }}>
+                    <TextField
+                      label="Cantidad de MPPT"
+                      size="small"
+                      variant="outlined"
+                      type="number"
+                      fullWidth
+                      value={activeGrid.config.mpptCount || 1}
+                      onChange={(e) => updateGrid(activeGridId, {
+                        config: { mpptCount: Math.max(1, parseInt(e.target.value) || 1) }
+                      })}
+                      inputProps={{ style: { fontSize: '0.8rem', padding: '8px' } }}
+                      sx={{ mb: 1.5 }}
+                    />
+
+                    <Divider sx={{ width: '100%', my: 1, fontSize: '0.6rem', color: '#999', fontWeight: 700 }}>LÍMITES ELÉCTRICOS MPPT</Divider>
+
+                    <TextField
+                      label="Tensión Máx Admisible Vmax (V)"
+                      size="small" variant="outlined" type="number" fullWidth
+                      value={activeGrid.config.vMax || ''}
+                      onChange={(e) => updateGrid(activeGridId, { config: { vMax: parseFloat(e.target.value) || 0 } })}
+                      inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
+                      sx={{ mb: 1 }}
+                    />
+
+                    <Stack direction="row" spacing={1} width="100%" sx={{ mb: 1.5 }}>
+                      <TextField
+                        label="Vmin MPPT (V)" size="small" variant="outlined" type="number" fullWidth
+                        value={activeGrid.config.vMinMppt || ''}
+                        onChange={(e) => updateGrid(activeGridId, { config: { vMinMppt: parseFloat(e.target.value) || 0 } })}
+                        inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
+                      />
+                      <TextField
+                        label="Vmax MPPT (V)" size="small" variant="outlined" type="number" fullWidth
+                        value={activeGrid.config.vMaxMppt || ''}
+                        onChange={(e) => updateGrid(activeGridId, { config: { vMaxMppt: parseFloat(e.target.value) || 0 } })}
+                        inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
+                      />
+                    </Stack>
+
+                    <Stack direction="row" spacing={1} width="100%">
+                      <TextField
+                        label="Imax Entrada (A)" size="small" variant="outlined" type="number" fullWidth
+                        value={activeGrid.config.iMaxInverter || ''}
+                        onChange={(e) => updateGrid(activeGridId, { config: { iMaxInverter: parseFloat(e.target.value) || 0 } })}
+                        inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
+                      />
+                      <TextField
+                        label="Isc Máx Invs (A)" size="small" variant="outlined" type="number" fullWidth
+                        value={activeGrid.config.iScMaxInverter || ''}
+                        onChange={(e) => updateGrid(activeGridId, { config: { iScMaxInverter: parseFloat(e.target.value) || 0 } })}
+                        inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
+                      />
+                    </Stack>
+                  </Box>
+                </Stack>
+              )}
             </Box>
-
-            {/* EL ShadowIcon ya no está aquí, se movió a la pestaña 0 */}
-          </Stack>
-        ) : (
-          /* PESTAÑA 3: CONFIGURACIÓN DE INVERSOR (antes era 2) */
-          <Stack spacing={2}>
-            <Box sx={{
-              width: '100%',
-              bgcolor: '#f1f3f9',
-              p: 1.5,
-              borderRadius: 2,
-              border: '1px solid #d0d7de'
-            }}>
-              <TextField
-                label="Modelo Inversor"
-                size="small"
-                variant="standard"
-                fullWidth
-                value={activeGrid.config.inverterModel || ''}
-                onChange={(e) => updateGrid(activeGridId, { config: { inverterModel: e.target.value } })}
-                sx={{ mb: 1.5 }}
-              />
-              <TextField
-                label="Potencia Nominal (W)"
-                size="small"
-                variant="standard"
-                fullWidth
-                type="number"
-                value={activeGrid.config.inverterPower || ''}
-                onChange={(e) => updateGrid(activeGridId, { config: { inverterPower: parseFloat(e.target.value) || 0 } })}
-              />
-            </Box>
-
-            <Box sx={{ width: '100%', p: 0.5 }}>
-              <TextField
-                label="Cantidad de MPPT"
-                size="small"
-                variant="outlined"
-                type="number"
-                fullWidth
-                value={activeGrid.config.mpptCount || 1}
-                onChange={(e) => updateGrid(activeGridId, {
-                  config: { mpptCount: Math.max(1, parseInt(e.target.value) || 1) }
-                })}
-                inputProps={{ style: { fontSize: '0.8rem', padding: '8px' } }}
-                sx={{ mb: 1.5 }}
-              />
-
-              <Divider sx={{ width: '100%', my: 1, fontSize: '0.6rem', color: '#999', fontWeight: 700 }}>LÍMITES ELÉCTRICOS MPPT</Divider>
-
-              <TextField
-                label="Tensión Máx Admisible Vmax (V)"
-                size="small" variant="outlined" type="number" fullWidth
-                value={activeGrid.config.vMax || ''}
-                onChange={(e) => updateGrid(activeGridId, { config: { vMax: parseFloat(e.target.value) || 0 } })}
-                inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
-                sx={{ mb: 1 }}
-              />
-
-              <Stack direction="row" spacing={1} width="100%" sx={{ mb: 1.5 }}>
-                <TextField
-                  label="Vmin MPPT (V)" size="small" variant="outlined" type="number" fullWidth
-                  value={activeGrid.config.vMinMppt || ''}
-                  onChange={(e) => updateGrid(activeGridId, { config: { vMinMppt: parseFloat(e.target.value) || 0 } })}
-                  inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
-                />
-                <TextField
-                  label="Vmax MPPT (V)" size="small" variant="outlined" type="number" fullWidth
-                  value={activeGrid.config.vMaxMppt || ''}
-                  onChange={(e) => updateGrid(activeGridId, { config: { vMaxMppt: parseFloat(e.target.value) || 0 } })}
-                  inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
-                />
-              </Stack>
-
-              <Stack direction="row" spacing={1} width="100%">
-                <TextField
-                  label="Imax Entrada (A)" size="small" variant="outlined" type="number" fullWidth
-                  value={activeGrid.config.iMaxInverter || ''}
-                  onChange={(e) => updateGrid(activeGridId, { config: { iMaxInverter: parseFloat(e.target.value) || 0 } })}
-                  inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
-                />
-                <TextField
-                  label="Isc Máx Invs (A)" size="small" variant="outlined" type="number" fullWidth
-                  value={activeGrid.config.iScMaxInverter || ''}
-                  onChange={(e) => updateGrid(activeGridId, { config: { iScMaxInverter: parseFloat(e.target.value) || 0 } })}
-                  inputProps={{ style: { fontSize: '0.75rem', padding: '6px' } }}
-                />
-              </Stack>
-            </Box>
-          </Stack>
+          </Box>
         )}
-      </Box>
-    </Box>
-  )}
-</Dialog>
+      </Dialog>
 
       {/* DIALOGO SOMBRAS */}
       <Dialog open={shadowModalOpen} onClose={() => setShadowModalOpen(false)} fullWidth>
