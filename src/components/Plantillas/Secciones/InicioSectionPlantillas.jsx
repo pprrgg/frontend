@@ -147,34 +147,49 @@ const InicioSection = () => {
             {/* IZQUIERDA: Título y Micro Badges */}
 
 
-<Stack
-  direction="row"
-  spacing={2}
-  alignItems="center"
-  justifyContent="center"
-  sx={{ 
-    py: 2, 
-    width: '100%',
-    flexWrap: 'wrap', 
-    gap: 1.5
-  }}
->
-  <Typography
-    component="h1"
-    onClick={handleOpenMenu}
-    sx={{
-      fontFamily: "'Inter', sans-serif",
-      fontSize: { xs: "1.1rem", md: "1.3rem" },
-      fontWeight: 800,
-      color: '#1e293b',
-      cursor: 'pointer',
-      whiteSpace: 'nowrap'
-    }}
-  >
-    Blog Técnico Interactivo
-  </Typography>
-
-  <Stack
+            <Stack
+              direction="row"
+              spacing={2}
+              alignItems="center"
+              justifyContent="center"
+              sx={{
+                py: 2,
+                width: '100%',
+                flexWrap: 'wrap',
+                gap: 1.5
+              }}
+            >
+              <Typography
+                component="h1"
+                onClick={handleOpenMenu}
+                sx={{
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: { xs: "1.1rem", md: "1.3rem" },
+                  fontWeight: 800,
+                  color: "#1e293b",
+                  cursor: "pointer",
+                }}
+              >
+                El blog técnico{" "}
+                <Box
+                  component="span"
+                  sx={{
+                    display: "inline-block",
+                    px: 1,
+                    py: 0.2,
+                    mx: 0.5,
+                    borderRadius: 2,
+                    background: "linear-gradient(135deg, #2563eb, #7c3aed)",
+                    color: "white",
+                    fontWeight: 900,
+                    boxShadow: "0 4px 12px rgba(37,99,235,.25)",
+                  }}
+                >
+                  interactivo
+                </Box>{" "}
+                de Paco Román
+              </Typography>
+              {/* <Stack
     direction="row"
     spacing={1}
     sx={{ justifyContent: "center" }}
@@ -209,8 +224,8 @@ const InicioSection = () => {
         }}
       />
     ))}
-  </Stack>
-</Stack>
+  </Stack> */}
+            </Stack>
             {/* DERECHA: Botón Guía */}
             <Button
               variant="text"
