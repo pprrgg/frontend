@@ -170,7 +170,7 @@ const InicioSection = () => {
                   cursor: "pointer",
                 }}
               >
-                El blog técnico{" "}
+                Blog técnico{" "}
                 <Box
                   component="span"
                   sx={{
@@ -187,7 +187,7 @@ const InicioSection = () => {
                 >
                   interactivo
                 </Box>{" "}
-                de Paco Román
+                de P.Román
               </Typography>
               {/* <Stack
     direction="row"
