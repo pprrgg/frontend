@@ -30,8 +30,6 @@ import "leaflet/dist/leaflet.css";
 
 import ShadowProfileChart from "./ShadowProfileChart";
 
-
-
 // --- RECURSOS VISUALES ---
 const arrowWhiteSvg = `<svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>`;
 
@@ -120,6 +118,7 @@ class FreeGridManager {
     this.onDoubleClick = onDoubleClick;
     this.onGridSelect = onGridSelect;
     this.gridLayer = L.layerGroup().addTo(this.map);
+    this.summaryLayer = L.layerGroup().addTo(this.map);
 
     this.isDragging = false;
     this.paintMode = true;
@@ -169,203 +168,310 @@ class FreeGridManager {
 
   render(grids, activeId) {
     this.gridLayer.clearLayers();
-    grids.forEach(g => this.drawGrid(g, g.id === activeId));
-  }
-
-drawGrid(grid, isActive) {
-  const center = this.map.latLngToLayerPoint(grid.baseLatLng);
-  const rad = (grid.rotation * Math.PI) / 180;
-  const tiltRad = (grid.config.tilt * Math.PI) / 180;
-
-  const isV = grid.config.orientation === 'vertical';
-  const rows = grid.config.rows || 1;
-  const cols = grid.config.cols || 1;
-  const baseH = isV ? grid.config.height : grid.config.width;
-  const baseW = isV ? grid.config.width : grid.config.height;
-
-  const panelH = baseH * rows;
-  const panelW = baseW * cols;
-
-  const pW_px = this.metersToPx(panelW);
-  const pH_px = this.metersToPx(panelH) * Math.cos(tiltRad);
-
-  const panels = new Set(grid.paneles || []);
-  const tipo = grid.config.tipoEstructura || 'coplanar';
-
-  const cellsToRender = new Set();
-  if (panels.size === 0) {
-    cellsToRender.add("0,0");
-  } else {
-    panels.forEach(id => {
-      cellsToRender.add(id);
-      const [r, c] = id.split(',').map(Number);
-      for (let dr = -1; dr <= 1; dr++) {
-        for (let dc = -1; dc <= 1; dc++) {
-          cellsToRender.add(`${r + dr},${c + dc}`);
-        }
+    this.summaryLayer.clearLayers();
+    
+    // Dibujar iconos resumidos para TODOS los grids (SIEMPRE visibles)
+    grids.forEach(g => {
+      if (g && g.baseLatLng) {
+        this.drawGridSummary(g);
       }
     });
+    
+    // Dibujar el grid activo con detalle (si existe)
+    if (activeId) {
+      const activeGrid = grids.find(g => g.id === activeId);
+      if (activeGrid) {
+        this.drawGrid(activeGrid, true);
+      }
+    }
   }
 
-  cellsToRender.forEach(id => {
-    const [r, c] = id.split(',').map(Number);
-    const active = panels.has(id);
-
-    let arrowRad = rad;
-    let verticalOffset = 0;
-
-    if (tipo === 'doble') {
-      if (Math.abs(r) % 2 === 0) {
-        arrowRad = rad + Math.PI;
-      } else {
-        arrowRad = rad;
-      }
-      verticalOffset = r * pH_px + (Math.floor(r / 2) * (pH_px * 0.15));
-    } else if (tipo === 'libre') {
-      const lat = Math.abs(this.map.getCenter().lat);
-      const kFactor = 1 / Math.tan(Math.max(5, 90 - lat - 23.44) * Math.PI / 180);
-      const hProjected = panelH * Math.sin(Math.max(0, grid.config.tilt - grid.config.slope) * Math.PI / 180);
-      const gapMeters = hProjected * kFactor;
-      verticalOffset = r * (pH_px + this.metersToPx(gapMeters));
-    } else {
-      verticalOffset = r * pH_px;
+  drawGridSummary(grid) {
+    if (!grid || !grid.baseLatLng) {
+      return;
     }
 
-    const cp = L.point(
-      center.x + (c * pW_px * Math.cos(rad) - verticalOffset * Math.sin(rad)),
-      center.y + (c * pW_px * Math.sin(rad) + verticalOffset * Math.cos(rad))
-    );
+    const totalPaneles = (grid.paneles?.length || 0) * (grid.config.rows || 1) * (grid.config.cols || 1);
+    
+    // Tamaño más pequeño
+    const size = 24;
+    const fontSize = 9;
+    const displayText = totalPaneles > 999 ? '999+' : totalPaneles.toString();
+    
+    // Crear icono circular cyan - SIN círculo naranja
+    const summaryIcon = L.divIcon({
+      className: 'grid-summary-icon',
+      html: `
+        <div style="
+          background: linear-gradient(135deg, #00bcd4, #00838f);
+          width: ${size}px;
+          height: ${size}px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 1.5px solid rgba(255,255,255,0.8);
+          box-shadow: 0 0 12px rgba(0, 188, 212, 0.5), 0 2px 6px rgba(0,0,0,0.3);
+          color: white;
+          font-size: ${fontSize}px;
+          font-weight: bold;
+          font-family: 'Roboto', 'Arial', sans-serif;
+          text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+          cursor: pointer;
+          transition: all 0.3s ease;
+          user-select: none;
+          pointer-events: auto;
+          position: relative;
+        ">
+          ${displayText}
+        </div>
+      `,
+      iconSize: [size, size],
+      iconAnchor: [size/2, size/2]
+    });
 
-    const corners = [[-0.5, -0.5], [0.5, -0.5], [0.5, 0.5], [-0.5, 0.5]].map(([dx, dy]) =>
-      this.map.layerPointToLatLng(L.point(
-        cp.x + (dx * pW_px * Math.cos(rad) - dy * pH_px * Math.sin(rad)),
-        cp.y + (dx * pW_px * Math.sin(rad) + dy * pH_px * Math.cos(rad))
-      ))
-    );
+    // Desplazar el marcador ligeramente hacia la derecha y arriba
+    // para que no coincida con el icono de desplazamiento
+    const offsetLat = 0.000015; // Desplazamiento en latitud (hacia arriba)
+    const offsetLng = 0.000015; // Desplazamiento en longitud (hacia la derecha)
+    
+    const offsetPosition = {
+      lat: grid.baseLatLng.lat + offsetLat,
+      lng: grid.baseLatLng.lng + offsetLng
+    };
 
-    const cell = L.polygon(corners, {
-      color: active ? "#fff" : (isActive ? "rgba(255,255,255,0.4)" : "transparent"),
-      weight: active ? 1 : 0.5,
-      fillColor: active ? "#1a237e" : (isActive ? "rgba(255,255,255,0.1)" : "transparent"),
-      fillOpacity: active ? 0.6 : 0.2,
+    // Crear marcador con z-index más bajo (detrás del icono de desplazamiento)
+    const marker = L.marker(offsetPosition, {  // Usar posición offset
+      icon: summaryIcon,
       interactive: true,
-      className: isActive ? 'editable-cell' : 'non-interactive-cell',
-      customCellId: id,
-      customGridId: grid.id
-    }).addTo(this.gridLayer);
+      zIndexOffset: 500 // Z-index más bajo para que esté detrás del icono de desplazamiento
+    }).addTo(this.summaryLayer);
 
-    const cellLatLng = this.map.layerPointToLatLng(cp);
-
-    cell.on('dblclick', () => {
-      this.onSelect(grid.id);
-      this.onGridSelect(grid.id);
-      this.onDoubleClick();
-    });
-
-    cell.on('click', () => {
+    // Eventos
+    marker.on('click', (e) => {
+      L.DomEvent.stopPropagation(e);
       this.onSelect(grid.id);
       this.onGridSelect(grid.id);
     });
 
-    if (active) {
-      L.marker(cellLatLng, {
-        icon: L.divIcon({
-          className: 'arrow',
-          html: `<div style="transform: rotate(${arrowRad}rad); display: flex; justify-content: center; align-items: center; opacity: 0.8;">${arrowWhiteSvg}</div>`,
-          iconSize: [14, 14],
-          iconAnchor: [7, 7]
-        }),
-        interactive: false
-      }).addTo(this.gridLayer);
+    marker.on('dblclick', (e) => {
+      L.DomEvent.stopPropagation(e);
+      if (this.map) {
+        this.map.flyTo(grid.baseLatLng, 20, { duration: 0.8 });
+      }
+    });
 
-      if (rows > 1 || cols > 1) {
-        const p1 = corners[0], p2 = corners[1], p3 = corners[2], p4 = corners[3];
-
-        for (let i = 1; i < rows; i++) {
-          const ratio = i / rows;
-          const start = [p1.lat + (p4.lat - p1.lat) * ratio, p1.lng + (p4.lng - p1.lng) * ratio];
-          const end = [p2.lat + (p3.lat - p2.lat) * ratio, p2.lng + (p3.lng - p2.lng) * ratio];
-          L.polyline([start, end], { color: 'rgba(255,255,255,0.3)', weight: 0.8, interactive: false }).addTo(this.gridLayer);
-        }
-        for (let j = 1; j < cols; j++) {
-          const ratio = j / cols;
-          const start = [p1.lat + (p2.lat - p1.lat) * ratio, p1.lng + (p2.lng - p1.lng) * ratio];
-          const end = [p4.lat + (p3.lat - p4.lat) * ratio, p4.lng + (p3.lng - p4.lng) * ratio];
-          L.polyline([start, end], { color: 'rgba(255,255,255,0.3)', weight: 0.8, interactive: false }).addTo(this.gridLayer);
+    marker.on('mouseover', () => {
+      const element = marker.getElement();
+      if (element) {
+        const div = element.querySelector('div');
+        if (div) {
+          div.style.transform = 'scale(1.15)';
+          div.style.boxShadow = '0 0 20px rgba(0, 188, 212, 0.7), 0 2px 8px rgba(0,0,0,0.4)';
         }
       }
-    } else if (isActive) {
-      L.marker(cellLatLng, {
-        icon: L.divIcon({
-          className: 'grid-plus',
-          html: `<div style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 300;">+</div>`,
-          iconSize: [16, 16],
-          iconAnchor: [8, 8]
-        }),
-        interactive: false
+    });
+
+    marker.on('mouseout', () => {
+      const element = marker.getElement();
+      if (element) {
+        const div = element.querySelector('div');
+        if (div) {
+          div.style.transform = 'scale(1)';
+          div.style.boxShadow = '0 0 12px rgba(0, 188, 212, 0.5), 0 2px 6px rgba(0,0,0,0.3)';
+        }
+      }
+    });
+
+    // Label con nombre (desplazado también)
+    const labelIcon = L.divIcon({
+      className: 'grid-label-icon',
+      html: `
+        <div style="
+          color: white;
+          font-size: 9px;
+          font-weight: 600;
+          font-family: 'Roboto', 'Arial', sans-serif;
+          text-shadow: 0 1px 4px rgba(0,0,0,0.9);
+          background: rgba(0,0,0,0.6);
+          padding: 2px 8px;
+          border-radius: 8px;
+          backdrop-filter: blur(4px);
+          margin-top: ${size/2 + 4}px;
+          text-align: center;
+          white-space: nowrap;
+          border: 1px solid rgba(255,255,255,0.1);
+          pointer-events: none;
+        ">
+          ${grid.nombre}
+          <span style="margin-left: 4px; color: #4fc3f7; font-weight: 400; font-size: 8px;">
+            ${totalPaneles}p
+          </span>
+        </div>
+      `,
+      iconSize: [80, 20],
+      iconAnchor: [40, -2]
+    });
+
+    L.marker(offsetPosition, {  // Usar posición offset
+      icon: labelIcon,
+      interactive: false,
+      zIndexOffset: 499
+    }).addTo(this.summaryLayer);
+  }
+  drawGrid(grid, isActive) {
+    if (!isActive) return;
+    
+    const center = this.map.latLngToLayerPoint(grid.baseLatLng);
+    const rad = (grid.rotation * Math.PI) / 180;
+    const tiltRad = (grid.config.tilt * Math.PI) / 180;
+
+    const isV = grid.config.orientation === 'vertical';
+    const rows = grid.config.rows || 1;
+    const cols = grid.config.cols || 1;
+    const baseH = isV ? grid.config.height : grid.config.width;
+    const baseW = isV ? grid.config.width : grid.config.height;
+
+    const panelH = baseH * rows;
+    const panelW = baseW * cols;
+
+    const pW_px = this.metersToPx(panelW);
+    const pH_px = this.metersToPx(panelH) * Math.cos(tiltRad);
+
+    const panels = new Set(grid.paneles || []);
+    const tipo = grid.config.tipoEstructura || 'coplanar';
+
+    const cellsToRender = new Set();
+    if (panels.size === 0) {
+      cellsToRender.add("0,0");
+    } else {
+      panels.forEach(id => {
+        cellsToRender.add(id);
+        const [r, c] = id.split(',').map(Number);
+        for (let dr = -1; dr <= 1; dr++) {
+          for (let dc = -1; dc <= 1; dc++) {
+            cellsToRender.add(`${r + dr},${c + dc}`);
+          }
+        }
+      });
+    }
+
+    cellsToRender.forEach(id => {
+      const [r, c] = id.split(',').map(Number);
+      const active = panels.has(id);
+
+      let arrowRad = rad;
+      let verticalOffset = 0;
+
+      if (tipo === 'doble') {
+        if (Math.abs(r) % 2 === 0) {
+          arrowRad = rad + Math.PI;
+        } else {
+          arrowRad = rad;
+        }
+        verticalOffset = r * pH_px + (Math.floor(r / 2) * (pH_px * 0.15));
+      } else if (tipo === 'libre') {
+        const lat = Math.abs(this.map.getCenter().lat);
+        const kFactor = 1 / Math.tan(Math.max(5, 90 - lat - 23.44) * Math.PI / 180);
+        const hProjected = panelH * Math.sin(Math.max(0, grid.config.tilt - grid.config.slope) * Math.PI / 180);
+        const gapMeters = hProjected * kFactor;
+        verticalOffset = r * (pH_px + this.metersToPx(gapMeters));
+      } else {
+        verticalOffset = r * pH_px;
+      }
+
+      const cp = L.point(
+        center.x + (c * pW_px * Math.cos(rad) - verticalOffset * Math.sin(rad)),
+        center.y + (c * pW_px * Math.sin(rad) + verticalOffset * Math.cos(rad))
+      );
+
+      const corners = [[-0.5, -0.5], [0.5, -0.5], [0.5, 0.5], [-0.5, 0.5]].map(([dx, dy]) =>
+        this.map.layerPointToLatLng(L.point(
+          cp.x + (dx * pW_px * Math.cos(rad) - dy * pH_px * Math.sin(rad)),
+          cp.y + (dx * pW_px * Math.sin(rad) + dy * pH_px * Math.cos(rad))
+        ))
+      );
+
+      const cell = L.polygon(corners, {
+        color: active ? "#fff" : "rgba(255,255,255,0.4)",
+        weight: active ? 1.5 : 0.8,
+        fillColor: active ? "#1a237e" : "rgba(255,255,255,0.08)",
+        fillOpacity: active ? 0.6 : 0.15,
+        interactive: true,
+        className: 'editable-cell',
+        customCellId: id,
+        customGridId: grid.id
       }).addTo(this.gridLayer);
-    }
 
-    if (isActive) {
-      L.DomEvent.on(cell._path, 'pointerdown', (e) => {
-        L.DomEvent.stop(e);
-        e.target.setPointerCapture(e.pointerId);
-        this.isDragging = true;
-        this.paintMode = !active;
-        this.lastTouchedId = id;
-        this.map.dragging.disable();
-        this.onUpdate(grid.id, id, this.paintMode);
+      const cellLatLng = this.map.layerPointToLatLng(cp);
+
+      cell.on('dblclick', () => {
+        this.onSelect(grid.id);
+        this.onGridSelect(grid.id);
+        this.onDoubleClick();
       });
 
-      cell.on('mouseover', () => {
-        if (this.isDragging) this.onUpdate(grid.id, id, this.paintMode);
+      cell.on('click', () => {
+        this.onSelect(grid.id);
+        this.onGridSelect(grid.id);
       });
-    }
-  });
 
-  // --- MARCADOR DE INFORMACIÓN (SOLO CÍRCULO CON NÚMERO, SIN INTERACCIÓN) ---
-  const bloquesPintados = (grid.paneles?.length || 0);
-  const panelesPorBloque = (grid.config.rows || 1) * (grid.config.cols || 1);
-  const totalPaneles = bloquesPintados * panelesPorBloque;
-  
-  // Icono del círculo con número - SIN INTERACCIÓN
-const infoIcon = L.divIcon({
-  className: 'info-marker-icon',
-  html: `
-    <div style="
-      background-color: #ff9800; /* Naranja sólido */
-      color: white;             /* Letras blancas */
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 2px solid #ffffff; /* Borde blanco opcional para resaltar */
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      font-size: 14px;
-      font-weight: bold;
-      font-family: 'Roboto', 'Helvetica', sans-serif;
-      pointer-events: none;
-      user-select: none;
-    ">
-      ${totalPaneles}
-    </div>
-  `,
-  iconSize: [30, 30],
-  iconAnchor: [15, 15]
-});
+      if (active) {
+        L.marker(cellLatLng, {
+          icon: L.divIcon({
+            className: 'arrow',
+            html: `<div style="transform: rotate(${arrowRad}rad); display: flex; justify-content: center; align-items: center; opacity: 0.8;">${arrowWhiteSvg}</div>`,
+            iconSize: [14, 14],
+            iconAnchor: [7, 7]
+          }),
+          interactive: false
+        }).addTo(this.gridLayer);
 
-  // Marcador NO interactivo
-  L.marker(grid.baseLatLng, {
-    icon: infoIcon,
-    interactive: false,
-    zIndexOffset: 1000,
-    keyboard: false
-  }).addTo(this.gridLayer);
-}
+        if (rows > 1 || cols > 1) {
+          const p1 = corners[0], p2 = corners[1], p3 = corners[2], p4 = corners[3];
 
+          for (let i = 1; i < rows; i++) {
+            const ratio = i / rows;
+            const start = [p1.lat + (p4.lat - p1.lat) * ratio, p1.lng + (p4.lng - p1.lng) * ratio];
+            const end = [p2.lat + (p3.lat - p2.lat) * ratio, p2.lng + (p3.lng - p2.lng) * ratio];
+            L.polyline([start, end], { color: 'rgba(255,255,255,0.3)', weight: 0.8, interactive: false }).addTo(this.gridLayer);
+          }
+          for (let j = 1; j < cols; j++) {
+            const ratio = j / cols;
+            const start = [p1.lat + (p2.lat - p1.lat) * ratio, p1.lng + (p2.lng - p1.lng) * ratio];
+            const end = [p4.lat + (p3.lat - p4.lat) * ratio, p4.lng + (p3.lng - p4.lng) * ratio];
+            L.polyline([start, end], { color: 'rgba(255,255,255,0.3)', weight: 0.8, interactive: false }).addTo(this.gridLayer);
+          }
+        }
+      } else {
+        L.marker(cellLatLng, {
+          icon: L.divIcon({
+            className: 'grid-plus',
+            html: `<div style="color: rgba(255,255,255,0.5); font-size: 16px; font-weight: 300;">+</div>`,
+            iconSize: [20, 20],
+            iconAnchor: [10, 10]
+          }),
+          interactive: false
+        }).addTo(this.gridLayer);
+      }
 
+      if (isActive) {
+        L.DomEvent.on(cell._path, 'pointerdown', (e) => {
+          L.DomEvent.stop(e);
+          e.target.setPointerCapture(e.pointerId);
+          this.isDragging = true;
+          this.paintMode = !active;
+          this.lastTouchedId = id;
+          this.map.dragging.disable();
+          this.onUpdate(grid.id, id, this.paintMode);
+        });
+
+        cell.on('mouseover', () => {
+          if (this.isDragging) this.onUpdate(grid.id, id, this.paintMode);
+        });
+      }
+    });
+  }
 }
 
 const App = () => {
@@ -805,6 +911,26 @@ const App = () => {
         'path.leaflet-interactive': {
           touchAction: 'none !important',
           cursor: 'pointer',
+        },
+        '.grid-summary-icon': {
+          zIndex: '9999 !important',
+        },
+        '.grid-summary-icon div': {
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important',
+          zIndex: '9999 !important',
+        },
+        '.grid-label-icon': {
+          pointerEvents: 'none !important',
+          zIndex: '9998 !important',
+        },
+        '.editable-cell': {
+          cursor: 'pointer !important',
+        },
+        '.leaflet-marker-pane': {
+          zIndex: '600 !important',
+        },
+        '.leaflet-overlay-pane': {
+          zIndex: '400 !important',
         }
       }} />
 
@@ -893,7 +1019,6 @@ const App = () => {
 
                 return (
                   <Box key={g.id} sx={{ mb: 0.3 }}>
-                    {/* NIVEL 1: ITEM PRINCIPAL DEL GRUPO */}
                     <ListItemButton
                       onClick={(e) => handleGridSelectFromMenu(g.id, e)}
                       sx={{
@@ -935,7 +1060,6 @@ const App = () => {
                       </IconButton>
                     </ListItemButton>
 
-                    {/* NIVEL 2: CONFIGURACIÓN EXPANDIDA SIN TABS */}
                     <Collapse in={isExpanded && isSelected} timeout="auto" unmountOnExit>
                       <Box sx={{
                         ml: 1,
@@ -944,7 +1068,6 @@ const App = () => {
                         py: 0.5,
                         borderRadius: '0 4px 4px 0',
                       }}>
-                        {/* SECCIÓN 1: INFORMACIÓN GENERAL - Fondo más claro */}
                         <Box sx={{
                           bgcolor: 'rgba(255,255,255,0.05)',
                           borderRadius: 1,
@@ -1005,7 +1128,6 @@ const App = () => {
                           </Stack>
                         </Box>
 
-                        {/* SECCIÓN 2: PANEL - Fondo intermedio */}
                         <Box sx={{
                           bgcolor: 'rgba(79, 195, 247, 0.05)',
                           borderRadius: 1,
@@ -1136,7 +1258,6 @@ const App = () => {
                           </Stack>
                         </Box>
 
-                        {/* SECCIÓN 3: ESTRUCTURA - Fondo más oscuro */}
                         <Box sx={{
                           bgcolor: 'rgba(255, 152, 0, 0.05)',
                           borderRadius: 1,
@@ -1259,7 +1380,6 @@ const App = () => {
                           </Stack>
                         </Box>
 
-                        {/* ACCIONES */}
                         <Box sx={{
                           display: 'flex',
                           gap: 0.2,

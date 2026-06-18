@@ -30,8 +30,6 @@ import "leaflet/dist/leaflet.css";
 
 import ShadowProfileChart from "./ShadowProfileChart";
 
-
-
 // --- RECURSOS VISUALES ---
 const arrowWhiteSvg = `<svg viewBox="0 0 24 24" fill="white" width="14" height="14"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"></path></svg>`;
 
@@ -172,200 +170,157 @@ class FreeGridManager {
     grids.forEach(g => this.drawGrid(g, g.id === activeId));
   }
 
-drawGrid(grid, isActive) {
-  const center = this.map.latLngToLayerPoint(grid.baseLatLng);
-  const rad = (grid.rotation * Math.PI) / 180;
-  const tiltRad = (grid.config.tilt * Math.PI) / 180;
+  drawGrid(grid, isActive) {
+    const center = this.map.latLngToLayerPoint(grid.baseLatLng);
+    const rad = (grid.rotation * Math.PI) / 180;
+    const tiltRad = (grid.config.tilt * Math.PI) / 180;
 
-  const isV = grid.config.orientation === 'vertical';
-  const rows = grid.config.rows || 1;
-  const cols = grid.config.cols || 1;
-  const baseH = isV ? grid.config.height : grid.config.width;
-  const baseW = isV ? grid.config.width : grid.config.height;
+    const isV = grid.config.orientation === 'vertical';
+    const rows = grid.config.rows || 1;
+    const cols = grid.config.cols || 1;
+    const baseH = isV ? grid.config.height : grid.config.width;
+    const baseW = isV ? grid.config.width : grid.config.height;
 
-  const panelH = baseH * rows;
-  const panelW = baseW * cols;
+    const panelH = baseH * rows;
+    const panelW = baseW * cols;
 
-  const pW_px = this.metersToPx(panelW);
-  const pH_px = this.metersToPx(panelH) * Math.cos(tiltRad);
+    const pW_px = this.metersToPx(panelW);
+    const pH_px = this.metersToPx(panelH) * Math.cos(tiltRad);
 
-  const panels = new Set(grid.paneles || []);
-  const tipo = grid.config.tipoEstructura || 'coplanar';
+    const panels = new Set(grid.paneles || []);
+    const tipo = grid.config.tipoEstructura || 'coplanar';
 
-  const cellsToRender = new Set();
-  if (panels.size === 0) {
-    cellsToRender.add("0,0");
-  } else {
-    panels.forEach(id => {
-      cellsToRender.add(id);
-      const [r, c] = id.split(',').map(Number);
-      for (let dr = -1; dr <= 1; dr++) {
-        for (let dc = -1; dc <= 1; dc++) {
-          cellsToRender.add(`${r + dr},${c + dc}`);
+    const cellsToRender = new Set();
+    if (panels.size === 0) {
+      cellsToRender.add("0,0");
+    } else {
+      panels.forEach(id => {
+        cellsToRender.add(id);
+        const [r, c] = id.split(',').map(Number);
+        for (let dr = -1; dr <= 1; dr++) {
+          for (let dc = -1; dc <= 1; dc++) {
+            cellsToRender.add(`${r + dr},${c + dc}`);
+          }
         }
+      });
+    }
+
+    cellsToRender.forEach(id => {
+      const [r, c] = id.split(',').map(Number);
+      const active = panels.has(id);
+
+      let arrowRad = rad;
+      let verticalOffset = 0;
+
+      if (tipo === 'doble') {
+        if (Math.abs(r) % 2 === 0) {
+          arrowRad = rad + Math.PI;
+        } else {
+          arrowRad = rad;
+        }
+        verticalOffset = r * pH_px + (Math.floor(r / 2) * (pH_px * 0.15));
+      } else if (tipo === 'libre') {
+        const lat = Math.abs(this.map.getCenter().lat);
+        const kFactor = 1 / Math.tan(Math.max(5, 90 - lat - 23.44) * Math.PI / 180);
+        const hProjected = panelH * Math.sin(Math.max(0, grid.config.tilt - grid.config.slope) * Math.PI / 180);
+        const gapMeters = hProjected * kFactor;
+        verticalOffset = r * (pH_px + this.metersToPx(gapMeters));
+      } else {
+        verticalOffset = r * pH_px;
+      }
+
+      const cp = L.point(
+        center.x + (c * pW_px * Math.cos(rad) - verticalOffset * Math.sin(rad)),
+        center.y + (c * pW_px * Math.sin(rad) + verticalOffset * Math.cos(rad))
+      );
+
+      const corners = [[-0.5, -0.5], [0.5, -0.5], [0.5, 0.5], [-0.5, 0.5]].map(([dx, dy]) =>
+        this.map.layerPointToLatLng(L.point(
+          cp.x + (dx * pW_px * Math.cos(rad) - dy * pH_px * Math.sin(rad)),
+          cp.y + (dx * pW_px * Math.sin(rad) + dy * pH_px * Math.cos(rad))
+        ))
+      );
+
+      const cell = L.polygon(corners, {
+        color: active ? "#fff" : (isActive ? "rgba(255,255,255,0.4)" : "transparent"),
+        weight: active ? 1 : 0.5,
+        fillColor: active ? "#1a237e" : (isActive ? "rgba(255,255,255,0.1)" : "transparent"),
+        fillOpacity: active ? 0.6 : 0.2,
+        interactive: true,
+        className: isActive ? 'editable-cell' : 'non-interactive-cell',
+        customCellId: id,
+        customGridId: grid.id
+      }).addTo(this.gridLayer);
+
+      const cellLatLng = this.map.layerPointToLatLng(cp);
+
+      cell.on('dblclick', () => {
+        this.onSelect(grid.id);
+        this.onGridSelect(grid.id);
+        this.onDoubleClick();
+      });
+
+      cell.on('click', () => {
+        this.onSelect(grid.id);
+        this.onGridSelect(grid.id);
+      });
+
+      if (active) {
+        L.marker(cellLatLng, {
+          icon: L.divIcon({
+            className: 'arrow',
+            html: `<div style="transform: rotate(${arrowRad}rad); display: flex; justify-content: center; align-items: center; opacity: 0.8;">${arrowWhiteSvg}</div>`,
+            iconSize: [14, 14],
+            iconAnchor: [7, 7]
+          }),
+          interactive: false
+        }).addTo(this.gridLayer);
+
+        if (rows > 1 || cols > 1) {
+          const p1 = corners[0], p2 = corners[1], p3 = corners[2], p4 = corners[3];
+
+          for (let i = 1; i < rows; i++) {
+            const ratio = i / rows;
+            const start = [p1.lat + (p4.lat - p1.lat) * ratio, p1.lng + (p4.lng - p1.lng) * ratio];
+            const end = [p2.lat + (p3.lat - p2.lat) * ratio, p2.lng + (p3.lng - p2.lng) * ratio];
+            L.polyline([start, end], { color: 'rgba(255,255,255,0.3)', weight: 0.8, interactive: false }).addTo(this.gridLayer);
+          }
+          for (let j = 1; j < cols; j++) {
+            const ratio = j / cols;
+            const start = [p1.lat + (p2.lat - p1.lat) * ratio, p1.lng + (p2.lng - p1.lng) * ratio];
+            const end = [p4.lat + (p3.lat - p4.lat) * ratio, p4.lng + (p3.lng - p4.lng) * ratio];
+            L.polyline([start, end], { color: 'rgba(255,255,255,0.3)', weight: 0.8, interactive: false }).addTo(this.gridLayer);
+          }
+        }
+      } else if (isActive) {
+        L.marker(cellLatLng, {
+          icon: L.divIcon({
+            className: 'grid-plus',
+            html: `<div style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 300;">+</div>`,
+            iconSize: [16, 16],
+            iconAnchor: [8, 8]
+          }),
+          interactive: false
+        }).addTo(this.gridLayer);
+      }
+
+      if (isActive) {
+        L.DomEvent.on(cell._path, 'pointerdown', (e) => {
+          L.DomEvent.stop(e);
+          e.target.setPointerCapture(e.pointerId);
+          this.isDragging = true;
+          this.paintMode = !active;
+          this.lastTouchedId = id;
+          this.map.dragging.disable();
+          this.onUpdate(grid.id, id, this.paintMode);
+        });
+
+        cell.on('mouseover', () => {
+          if (this.isDragging) this.onUpdate(grid.id, id, this.paintMode);
+        });
       }
     });
   }
-
-  cellsToRender.forEach(id => {
-    const [r, c] = id.split(',').map(Number);
-    const active = panels.has(id);
-
-    let arrowRad = rad;
-    let verticalOffset = 0;
-
-    if (tipo === 'doble') {
-      if (Math.abs(r) % 2 === 0) {
-        arrowRad = rad + Math.PI;
-      } else {
-        arrowRad = rad;
-      }
-      verticalOffset = r * pH_px + (Math.floor(r / 2) * (pH_px * 0.15));
-    } else if (tipo === 'libre') {
-      const lat = Math.abs(this.map.getCenter().lat);
-      const kFactor = 1 / Math.tan(Math.max(5, 90 - lat - 23.44) * Math.PI / 180);
-      const hProjected = panelH * Math.sin(Math.max(0, grid.config.tilt - grid.config.slope) * Math.PI / 180);
-      const gapMeters = hProjected * kFactor;
-      verticalOffset = r * (pH_px + this.metersToPx(gapMeters));
-    } else {
-      verticalOffset = r * pH_px;
-    }
-
-    const cp = L.point(
-      center.x + (c * pW_px * Math.cos(rad) - verticalOffset * Math.sin(rad)),
-      center.y + (c * pW_px * Math.sin(rad) + verticalOffset * Math.cos(rad))
-    );
-
-    const corners = [[-0.5, -0.5], [0.5, -0.5], [0.5, 0.5], [-0.5, 0.5]].map(([dx, dy]) =>
-      this.map.layerPointToLatLng(L.point(
-        cp.x + (dx * pW_px * Math.cos(rad) - dy * pH_px * Math.sin(rad)),
-        cp.y + (dx * pW_px * Math.sin(rad) + dy * pH_px * Math.cos(rad))
-      ))
-    );
-
-    const cell = L.polygon(corners, {
-      color: active ? "#fff" : (isActive ? "rgba(255,255,255,0.4)" : "transparent"),
-      weight: active ? 1 : 0.5,
-      fillColor: active ? "#1a237e" : (isActive ? "rgba(255,255,255,0.1)" : "transparent"),
-      fillOpacity: active ? 0.6 : 0.2,
-      interactive: true,
-      className: isActive ? 'editable-cell' : 'non-interactive-cell',
-      customCellId: id,
-      customGridId: grid.id
-    }).addTo(this.gridLayer);
-
-    const cellLatLng = this.map.layerPointToLatLng(cp);
-
-    cell.on('dblclick', () => {
-      this.onSelect(grid.id);
-      this.onGridSelect(grid.id);
-      this.onDoubleClick();
-    });
-
-    cell.on('click', () => {
-      this.onSelect(grid.id);
-      this.onGridSelect(grid.id);
-    });
-
-    if (active) {
-      L.marker(cellLatLng, {
-        icon: L.divIcon({
-          className: 'arrow',
-          html: `<div style="transform: rotate(${arrowRad}rad); display: flex; justify-content: center; align-items: center; opacity: 0.8;">${arrowWhiteSvg}</div>`,
-          iconSize: [14, 14],
-          iconAnchor: [7, 7]
-        }),
-        interactive: false
-      }).addTo(this.gridLayer);
-
-      if (rows > 1 || cols > 1) {
-        const p1 = corners[0], p2 = corners[1], p3 = corners[2], p4 = corners[3];
-
-        for (let i = 1; i < rows; i++) {
-          const ratio = i / rows;
-          const start = [p1.lat + (p4.lat - p1.lat) * ratio, p1.lng + (p4.lng - p1.lng) * ratio];
-          const end = [p2.lat + (p3.lat - p2.lat) * ratio, p2.lng + (p3.lng - p2.lng) * ratio];
-          L.polyline([start, end], { color: 'rgba(255,255,255,0.3)', weight: 0.8, interactive: false }).addTo(this.gridLayer);
-        }
-        for (let j = 1; j < cols; j++) {
-          const ratio = j / cols;
-          const start = [p1.lat + (p2.lat - p1.lat) * ratio, p1.lng + (p2.lng - p1.lng) * ratio];
-          const end = [p4.lat + (p3.lat - p4.lat) * ratio, p4.lng + (p3.lng - p4.lng) * ratio];
-          L.polyline([start, end], { color: 'rgba(255,255,255,0.3)', weight: 0.8, interactive: false }).addTo(this.gridLayer);
-        }
-      }
-    } else if (isActive) {
-      L.marker(cellLatLng, {
-        icon: L.divIcon({
-          className: 'grid-plus',
-          html: `<div style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 300;">+</div>`,
-          iconSize: [16, 16],
-          iconAnchor: [8, 8]
-        }),
-        interactive: false
-      }).addTo(this.gridLayer);
-    }
-
-    if (isActive) {
-      L.DomEvent.on(cell._path, 'pointerdown', (e) => {
-        L.DomEvent.stop(e);
-        e.target.setPointerCapture(e.pointerId);
-        this.isDragging = true;
-        this.paintMode = !active;
-        this.lastTouchedId = id;
-        this.map.dragging.disable();
-        this.onUpdate(grid.id, id, this.paintMode);
-      });
-
-      cell.on('mouseover', () => {
-        if (this.isDragging) this.onUpdate(grid.id, id, this.paintMode);
-      });
-    }
-  });
-
-  // --- MARCADOR DE INFORMACIÓN (SOLO CÍRCULO CON NÚMERO, SIN INTERACCIÓN) ---
-  const bloquesPintados = (grid.paneles?.length || 0);
-  const panelesPorBloque = (grid.config.rows || 1) * (grid.config.cols || 1);
-  const totalPaneles = bloquesPintados * panelesPorBloque;
-  
-  // Icono del círculo con número - SIN INTERACCIÓN
-const infoIcon = L.divIcon({
-  className: 'info-marker-icon',
-  html: `
-    <div style="
-      background-color: #ff9800; /* Naranja sólido */
-      color: white;             /* Letras blancas */
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: 2px solid #ffffff; /* Borde blanco opcional para resaltar */
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      font-size: 14px;
-      font-weight: bold;
-      font-family: 'Roboto', 'Helvetica', sans-serif;
-      pointer-events: none;
-      user-select: none;
-    ">
-      ${totalPaneles}
-    </div>
-  `,
-  iconSize: [30, 30],
-  iconAnchor: [15, 15]
-});
-
-  // Marcador NO interactivo
-  L.marker(grid.baseLatLng, {
-    icon: infoIcon,
-    interactive: false,
-    zIndexOffset: 1000,
-    keyboard: false
-  }).addTo(this.gridLayer);
-}
-
-
 }
 
 const App = () => {
