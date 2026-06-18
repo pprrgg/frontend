@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect, useMemo, useCallback } from "react"
 import {
   IconButton, Box, TextField, Stack, Typography, Paper,
   Dialog, DialogTitle, Divider, Slider, Tooltip, Fab, Button, GlobalStyles,
-  Collapse, ListItemButton, ListItemText
+  Collapse, ListItemButton, ListItemText, FormControl, Select
 } from "@mui/material";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -96,14 +96,14 @@ const AnglePreviewCompact = React.memo(({ tilt, slope, isDouble }) => {
         <line x1="2" y1={baseY} x2={sizeW - 2} y2={baseY} stroke="rgba(255,255,255,0.2)" strokeWidth="1" />
         {isDouble ? (
           <>
-            <line x1={footLX} y1={baseY} x2={cx} y2={peakY} stroke="#1a237e" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
-            <line x1={footRX} y1={baseY} x2={cx} y2={peakY} stroke="#1a237e" strokeWidth="3" strokeLinecap="round" />
-            <circle cx={cx} cy={peakY} r="2" fill="#1a237e" />
+            <line x1={footLX} y1={baseY} x2={cx} y2={peakY} stroke="#4fc3f7" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
+            <line x1={footRX} y1={baseY} x2={cx} y2={peakY} stroke="#1a677e" strokeWidth="3" strokeLinecap="round" />
+            <circle cx={cx} cy={peakY} r="2" fill="#4fc3f7" />
           </>
         ) : (
           <>
             <line x1={sx1} y1={sy1} x2={sx2} y2={sy2} stroke="#f57c00" strokeWidth="2" strokeLinecap="round" />
-            <line x1={cx} y1={baseY} x2={tx} y2={ty} stroke="#1a237e" strokeWidth="3" strokeLinecap="round" />
+            <line x1={cx} y1={baseY} x2={tx} y2={ty} stroke="#4fc3f7" strokeWidth="3" strokeLinecap="round" />
             <circle cx={cx} cy={baseY} r="2" fill="#333" />
           </>
         )}
@@ -172,166 +172,166 @@ class FreeGridManager {
     grids.forEach(g => this.drawGrid(g, g.id === activeId));
   }
 
-drawGrid(grid, isActive) {
-  const center = this.map.latLngToLayerPoint(grid.baseLatLng);
-  const rad = (grid.rotation * Math.PI) / 180;
-  const tiltRad = (grid.config.tilt * Math.PI) / 180;
+  drawGrid(grid, isActive) {
+    const center = this.map.latLngToLayerPoint(grid.baseLatLng);
+    const rad = (grid.rotation * Math.PI) / 180;
+    const tiltRad = (grid.config.tilt * Math.PI) / 180;
 
-  const isV = grid.config.orientation === 'vertical';
-  const rows = grid.config.rows || 1;
-  const cols = grid.config.cols || 1;
-  const baseH = isV ? grid.config.height : grid.config.width;
-  const baseW = isV ? grid.config.width : grid.config.height;
+    const isV = grid.config.orientation === 'vertical';
+    const rows = grid.config.rows || 1;
+    const cols = grid.config.cols || 1;
+    const baseH = isV ? grid.config.height : grid.config.width;
+    const baseW = isV ? grid.config.width : grid.config.height;
 
-  const panelH = baseH * rows;
-  const panelW = baseW * cols;
+    const panelH = baseH * rows;
+    const panelW = baseW * cols;
 
-  const pW_px = this.metersToPx(panelW);
-  const pH_px = this.metersToPx(panelH) * Math.cos(tiltRad);
+    const pW_px = this.metersToPx(panelW);
+    const pH_px = this.metersToPx(panelH) * Math.cos(tiltRad);
 
-  const panels = new Set(grid.paneles || []);
-  const tipo = grid.config.tipoEstructura || 'coplanar';
+    const panels = new Set(grid.paneles || []);
+    const tipo = grid.config.tipoEstructura || 'coplanar';
 
-  const cellsToRender = new Set();
-  if (panels.size === 0) {
-    cellsToRender.add("0,0");
-  } else {
-    panels.forEach(id => {
-      cellsToRender.add(id);
-      const [r, c] = id.split(',').map(Number);
-      for (let dr = -1; dr <= 1; dr++) {
-        for (let dc = -1; dc <= 1; dc++) {
-          cellsToRender.add(`${r + dr},${c + dc}`);
-        }
-      }
-    });
-  }
-
-  cellsToRender.forEach(id => {
-    const [r, c] = id.split(',').map(Number);
-    const active = panels.has(id);
-
-    let arrowRad = rad;
-    let verticalOffset = 0;
-
-    if (tipo === 'doble') {
-      if (Math.abs(r) % 2 === 0) {
-        arrowRad = rad + Math.PI;
-      } else {
-        arrowRad = rad;
-      }
-      verticalOffset = r * pH_px + (Math.floor(r / 2) * (pH_px * 0.15));
-    } else if (tipo === 'libre') {
-      const lat = Math.abs(this.map.getCenter().lat);
-      const kFactor = 1 / Math.tan(Math.max(5, 90 - lat - 23.44) * Math.PI / 180);
-      const hProjected = panelH * Math.sin(Math.max(0, grid.config.tilt - grid.config.slope) * Math.PI / 180);
-      const gapMeters = hProjected * kFactor;
-      verticalOffset = r * (pH_px + this.metersToPx(gapMeters));
+    const cellsToRender = new Set();
+    if (panels.size === 0) {
+      cellsToRender.add("0,0");
     } else {
-      verticalOffset = r * pH_px;
+      panels.forEach(id => {
+        cellsToRender.add(id);
+        const [r, c] = id.split(',').map(Number);
+        for (let dr = -1; dr <= 1; dr++) {
+          for (let dc = -1; dc <= 1; dc++) {
+            cellsToRender.add(`${r + dr},${c + dc}`);
+          }
+        }
+      });
     }
 
-    const cp = L.point(
-      center.x + (c * pW_px * Math.cos(rad) - verticalOffset * Math.sin(rad)),
-      center.y + (c * pW_px * Math.sin(rad) + verticalOffset * Math.cos(rad))
-    );
+    cellsToRender.forEach(id => {
+      const [r, c] = id.split(',').map(Number);
+      const active = panels.has(id);
 
-    const corners = [[-0.5, -0.5], [0.5, -0.5], [0.5, 0.5], [-0.5, 0.5]].map(([dx, dy]) =>
-      this.map.layerPointToLatLng(L.point(
-        cp.x + (dx * pW_px * Math.cos(rad) - dy * pH_px * Math.sin(rad)),
-        cp.y + (dx * pW_px * Math.sin(rad) + dy * pH_px * Math.cos(rad))
-      ))
-    );
+      let arrowRad = rad;
+      let verticalOffset = 0;
 
-    const cell = L.polygon(corners, {
-      color: active ? "#fff" : (isActive ? "rgba(255,255,255,0.4)" : "transparent"),
-      weight: active ? 1 : 0.5,
-      fillColor: active ? "#1a237e" : (isActive ? "rgba(255,255,255,0.1)" : "transparent"),
-      fillOpacity: active ? 0.6 : 0.2,
-      interactive: true,
-      className: isActive ? 'editable-cell' : 'non-interactive-cell',
-      customCellId: id,
-      customGridId: grid.id
-    }).addTo(this.gridLayer);
-
-    const cellLatLng = this.map.layerPointToLatLng(cp);
-
-    cell.on('dblclick', () => {
-      this.onSelect(grid.id);
-      this.onGridSelect(grid.id);
-      this.onDoubleClick();
-    });
-
-    cell.on('click', () => {
-      this.onSelect(grid.id);
-      this.onGridSelect(grid.id);
-    });
-
-    if (active) {
-      L.marker(cellLatLng, {
-        icon: L.divIcon({
-          className: 'arrow',
-          html: `<div style="transform: rotate(${arrowRad}rad); display: flex; justify-content: center; align-items: center; opacity: 0.8;">${arrowWhiteSvg}</div>`,
-          iconSize: [14, 14],
-          iconAnchor: [7, 7]
-        }),
-        interactive: false
-      }).addTo(this.gridLayer);
-
-      if (rows > 1 || cols > 1) {
-        const p1 = corners[0], p2 = corners[1], p3 = corners[2], p4 = corners[3];
-
-        for (let i = 1; i < rows; i++) {
-          const ratio = i / rows;
-          const start = [p1.lat + (p4.lat - p1.lat) * ratio, p1.lng + (p4.lng - p1.lng) * ratio];
-          const end = [p2.lat + (p3.lat - p2.lat) * ratio, p2.lng + (p3.lng - p2.lng) * ratio];
-          L.polyline([start, end], { color: 'rgba(255,255,255,0.3)', weight: 0.8, interactive: false }).addTo(this.gridLayer);
+      if (tipo === 'doble') {
+        if (Math.abs(r) % 2 === 0) {
+          arrowRad = rad + Math.PI;
+        } else {
+          arrowRad = rad;
         }
-        for (let j = 1; j < cols; j++) {
-          const ratio = j / cols;
-          const start = [p1.lat + (p2.lat - p1.lat) * ratio, p1.lng + (p2.lng - p1.lng) * ratio];
-          const end = [p4.lat + (p3.lat - p4.lat) * ratio, p4.lng + (p3.lng - p4.lng) * ratio];
-          L.polyline([start, end], { color: 'rgba(255,255,255,0.3)', weight: 0.8, interactive: false }).addTo(this.gridLayer);
-        }
+        verticalOffset = r * pH_px + (Math.floor(r / 2) * (pH_px * 0.15));
+      } else if (tipo === 'libre') {
+        const lat = Math.abs(this.map.getCenter().lat);
+        const kFactor = 1 / Math.tan(Math.max(5, 90 - lat - 23.44) * Math.PI / 180);
+        const hProjected = panelH * Math.sin(Math.max(0, grid.config.tilt - grid.config.slope) * Math.PI / 180);
+        const gapMeters = hProjected * kFactor;
+        verticalOffset = r * (pH_px + this.metersToPx(gapMeters));
+      } else {
+        verticalOffset = r * pH_px;
       }
-    } else if (isActive) {
-      L.marker(cellLatLng, {
-        icon: L.divIcon({
-          className: 'grid-plus',
-          html: `<div style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 300;">+</div>`,
-          iconSize: [16, 16],
-          iconAnchor: [8, 8]
-        }),
-        interactive: false
+
+      const cp = L.point(
+        center.x + (c * pW_px * Math.cos(rad) - verticalOffset * Math.sin(rad)),
+        center.y + (c * pW_px * Math.sin(rad) + verticalOffset * Math.cos(rad))
+      );
+
+      const corners = [[-0.5, -0.5], [0.5, -0.5], [0.5, 0.5], [-0.5, 0.5]].map(([dx, dy]) =>
+        this.map.layerPointToLatLng(L.point(
+          cp.x + (dx * pW_px * Math.cos(rad) - dy * pH_px * Math.sin(rad)),
+          cp.y + (dx * pW_px * Math.sin(rad) + dy * pH_px * Math.cos(rad))
+        ))
+      );
+
+      const cell = L.polygon(corners, {
+        color: active ? "#fff" : (isActive ? "rgba(255,255,255,0.4)" : "transparent"),
+        weight: active ? 1 : 0.5,
+        fillColor: active ? "#031530" : (isActive ? "rgba(255,255,255,0.1)" : "transparent"),
+        fillOpacity: active ? 0.6 : 0.2,
+        interactive: true,
+        className: isActive ? 'editable-cell' : 'non-interactive-cell',
+        customCellId: id,
+        customGridId: grid.id
       }).addTo(this.gridLayer);
-    }
 
-    if (isActive) {
-      L.DomEvent.on(cell._path, 'pointerdown', (e) => {
-        L.DomEvent.stop(e);
-        e.target.setPointerCapture(e.pointerId);
-        this.isDragging = true;
-        this.paintMode = !active;
-        this.lastTouchedId = id;
-        this.map.dragging.disable();
-        this.onUpdate(grid.id, id, this.paintMode);
+      const cellLatLng = this.map.layerPointToLatLng(cp);
+
+      cell.on('dblclick', () => {
+        this.onSelect(grid.id);
+        this.onGridSelect(grid.id);
+        this.onDoubleClick();
       });
 
-      cell.on('mouseover', () => {
-        if (this.isDragging) this.onUpdate(grid.id, id, this.paintMode);
+      cell.on('click', () => {
+        this.onSelect(grid.id);
+        this.onGridSelect(grid.id);
       });
-    }
-  });
 
-  // --- MARCADOR DE INFORMACIÓN (SOLO CÍRCULO CON NÚMERO, SIN INTERACCIÓN) ---
-  const bloquesPintados = (grid.paneles?.length || 0);
-  const panelesPorBloque = (grid.config.rows || 1) * (grid.config.cols || 1);
-  const totalPaneles = bloquesPintados * panelesPorBloque;
-  
-  // Icono del círculo con número - SIN INTERACCIÓN
-const infoIcon = L.divIcon({
-  className: 'info-marker-icon',
-  html: `
+      if (active) {
+        L.marker(cellLatLng, {
+          icon: L.divIcon({
+            className: 'arrow',
+            html: `<div style="transform: rotate(${arrowRad}rad); display: flex; justify-content: center; align-items: center; opacity: 0.8;">${arrowWhiteSvg}</div>`,
+            iconSize: [14, 14],
+            iconAnchor: [7, 7]
+          }),
+          interactive: false
+        }).addTo(this.gridLayer);
+
+        if (rows > 1 || cols > 1) {
+          const p1 = corners[0], p2 = corners[1], p3 = corners[2], p4 = corners[3];
+
+          for (let i = 1; i < rows; i++) {
+            const ratio = i / rows;
+            const start = [p1.lat + (p4.lat - p1.lat) * ratio, p1.lng + (p4.lng - p1.lng) * ratio];
+            const end = [p2.lat + (p3.lat - p2.lat) * ratio, p2.lng + (p3.lng - p2.lng) * ratio];
+            L.polyline([start, end], { color: 'rgba(255,255,255,0.3)', weight: 0.8, interactive: false }).addTo(this.gridLayer);
+          }
+          for (let j = 1; j < cols; j++) {
+            const ratio = j / cols;
+            const start = [p1.lat + (p2.lat - p1.lat) * ratio, p1.lng + (p2.lng - p1.lng) * ratio];
+            const end = [p4.lat + (p3.lat - p4.lat) * ratio, p4.lng + (p3.lng - p4.lng) * ratio];
+            L.polyline([start, end], { color: 'rgba(255,255,255,0.3)', weight: 0.8, interactive: false }).addTo(this.gridLayer);
+          }
+        }
+      } else if (isActive) {
+        L.marker(cellLatLng, {
+          icon: L.divIcon({
+            className: 'grid-plus',
+            html: `<div style="color: rgba(255,255,255,0.7); font-size: 14px; font-weight: 300;">+</div>`,
+            iconSize: [16, 16],
+            iconAnchor: [8, 8]
+          }),
+          interactive: false
+        }).addTo(this.gridLayer);
+      }
+
+      if (isActive) {
+        L.DomEvent.on(cell._path, 'pointerdown', (e) => {
+          L.DomEvent.stop(e);
+          e.target.setPointerCapture(e.pointerId);
+          this.isDragging = true;
+          this.paintMode = !active;
+          this.lastTouchedId = id;
+          this.map.dragging.disable();
+          this.onUpdate(grid.id, id, this.paintMode);
+        });
+
+        cell.on('mouseover', () => {
+          if (this.isDragging) this.onUpdate(grid.id, id, this.paintMode);
+        });
+      }
+    });
+
+    // --- MARCADOR DE INFORMACIÓN (SOLO CÍRCULO CON NÚMERO, SIN INTERACCIÓN) ---
+    const bloquesPintados = (grid.paneles?.length || 0);
+    const panelesPorBloque = (grid.config.rows || 1) * (grid.config.cols || 1);
+    const totalPaneles = bloquesPintados * panelesPorBloque;
+
+    // Icono del círculo con número - SIN INTERACCIÓN
+    const infoIcon = L.divIcon({
+      className: 'info-marker-icon',
+      html: `
     <div style="
       background-color: #ff9800; /* Naranja sólido */
       color: white;             /* Letras blancas */
@@ -352,18 +352,18 @@ const infoIcon = L.divIcon({
       ${totalPaneles}
     </div>
   `,
-  iconSize: [30, 30],
-  iconAnchor: [15, 15]
-});
+      iconSize: [30, 30],
+      iconAnchor: [15, 15]
+    });
 
-  // Marcador NO interactivo
-  L.marker(grid.baseLatLng, {
-    icon: infoIcon,
-    interactive: false,
-    zIndexOffset: 1000,
-    keyboard: false
-  }).addTo(this.gridLayer);
-}
+    // Marcador NO interactivo
+    L.marker(grid.baseLatLng, {
+      icon: infoIcon,
+      interactive: false,
+      zIndexOffset: 1000,
+      keyboard: false
+    }).addTo(this.gridLayer);
+  }
 
 
 }
@@ -808,13 +808,12 @@ const App = () => {
         }
       }} />
 
-      {/* MENÚ LATERAL */}
       <Box sx={{
         position: 'fixed',
-        top: 80,
+        top: 100,
         left: 10,
         zIndex: 1200,
-        width: menuOpen ? 220 : 40,
+        width: menuOpen ? 200 : 40,
         height: 'calc(100vh - 100px)',
         backgroundColor: 'rgba(13, 20, 69, 0.95)',
         backdropFilter: 'blur(12px)',
@@ -838,30 +837,62 @@ const App = () => {
         }}>
           {menuOpen ? (
             <>
-              <Typography sx={{ color: '#4fc3f7', fontSize: '0.7rem', fontWeight: 900 }}>
+              <Typography sx={{ color: '#4fc3f7', fontSize: '0.85rem', fontWeight: 900 }}>
                 ☀️ FV Control
               </Typography>
               <IconButton size="small" onClick={toggleMenuOpen} sx={{ color: '#4fc3f7' }}>
-                <ChevronLeftIcon sx={{ fontSize: 16 }} />
+                <ChevronLeftIcon sx={{ fontSize: 20 }} />
               </IconButton>
             </>
           ) : (
             <IconButton size="small" onClick={toggleMenuOpen} sx={{ color: '#4fc3f7', mx: 'auto' }}>
-              <ChevronRightIcon sx={{ fontSize: 16 }} />
+              <ChevronRightIcon sx={{ fontSize: 20 }} />
             </IconButton>
           )}
         </Box>
 
         {menuOpen && (
-          <Box sx={{ flex: 1, overflow: 'auto', p: 0.5 }}>
+          <Box sx={{ flex: 1, overflow: 'auto', p: 1 }}>
+            {/* Estilos comunes para TextFields */}
+            {(() => {
+              const textFieldStyles = {
+                mb: 0.5,
+                '& .MuiInput-root': {
+                  fontSize: '0.75rem',
+                  color: 'rgba(255,255,255,0.9)',
+                  '&:hover:not(.Mui-disabled):before': {
+                    borderBottomColor: 'rgba(255,255,255,0.3)',
+                  }
+                },
+                '& .MuiInputLabel-root': {
+                  fontSize: '0.85rem', // <-- Labels más grandes
+                  color: 'rgba(255,255,255,0.5)',
+                  fontWeight: 500,
+                  '&.Mui-focused': {
+                    color: '#ff9800',
+                  },
+                  '&.MuiInputLabel-shrink': {
+                    fontSize: '0.85rem', // Mantiene el tamaño al flotar
+                  }
+                },
+                '& .MuiInput-underline:before': {
+                  borderBottomColor: 'rgba(255,255,255,0.15)'
+                },
+                '& .MuiInput-underline:after': {
+                  borderBottomColor: '#ff9800'
+                },
+              };
+              return null;
+            })()}
+
             <Box sx={{
               bgcolor: 'rgba(255,255,255,0.05)',
               borderRadius: 1,
-              p: 0.5,
-              mb: 0.5,
+              p: 1,
+              mb: 1,
               textAlign: 'center'
             }}>
-              <Typography sx={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.55rem' }}>
+              <Typography sx={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.75rem' }}>
                 {stats.panels}p | {(stats.power / 1000).toFixed(2)} kWp
               </Typography>
             </Box>
@@ -873,16 +904,16 @@ const App = () => {
               sx={{
                 bgcolor: '#ff9800',
                 color: 'white',
-                fontSize: '0.6rem',
-                py: 0.3,
-                mb: 0.5,
+                fontSize: '0.75rem',
+                py: 0.5,
+                mb: 1,
                 '&:hover': { bgcolor: '#f57c00' }
               }}
             >
-              <AddIcon sx={{ fontSize: 12, mr: 0.5 }} /> Nuevo
+              <AddIcon sx={{ fontSize: 16, mr: 0.5 }} /> Nuevo
             </Button>
 
-            <Box sx={{ mt: 0.5 }}>
+            <Box sx={{ mt: 1 }}>
               {grids.map((g) => {
                 const isSelected = g.id === activeGridId;
                 const isExpanded = expandedGroups[g.id] || false;
@@ -892,32 +923,32 @@ const App = () => {
                 const pwr = ((totalPanelesReal * (g.config.potenciaW || 0)) / 1000).toFixed(1);
 
                 return (
-                  <Box key={g.id} sx={{ mb: 0.3 }}>
+                  <Box key={g.id} sx={{ mb: 0.5 }}>
                     {/* NIVEL 1: ITEM PRINCIPAL DEL GRUPO */}
                     <ListItemButton
                       onClick={(e) => handleGridSelectFromMenu(g.id, e)}
                       sx={{
                         borderRadius: 1,
-                        p: '2px 4px',
+                        p: '4px 8px',
                         bgcolor: isSelected ? 'rgba(255, 165, 0, 0.25)' : 'rgba(255,255,255,0.03)',
                         border: isSelected ? '1px solid rgba(255, 165, 0, 0.4)' : '1px solid rgba(255,255,255,0.05)',
                         '&:hover': { bgcolor: 'rgba(255,255,255,0.08)' },
-                        minHeight: 24,
+                        minHeight: 32,
                       }}
                     >
                       <ListItemText
                         primary={
                           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <Typography sx={{ color: isSelected ? '#fff' : 'rgba(255,255,255,0.8)', fontSize: '0.6rem', fontWeight: isSelected ? 900 : 600 }}>
+                            <Typography sx={{ color: isSelected ? '#fff' : 'rgba(255,255,255,0.8)', fontSize: '0.75rem', fontWeight: isSelected ? 900 : 600 }}>
                               {g.nombre}
                             </Typography>
-                            <Typography sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.5rem' }}>
+                            <Typography sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.65rem' }}>
                               {totalPanelesReal}p
                             </Typography>
                           </Box>
                         }
                         secondary={
-                          <Typography sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.4rem' }}>
+                          <Typography sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.55rem' }}>
                             {pwr} kWp
                           </Typography>
                         }
@@ -929,9 +960,9 @@ const App = () => {
                           e.stopPropagation();
                           toggleGroupExpand(g.id);
                         }}
-                        sx={{ color: isSelected ? 'white' : 'rgba(255,255,255,0.5)', p: 0.2 }}
+                        sx={{ color: isSelected ? 'white' : 'rgba(255,255,255,0.5)', p: 0.5 }}
                       >
-                        {isExpanded ? <ExpandLessIcon sx={{ fontSize: 14 }} /> : <ExpandMoreIcon sx={{ fontSize: 14 }} />}
+                        {isExpanded ? <ExpandLessIcon sx={{ fontSize: 18 }} /> : <ExpandMoreIcon sx={{ fontSize: 18 }} />}
                       </IconButton>
                     </ListItemButton>
 
@@ -941,347 +972,417 @@ const App = () => {
                         ml: 1,
                         pl: 1,
                         borderLeft: '2px solid rgba(255, 165, 0, 0.3)',
-                        py: 0.5,
+                        py: 1,
                         borderRadius: '0 4px 4px 0',
                       }}>
-                        {/* SECCIÓN 1: INFORMACIÓN GENERAL - Fondo más claro */}
+                        {/* SECCIÓN 1: INFORMACIÓN GENERAL */}
                         <Box sx={{
                           bgcolor: 'rgba(255,255,255,0.05)',
                           borderRadius: 1,
-                          p: 0.5,
-                          mb: 0.5,
+                          p: 1,
+                          mb: 1,
                         }}>
-                          <Typography sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.4rem', mb: 0.3, letterSpacing: 1 }}>
+                          <Typography sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.55rem', mb: 0.5, letterSpacing: 1 }}>
                             ─ INFORMACIÓN ─
                           </Typography>
-                          <Stack spacing={0.3}>
-                            <TextField
-                              label="Nombre"
-                              size="small"
-                              variant="standard"
-                              fullWidth
-                              value={activeGrid?.nombre || ''}
-                              onChange={(e) => {
-                                const newValue = e.target.value;
-                                if (newValue.length <= 3) {
-                                  updateGrid(activeGridId, { nombre: newValue });
-                                }
-                              }}
-                              sx={{
-                                '& .MuiInput-root': { fontSize: '0.55rem', color: 'rgba(255,255,255,0.9)' },
-                                '& .MuiInputLabel-root': { fontSize: '0.5rem', color: 'rgba(255,255,255,0.4)' },
-                                '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
-                                '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
-                              }}
-                            />
-                            <TextField
-                              label="Coste (EUR)"
-                              size="small"
-                              variant="standard"
-                              fullWidth
-                              type="number"
-                              value={activeGrid?.config.FVcost || ''}
-                              onChange={(e) => updateGrid(activeGridId, { config: { FVcost: parseFloat(e.target.value) || 0 } })}
-                              sx={{
-                                '& .MuiInput-root': { fontSize: '0.55rem', color: 'rgba(255,255,255,0.9)' },
-                                '& .MuiInputLabel-root': { fontSize: '0.5rem', color: 'rgba(255,255,255,0.4)' },
-                                '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
-                                '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
-                              }}
-                            />
-                            <Button
-                              size="small"
-                              onClick={() => setShadowModalOpen(true)}
-                              sx={{
-                                fontSize: '0.45rem',
-                                color: 'rgba(255,255,255,0.7)',
-                                border: '1px solid rgba(255,255,255,0.15)',
-                                py: 0.1,
-                                '&:hover': { borderColor: '#ff9800', color: '#fff' }
-                              }}
-                            >
-                              <ShadowIcon sx={{ fontSize: 10, mr: 0.3 }} /> Configurar Sombras
-                            </Button>
-                          </Stack>
+                          <TextField
+                            label="Nombre"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            value={activeGrid?.nombre || ''}
+                            onChange={(e) => {
+                              const newValue = e.target.value;
+                              if (newValue.length <= 3) {
+                                updateGrid(activeGridId, { nombre: newValue });
+                              }
+                            }}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', fontWeight: 500 },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <TextField
+                            label="Coste (EUR)"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            type="number"
+                            value={activeGrid?.config.FVcost || ''}
+                            onChange={(e) => updateGrid(activeGridId, { config: { FVcost: parseFloat(e.target.value) || 0 } })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', fontWeight: 500 },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <Button
+                            size="small"
+                            onClick={() => setShadowModalOpen(true)}
+                            fullWidth
+                            sx={{
+                              fontSize: '0.6rem',
+                              color: 'rgba(255,255,255,0.7)',
+                              border: '1px solid rgba(255,255,255,0.15)',
+                              py: 0.3,
+                              '&:hover': { borderColor: '#ff9800', color: '#fff' }
+                            }}
+                          >
+                            <ShadowIcon sx={{ fontSize: 14, mr: 0.5 }} /> Configurar Sombras
+                          </Button>
                         </Box>
 
-                        {/* SECCIÓN 2: PANEL - Fondo intermedio */}
+                        {/* SECCIÓN 2: PANEL */}
                         <Box sx={{
                           bgcolor: 'rgba(79, 195, 247, 0.05)',
                           borderRadius: 1,
-                          p: 0.5,
-                          mb: 0.5,
+                          p: 1,
+                          mb: 1,
                         }}>
-                          <Typography sx={{ color: 'rgba(79, 195, 247, 0.4)', fontSize: '0.4rem', mb: 0.3, letterSpacing: 1 }}>
+                          <Typography sx={{ color: 'rgba(79, 195, 247, 0.4)', fontSize: '0.55rem', mb: 0.5, letterSpacing: 1 }}>
                             ─ PANEL ─
                           </Typography>
-                          <Stack spacing={0.3}>
-                            <TextField
-                              label="Modelo"
+                          <TextField
+                            label="Modelo"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            value={activeGrid?.config.modelo || ''}
+                            onChange={(e) => updateGrid(activeGridId, { config: { modelo: e.target.value } })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', fontWeight: 500 },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <TextField
+                            label="Potencia (Wp)"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            type="number"
+                            value={activeGrid?.config.potenciaW || ''}
+                            onChange={(e) => updateGrid(activeGridId, { config: { potenciaW: parseFloat(e.target.value) || 0 } })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', fontWeight: 500 },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+
+                          {/* CONMUTADOR DE ORIENTACIÓN - Un solo botón que alterna */}
+                          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 0.5 }}>
+                            <Button
                               size="small"
-                              variant="standard"
-                              fullWidth
-                              value={activeGrid?.config.modelo || ''}
-                              onChange={(e) => updateGrid(activeGridId, { config: { modelo: e.target.value } })}
+                              onClick={() => updateGrid(activeGridId, {
+                                config: { orientation: activeGrid?.config.orientation === 'vertical' ? 'horizontal' : 'vertical' }
+                              })}
                               sx={{
-                                '& .MuiInput-root': { fontSize: '0.55rem', color: 'rgba(255,255,255,0.9)' },
-                                '& .MuiInputLabel-root': { fontSize: '0.5rem', color: 'rgba(255,255,255,0.4)' },
-                                '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
-                                '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                                fontSize: '0.6rem',
+                                py: 0.3,
+                                px: 2,
+                                color: 'rgba(255,255,255,0.8)',
+                                border: '1px solid rgba(255,255,255,0.15)',
+                                bgcolor: 'rgba(79,195,247,0.1)',
+                                borderRadius: 2,
+                                minWidth: 120,
+                                '&:hover': {
+                                  bgcolor: 'rgba(79,195,247,0.2)',
+                                  borderColor: '#4fc3f7'
+                                }
                               }}
-                            />
-                            <Box sx={{ display: 'flex', gap: 0.3 }}>
-                              <TextField
-                                label="Potencia (Wp)"
-                                size="small"
-                                variant="standard"
-                                type="number"
-                                value={activeGrid?.config.potenciaW || ''}
-                                onChange={(e) => updateGrid(activeGridId, { config: { potenciaW: parseFloat(e.target.value) || 0 } })}
-                                sx={{
-                                  flex: 1,
-                                  '& .MuiInput-root': { fontSize: '0.55rem', color: 'rgba(255,255,255,0.9)' },
-                                  '& .MuiInputLabel-root': { fontSize: '0.5rem', color: 'rgba(255,255,255,0.4)' },
-                                  '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
-                                  '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
-                                }}
-                              />
-                              <IconButton
-                                size="small"
-                                onClick={() => updateGrid(activeGridId, {
-                                  config: { orientation: activeGrid?.config.orientation === 'vertical' ? 'horizontal' : 'vertical' }
-                                })}
-                                sx={{
-                                  color: 'rgba(255,255,255,0.6)',
-                                  border: '1px solid rgba(255,255,255,0.15)',
-                                  borderRadius: 1,
-                                  p: 0.2,
-                                  '&:hover': { borderColor: '#ff9800', color: '#fff' }
-                                }}
-                              >
-                                {activeGrid?.config.orientation === 'vertical' ? <PortraitIcon sx={{ fontSize: 11 }} /> : <LandscapeIcon sx={{ fontSize: 11 }} />}
-                              </IconButton>
-                            </Box>
-                            <Box sx={{ display: 'flex', gap: 0.3 }}>
-                              <TextField
-                                label="Alto (m)"
-                                size="small"
-                                variant="standard"
-                                type="number"
-                                value={activeGrid?.config.height || 0}
-                                onChange={(e) => updateGrid(activeGridId, { config: { height: parseFloat(e.target.value) || 0 } })}
-                                sx={{
-                                  flex: 1,
-                                  '& .MuiInput-root': { fontSize: '0.55rem', color: 'rgba(255,255,255,0.9)' },
-                                  '& .MuiInputLabel-root': { fontSize: '0.5rem', color: 'rgba(255,255,255,0.4)' },
-                                  '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
-                                  '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
-                                }}
-                              />
-                              <TextField
-                                label="Ancho (m)"
-                                size="small"
-                                variant="standard"
-                                type="number"
-                                value={activeGrid?.config.width || 0}
-                                onChange={(e) => updateGrid(activeGridId, { config: { width: parseFloat(e.target.value) || 0 } })}
-                                sx={{
-                                  flex: 1,
-                                  '& .MuiInput-root': { fontSize: '0.55rem', color: 'rgba(255,255,255,0.9)' },
-                                  '& .MuiInputLabel-root': { fontSize: '0.5rem', color: 'rgba(255,255,255,0.4)' },
-                                  '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
-                                  '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
-                                }}
-                              />
-                            </Box>
-                            <Box sx={{ display: 'flex', gap: 0.3 }}>
-                              <TextField
-                                label="Filas"
-                                size="small"
-                                variant="standard"
-                                type="number"
-                                value={activeGrid?.config.rows || 1}
-                                onChange={(e) => updateGrid(activeGridId, {
-                                  config: { rows: Math.max(1, parseInt(e.target.value) || 1) }
-                                })}
-                                sx={{
-                                  flex: 1,
-                                  '& .MuiInput-root': { fontSize: '0.55rem', color: 'rgba(255,255,255,0.9)' },
-                                  '& .MuiInputLabel-root': { fontSize: '0.5rem', color: 'rgba(255,255,255,0.4)' },
-                                  '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
-                                  '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
-                                }}
-                              />
-                              <TextField
-                                label="Columnas"
-                                size="small"
-                                variant="standard"
-                                type="number"
-                                value={activeGrid?.config.cols || 1}
-                                onChange={(e) => updateGrid(activeGridId, {
-                                  config: { cols: Math.max(1, parseInt(e.target.value) || 1) }
-                                })}
-                                sx={{
-                                  flex: 1,
-                                  '& .MuiInput-root': { fontSize: '0.55rem', color: 'rgba(255,255,255,0.9)' },
-                                  '& .MuiInputLabel-root': { fontSize: '0.5rem', color: 'rgba(255,255,255,0.4)' },
-                                  '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
-                                  '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
-                                }}
-                              />
-                            </Box>
-                            <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.45rem', textAlign: 'center' }}>
-                              Total: {(activeGrid?.config.rows || 1) * (activeGrid?.config.cols || 1)} paneles/bloque
-                            </Typography>
-                          </Stack>
+                            >
+                              {activeGrid?.config.orientation === 'vertical' ? (
+                                <><PortraitIcon sx={{ fontSize: 14, mr: 0.5 }} /> Vertical</>
+                              ) : (
+                                <><LandscapeIcon sx={{ fontSize: 14, mr: 0.5 }} /> Horizontal</>
+                              )}
+                            </Button>
+                          </Box>
+
+                          <TextField
+                            label="Alto (m)"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            type="number"
+                            value={activeGrid?.config.height || 0}
+                            onChange={(e) => updateGrid(activeGridId, { config: { height: parseFloat(e.target.value) || 0 } })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', fontWeight: 500 },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <TextField
+                            label="Ancho (m)"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            type="number"
+                            value={activeGrid?.config.width || 0}
+                            onChange={(e) => updateGrid(activeGridId, { config: { width: parseFloat(e.target.value) || 0 } })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', fontWeight: 500 },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <TextField
+                            label="Filas"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            type="number"
+                            value={activeGrid?.config.rows || 1}
+                            onChange={(e) => updateGrid(activeGridId, {
+                              config: { rows: Math.max(1, parseInt(e.target.value) || 1) }
+                            })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', fontWeight: 500 },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <TextField
+                            label="Columnas"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            type="number"
+                            value={activeGrid?.config.cols || 1}
+                            onChange={(e) => updateGrid(activeGridId, {
+                              config: { cols: Math.max(1, parseInt(e.target.value) || 1) }
+                            })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.75rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)', fontWeight: 500 },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.6rem', textAlign: 'center' }}>
+                            Total: {(activeGrid?.config.rows || 1) * (activeGrid?.config.cols || 1)} paneles/bloque
+                          </Typography>
                         </Box>
 
-                        {/* SECCIÓN 3: ESTRUCTURA - Fondo más oscuro */}
+                        {/* SECCIÓN 3: ESTRUCTURA */}
                         <Box sx={{
                           bgcolor: 'rgba(255, 152, 0, 0.05)',
                           borderRadius: 1,
-                          p: 0.5,
-                          mb: 0.5,
+                          p: 1,
+                          mb: 1,
                         }}>
-                          <Typography sx={{ color: 'rgba(255, 152, 0, 0.4)', fontSize: '0.4rem', mb: 0.3, letterSpacing: 1 }}>
+                          <Typography sx={{ color: 'rgba(255, 152, 0, 0.4)', fontSize: '0.55rem', mb: 0.5, letterSpacing: 1 }}>
                             ─ ESTRUCTURA ─
                           </Typography>
-                          <Stack spacing={0.3}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.3 }}>
-                              <AzimutPreviewCompact rotation={activeGrid?.rotation || 0} />
-                              <Box sx={{ flex: 1, minWidth: 0 }}>
-                                <Typography sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.4rem' }}>
-                                  Azimut: {Math.round(activeGrid?.rotation || 0)}°
-                                </Typography>
-                                <Slider
-                                  size="small"
-                                  value={activeGrid?.rotation || 0}
-                                  min={-180} max={180}
-                                  onChange={(_, v) => updateGrid(activeGridId, { rotation: v })}
-                                  sx={{
-                                    color: '#4fc3f7',
-                                    height: 3,
-                                    '& .MuiSlider-thumb': { width: 12, height: 12 }
-                                  }}
-                                />
-                              </Box>
-                            </Box>
 
-                            <Box sx={{ display: 'flex', gap: 0.2 }}>
-                              {['coplanar', 'libre', 'doble'].map((tipo) => (
-                                <Button
-                                  key={tipo}
-                                  size="small"
-                                  variant={activeGrid?.config.tipoEstructura === tipo ? "contained" : "outlined"}
-                                  onClick={() => {
-                                    let updates = { tipoEstructura: tipo };
-                                    if (tipo === 'coplanar') updates.tilt = activeGrid?.config.slope || 0;
-                                    if (tipo === 'doble') updates.slope = 0;
-                                    updateGrid(activeGridId, { config: updates });
-                                  }}
-                                  sx={{
-                                    fontSize: '0.35rem',
-                                    py: 0.1,
-                                    flex: 1,
-                                    color: activeGrid?.config.tipoEstructura === tipo ? 'white' : 'rgba(255,255,255,0.5)',
+                          {/* SELECTOR DE TIPO DE ESTRUCTURA - Menú desplegable */}
+                          <Box sx={{ mb: 1 }}>
+                            <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.5rem', mb: 0.3 }}>
+                              Tipo de estructura
+                            </Typography>
+                            <FormControl fullWidth size="small" variant="outlined">
+                              <Select
+                                value={activeGrid?.config.tipoEstructura || 'coplanar'}
+                                onChange={(e) => {
+                                  const tipo = e.target.value;
+                                  let updates = { tipoEstructura: tipo };
+                                  if (tipo === 'coplanar') updates.tilt = activeGrid?.config.slope || 0;
+                                  if (tipo === 'doble') updates.slope = 0;
+                                  updateGrid(activeGridId, { config: updates });
+                                }}
+                                sx={{
+                                  color: 'rgba(255,255,255,0.9)',
+                                  fontSize: '0.6rem',
+                                  '& .MuiOutlinedInput-notchedOutline': {
                                     borderColor: 'rgba(255,255,255,0.15)',
-                                    bgcolor: activeGrid?.config.tipoEstructura === tipo ? 'rgba(255,165,0,0.4)' : 'transparent',
-                                    minHeight: 18,
-                                    '&:hover': {
-                                      bgcolor: activeGrid?.config.tipoEstructura === tipo ? 'rgba(255,165,0,0.5)' : 'rgba(255,255,255,0.05)',
-                                    }
-                                  }}
-                                >
-                                  {tipo === 'coplanar' ? 'Copl' : tipo === 'libre' ? 'Libre' : 'Doble'}
-                                </Button>
-                              ))}
-                            </Box>
+                                  },
+                                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: '#ff9800',
+                                  },
+                                  '& .MuiSvgIcon-root': {
+                                    color: 'rgba(255,255,255,0.5)',
+                                  }
+                                }}
+                              >
+                                <MenuItem value="coplanar" sx={{ fontSize: '0.6rem' }}>Coplanar</MenuItem>
+                                <MenuItem value="libre" sx={{ fontSize: '0.6rem' }}>Libre</MenuItem>
+                                <MenuItem value="doble" sx={{ fontSize: '0.6rem' }}>Doble eje</MenuItem>
+                              </Select>
+                            </FormControl>
+                          </Box>
 
-                            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                          {/* Azimut - Gráfico centrado y más grande */}
+                          <Box sx={{ mb: 1 }}>
+                            <Box sx={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'center',
+                              gap: 0.5,
+                              bgcolor: 'rgba(0,0,0,0.2)',
+                              borderRadius: 1,
+                              p: 1,
+                            }}>
+                              <Box sx={{
+                                transform: 'scale(2)',
+                                transformOrigin: 'center center',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                width: '100%',
+                              }}>
+                                <AzimutPreviewCompact rotation={activeGrid?.rotation || 0} />
+                              </Box>
+                              <Typography sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.6rem', fontWeight: 600 }}>
+                                Azimut: {Math.round(activeGrid?.rotation || 0)}°
+                              </Typography>
+                            </Box>
+                            <Slider
+                              size="small"
+                              value={activeGrid?.rotation || 0}
+                              min={-180} max={180}
+                              onChange={(_, v) => updateGrid(activeGridId, { rotation: v })}
+                              sx={{
+                                color: '#4fc3f7',
+                                height: 4,
+                                mt: 0.5,
+                                '& .MuiSlider-thumb': { width: 14, height: 14 }
+                              }}
+                            />
+                          </Box>
+
+                          {/* Ángulos - Gráfico centrado y más grande */}
+                          <Box sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: 0.5,
+                            bgcolor: 'rgba(0,0,0,0.2)',
+                            borderRadius: 1,
+                            p: 1,
+                            mb: 1,
+                          }}>
+                            <Box sx={{
+                              transform: 'scale(2.0)',
+                              transformOrigin: 'center center',
+                              display: 'flex',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              width: '100%',
+                            }}>
                               <AnglePreviewCompact
                                 tilt={activeGrid?.config.tilt || 0}
                                 slope={activeGrid?.config.slope || 0}
                                 isDouble={activeGrid?.config.tipoEstructura === 'doble'}
                               />
                             </Box>
-
-                            <Box sx={{ display: 'flex', gap: 0.3, alignItems: 'center' }}>
-                              <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.4rem', minWidth: 16 }}>
-                                Inc
+                            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', width: '100%' }}>
+                              <Typography sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.6rem' }}>
+                                Inc: {activeGrid?.config.tilt || 0}°
                               </Typography>
-                              <Slider
-                                size="small"
-                                value={activeGrid?.config.tilt || 0}
-                                min={0} max={90}
-                                disabled={activeGrid?.config.tipoEstructura === 'coplanar'}
-                                onChange={(_, v) => {
-                                  const val = activeGrid?.config.tipoEstructura === 'libre' ? Math.max(v, activeGrid?.config.slope || 0) : v;
-                                  updateGrid(activeGridId, { config: { tilt: val } });
-                                }}
-                                sx={{
-                                  flex: 1,
-                                  color: '#ff9800',
-                                  height: 3,
-                                  '& .MuiSlider-thumb': { width: 12, height: 12 }
-                                }}
-                              />
-                              <Typography sx={{ color: 'white', fontSize: '0.4rem', minWidth: 16, textAlign: 'right' }}>
+                              <Typography sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.6rem' }}>
+                                Suelo: {activeGrid?.config.slope || 0}°
+                              </Typography>
+                            </Box>
+                          </Box>
+
+                          {/* Inclinación */}
+                          <Box sx={{ mb: 0.5 }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0.3 }}>
+                              <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.55rem' }}>
+                                Inclinación
+                              </Typography>
+                              <Typography sx={{ color: 'white', fontSize: '0.6rem', fontWeight: 600 }}>
                                 {activeGrid?.config.tilt || 0}°
                               </Typography>
                             </Box>
+                            <Slider
+                              size="small"
+                              value={activeGrid?.config.tilt || 0}
+                              min={0} max={90}
+                              disabled={activeGrid?.config.tipoEstructura === 'coplanar'}
+                              onChange={(_, v) => {
+                                const val = activeGrid?.config.tipoEstructura === 'libre' ? Math.max(v, activeGrid?.config.slope || 0) : v;
+                                updateGrid(activeGridId, { config: { tilt: val } });
+                              }}
+                              sx={{
+                                color: '#4fc3f7',
+                                height: 4,
+                                '& .MuiSlider-thumb': { width: 14, height: 14 }
+                              }}
+                            />
+                          </Box>
 
-                            <Box sx={{ display: 'flex', gap: 0.3, alignItems: 'center' }}>
-                              <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.4rem', minWidth: 16 }}>
-                                Suelo
+                          {/* Suelo */}
+                          <Box sx={{ mb: 0.5 }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0.3 }}>
+                              <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.55rem' }}>
+                                Pendiente suelo
                               </Typography>
-                              <Slider
-                                size="small"
-                                value={activeGrid?.config.slope || 0}
-                                min={0} max={90}
-                                sx={{
-                                  flex: 1,
-                                  color: '#ff9800',
-                                  height: 3,
-                                  '& .MuiSlider-thumb': { width: 12, height: 12 }
-                                }}
-                                disabled={activeGrid?.config.tipoEstructura === 'doble'}
-                                onChange={(_, v) => {
-                                  let updates = { slope: v };
-                                  if (activeGrid?.config.tipoEstructura === 'coplanar') { updates.tilt = v; }
-                                  else if (activeGrid?.config.tipoEstructura === 'libre') { if (v > activeGrid?.config.tilt) updates.tilt = v; }
-                                  updateGrid(activeGridId, { config: updates });
-                                }}
-                              />
-                              <Typography sx={{ color: 'white', fontSize: '0.4rem', minWidth: 16, textAlign: 'right' }}>
+                              <Typography sx={{ color: 'white', fontSize: '0.6rem', fontWeight: 600 }}>
                                 {activeGrid?.config.slope || 0}°
                               </Typography>
                             </Box>
-                          </Stack>
+                            <Slider
+                              size="small"
+                              value={activeGrid?.config.slope || 0}
+                              min={0} max={90}
+                              disabled={activeGrid?.config.tipoEstructura === 'doble'}
+                              onChange={(_, v) => {
+                                let updates = { slope: v };
+                                if (activeGrid?.config.tipoEstructura === 'coplanar') { updates.tilt = v; }
+                                else if (activeGrid?.config.tipoEstructura === 'libre') { if (v > activeGrid?.config.tilt) updates.tilt = v; }
+                                updateGrid(activeGridId, { config: updates });
+                              }}
+                              sx={{
+                                color: '#ff9800',
+                                height: 4,
+                                '& .MuiSlider-thumb': { width: 14, height: 14 }
+                              }}
+                            />
+                          </Box>
                         </Box>
 
                         {/* ACCIONES */}
                         <Box sx={{
                           display: 'flex',
-                          gap: 0.2,
-                          mt: 0.3,
+                          gap: 0.5,
+                          mt: 0.5,
                           flexWrap: 'wrap',
                           borderTop: '1px solid rgba(255,255,255,0.05)',
-                          pt: 0.3,
+                          pt: 0.5,
                           justifyContent: 'center'
                         }}>
                           <Button
                             size="small"
                             onClick={() => handleCopy(activeGrid)}
-                            sx={{ fontSize: '0.35rem', color: 'rgba(255,255,255,0.5)', p: '0 3px', minHeight: 16 }}
+                            sx={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.5)', p: '2px 6px', minHeight: 20 }}
                           >
-                            <CopyIcon sx={{ fontSize: 8, mr: 0.2 }} /> Copiar
+                            <CopyIcon sx={{ fontSize: 12, mr: 0.5 }} /> Copiar
                           </Button>
                           <Button
                             size="small"
                             onClick={exportToGeoJSON}
-                            sx={{ fontSize: '0.35rem', color: 'rgba(255,255,255,0.5)', p: '0 3px', minHeight: 16 }}
+                            sx={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.5)', p: '2px 6px', minHeight: 20 }}
                           >
-                            <PanelIcon sx={{ fontSize: 8, mr: 0.2 }} /> GeoJSON
+                            <PanelIcon sx={{ fontSize: 12, mr: 0.5 }} /> GeoJSON
                           </Button>
                           <Button
                             size="small"
@@ -1289,9 +1390,9 @@ const App = () => {
                               setGrids(prev => prev.filter(x => x.id !== activeGrid?.id));
                               setActiveGridId(null);
                             }}
-                            sx={{ fontSize: '0.35rem', color: '#ef5350', p: '0 3px', minHeight: 16 }}
+                            sx={{ fontSize: '0.55rem', color: '#ef5350', p: '2px 6px', minHeight: 20 }}
                           >
-                            <DeleteIcon sx={{ fontSize: 8, mr: 0.2 }} /> Eliminar
+                            <DeleteIcon sx={{ fontSize: 12, mr: 0.5 }} /> Eliminar
                           </Button>
                         </Box>
                       </Box>
@@ -1304,6 +1405,570 @@ const App = () => {
         )}
       </Box>
 
+      <Box sx={{
+        position: 'fixed',
+        top: 100,
+        left: 10,
+        zIndex: 1200,
+        width: menuOpen ? 200 : 40,
+        height: 'calc(100vh - 100px)',
+        backgroundColor: 'rgba(13, 20, 69, 0.95)',
+        backdropFilter: 'blur(12px)',
+        borderRadius: 2,
+        boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+        border: '1px solid rgba(255,255,255,0.08)',
+        overflow: 'hidden',
+        transition: 'width 0.3s ease',
+        display: 'flex',
+        flexDirection: 'column',
+      }}>
+        <Box sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          p: 1,
+          borderBottom: '1px solid rgba(255,255,255,0.08)',
+          flexShrink: 0,
+          minHeight: 40,
+          bgcolor: 'rgba(26, 35, 126, 0.5)',
+        }}>
+          {menuOpen ? (
+            <>
+              <Typography sx={{ color: '#4fc3f7', fontSize: '0.85rem', fontWeight: 900 }}>
+                ☀️ FV Control
+              </Typography>
+              <IconButton size="small" onClick={toggleMenuOpen} sx={{ color: '#4fc3f7' }}>
+                <ChevronLeftIcon sx={{ fontSize: 20 }} />
+              </IconButton>
+            </>
+          ) : (
+            <IconButton size="small" onClick={toggleMenuOpen} sx={{ color: '#4fc3f7', mx: 'auto' }}>
+              <ChevronRightIcon sx={{ fontSize: 20 }} />
+            </IconButton>
+          )}
+        </Box>
+
+        {menuOpen && (
+          <Box sx={{ flex: 1, overflow: 'auto', p: 1 }}>
+            <Box sx={{
+              bgcolor: 'rgba(255,255,255,0.05)',
+              borderRadius: 1,
+              p: 1,
+              mb: 1,
+              textAlign: 'center'
+            }}>
+              <Typography sx={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.75rem' }}>
+                {stats.panels}p | {(stats.power / 1000).toFixed(2)} kWp
+              </Typography>
+            </Box>
+
+            <Button
+              size="small"
+              fullWidth
+              onClick={handleAddNew}
+              sx={{
+                bgcolor: '#ff9800',
+                color: 'white',
+                fontSize: '0.75rem',
+                py: 0.5,
+                mb: 1,
+                '&:hover': { bgcolor: '#f57c00' }
+              }}
+            >
+              <AddIcon sx={{ fontSize: 16, mr: 0.5 }} /> Nuevo
+            </Button>
+
+            <Box sx={{ mt: 1 }}>
+              {grids.map((g) => {
+                const isSelected = g.id === activeGridId;
+                const isExpanded = expandedGroups[g.id] || false;
+                const bloquesPintados = g.paneles?.length || 0;
+                const panelesPorBloque = (g.config.rows || 1) * (g.config.cols || 1);
+                const totalPanelesReal = bloquesPintados * panelesPorBloque;
+                const pwr = ((totalPanelesReal * (g.config.potenciaW || 0)) / 1000).toFixed(1);
+
+                return (
+                  <Box key={g.id} sx={{ mb: 0.5 }}>
+                    {/* NIVEL 1: ITEM PRINCIPAL DEL GRUPO */}
+                    <ListItemButton
+                      onClick={(e) => handleGridSelectFromMenu(g.id, e)}
+                      sx={{
+                        borderRadius: 1,
+                        p: '4px 8px',
+                        bgcolor: isSelected ? 'rgba(255, 165, 0, 0.25)' : 'rgba(255,255,255,0.03)',
+                        border: isSelected ? '1px solid rgba(255, 165, 0, 0.4)' : '1px solid rgba(255,255,255,0.05)',
+                        '&:hover': { bgcolor: 'rgba(255,255,255,0.08)' },
+                        minHeight: 32,
+                      }}
+                    >
+                      <ListItemText
+                        primary={
+                          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Typography sx={{ color: isSelected ? '#fff' : 'rgba(255,255,255,0.8)', fontSize: '0.75rem', fontWeight: isSelected ? 900 : 600 }}>
+                              {g.nombre}
+                            </Typography>
+                            <Typography sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.65rem' }}>
+                              {totalPanelesReal}p
+                            </Typography>
+                          </Box>
+                        }
+                        secondary={
+                          <Typography sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.55rem' }}>
+                            {pwr} kWp
+                          </Typography>
+                        }
+                        sx={{ m: 0, '& .MuiListItemText-primary': { m: 0 }, '& .MuiListItemText-secondary': { m: 0 } }}
+                      />
+                      <IconButton
+                        size="small"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleGroupExpand(g.id);
+                        }}
+                        sx={{ color: isSelected ? 'white' : 'rgba(255,255,255,0.5)', p: 0.5 }}
+                      >
+                        {isExpanded ? <ExpandLessIcon sx={{ fontSize: 18 }} /> : <ExpandMoreIcon sx={{ fontSize: 18 }} />}
+                      </IconButton>
+                    </ListItemButton>
+
+                    {/* NIVEL 2: CONFIGURACIÓN EXPANDIDA SIN TABS */}
+                    <Collapse in={isExpanded && isSelected} timeout="auto" unmountOnExit>
+                      <Box sx={{
+                        ml: 1,
+                        pl: 1,
+                        borderLeft: '2px solid rgba(255, 165, 0, 0.3)',
+                        py: 1,
+                        borderRadius: '0 4px 4px 0',
+                      }}>
+                        {/* SECCIÓN 1: INFORMACIÓN GENERAL */}
+                        <Box sx={{
+                          bgcolor: 'rgba(255,255,255,0.05)',
+                          borderRadius: 1,
+                          p: 1,
+                          mb: 1,
+                        }}>
+                          <Typography sx={{ color: 'rgba(255,255,255,0.3)', fontSize: '0.55rem', mb: 0.5, letterSpacing: 1 }}>
+                            ─ INFORMACIÓN ─
+                          </Typography>
+                          <TextField
+                            label="Nombre"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            value={activeGrid?.nombre || ''}
+                            onChange={(e) => {
+                              const newValue = e.target.value;
+                              if (newValue.length <= 3) {
+                                updateGrid(activeGridId, { nombre: newValue });
+                              }
+                            }}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.7rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)' },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <TextField
+                            label="Coste (EUR)"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            type="number"
+                            value={activeGrid?.config.FVcost || ''}
+                            onChange={(e) => updateGrid(activeGridId, { config: { FVcost: parseFloat(e.target.value) || 0 } })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.7rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)' },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <Button
+                            size="small"
+                            onClick={() => setShadowModalOpen(true)}
+                            fullWidth
+                            sx={{
+                              fontSize: '0.6rem',
+                              color: 'rgba(255,255,255,0.7)',
+                              border: '1px solid rgba(255,255,255,0.15)',
+                              py: 0.3,
+                              '&:hover': { borderColor: '#ff9800', color: '#fff' }
+                            }}
+                          >
+                            <ShadowIcon sx={{ fontSize: 14, mr: 0.5 }} /> Configurar Sombras
+                          </Button>
+                        </Box>
+
+                        {/* SECCIÓN 2: PANEL */}
+                        <Box sx={{
+                          bgcolor: 'rgba(79, 195, 247, 0.05)',
+                          borderRadius: 1,
+                          p: 1,
+                          mb: 1,
+                        }}>
+                          <Typography sx={{ color: 'rgba(79, 195, 247, 0.4)', fontSize: '0.55rem', mb: 0.5, letterSpacing: 1 }}>
+                            ─ PANEL ─
+                          </Typography>
+                          <TextField
+                            label="Modelo"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            value={activeGrid?.config.modelo || ''}
+                            onChange={(e) => updateGrid(activeGridId, { config: { modelo: e.target.value } })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.7rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)' },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <TextField
+                            label="Potencia (Wp)"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            type="number"
+                            value={activeGrid?.config.potenciaW || ''}
+                            onChange={(e) => updateGrid(activeGridId, { config: { potenciaW: parseFloat(e.target.value) || 0 } })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.7rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)' },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+
+                          {/* CONMUTADOR DE ORIENTACIÓN - Un solo botón que alterna */}
+                          <Box sx={{ display: 'flex', justifyContent: 'center', mb: 0.5 }}>
+                            <Button
+                              size="small"
+                              onClick={() => updateGrid(activeGridId, {
+                                config: { orientation: activeGrid?.config.orientation === 'vertical' ? 'horizontal' : 'vertical' }
+                              })}
+                              sx={{
+                                fontSize: '0.6rem',
+                                py: 0.3,
+                                px: 2,
+                                color: 'rgba(255,255,255,0.8)',
+                                border: '1px solid rgba(255,255,255,0.15)',
+                                bgcolor: 'rgba(79,195,247,0.1)',
+                                borderRadius: 2,
+                                minWidth: 120,
+                                '&:hover': {
+                                  bgcolor: 'rgba(79,195,247,0.2)',
+                                  borderColor: '#4fc3f7'
+                                }
+                              }}
+                            >
+                              {activeGrid?.config.orientation === 'vertical' ? (
+                                <><PortraitIcon sx={{ fontSize: 14, mr: 0.5 }} /> Vertical</>
+                              ) : (
+                                <><LandscapeIcon sx={{ fontSize: 14, mr: 0.5 }} /> Horizontal</>
+                              )}
+                            </Button>
+                          </Box>
+
+                          <TextField
+                            label="Alto (m)"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            type="number"
+                            value={activeGrid?.config.height || 0}
+                            onChange={(e) => updateGrid(activeGridId, { config: { height: parseFloat(e.target.value) || 0 } })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.7rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)' },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <TextField
+                            label="Ancho (m)"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            type="number"
+                            value={activeGrid?.config.width || 0}
+                            onChange={(e) => updateGrid(activeGridId, { config: { width: parseFloat(e.target.value) || 0 } })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.7rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)' },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <TextField
+                            label="Filas"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            type="number"
+                            value={activeGrid?.config.rows || 1}
+                            onChange={(e) => updateGrid(activeGridId, {
+                              config: { rows: Math.max(1, parseInt(e.target.value) || 1) }
+                            })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.7rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)' },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <TextField
+                            label="Columnas"
+                            size="small"
+                            variant="standard"
+                            fullWidth
+                            type="number"
+                            value={activeGrid?.config.cols || 1}
+                            onChange={(e) => updateGrid(activeGridId, {
+                              config: { cols: Math.max(1, parseInt(e.target.value) || 1) }
+                            })}
+                            sx={{
+                              mb: 0.5,
+                              '& .MuiInput-root': { fontSize: '0.7rem', color: 'rgba(255,255,255,0.9)' },
+                              '& .MuiInputLabel-root': { fontSize: '0.65rem', color: 'rgba(255,255,255,0.4)' },
+                              '& .MuiInput-underline:before': { borderBottomColor: 'rgba(255,255,255,0.15)' },
+                              '& .MuiInput-underline:after': { borderBottomColor: '#ff9800' },
+                            }}
+                          />
+                          <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.6rem', textAlign: 'center' }}>
+                            Total: {(activeGrid?.config.rows || 1) * (activeGrid?.config.cols || 1)} paneles/bloque
+                          </Typography>
+                        </Box>
+
+                        {/* SECCIÓN 3: ESTRUCTURA */}
+                        <Box sx={{
+                          bgcolor: 'rgba(255, 152, 0, 0.05)',
+                          borderRadius: 1,
+                          p: 1,
+                          mb: 1,
+                        }}>
+                          <Typography sx={{ color: 'rgba(255, 152, 0, 0.4)', fontSize: '0.55rem', mb: 0.5, letterSpacing: 1 }}>
+                            ─ ESTRUCTURA ─
+                          </Typography>
+
+                          {/* SELECTOR DE TIPO DE ESTRUCTURA - Menú desplegable */}
+                          <Box sx={{ mb: 1 }}>
+                            <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.5rem', mb: 0.3 }}>
+                              Tipo de estructura
+                            </Typography>
+                            <FormControl fullWidth size="small" variant="outlined">
+                              <Select
+                                value={activeGrid?.config.tipoEstructura || 'coplanar'}
+                                onChange={(e) => {
+                                  const tipo = e.target.value;
+                                  let updates = { tipoEstructura: tipo };
+                                  if (tipo === 'coplanar') updates.tilt = activeGrid?.config.slope || 0;
+                                  if (tipo === 'doble') updates.slope = 0;
+                                  updateGrid(activeGridId, { config: updates });
+                                }}
+                                sx={{
+                                  color: 'rgba(255,255,255,0.9)',
+                                  fontSize: '0.6rem',
+                                  '& .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: 'rgba(255,255,255,0.15)',
+                                  },
+                                  '&:hover .MuiOutlinedInput-notchedOutline': {
+                                    borderColor: '#ff9800',
+                                  },
+                                  '& .MuiSvgIcon-root': {
+                                    color: 'rgba(255,255,255,0.5)',
+                                  }
+                                }}
+                              >
+                                <MenuItem value="coplanar" sx={{ fontSize: '0.6rem' }}>Coplanar</MenuItem>
+                                <MenuItem value="libre" sx={{ fontSize: '0.6rem' }}>Libre</MenuItem>
+                                <MenuItem value="doble" sx={{ fontSize: '0.6rem' }}>Doble eje</MenuItem>
+                              </Select>
+                            </FormControl>
+                          </Box>
+
+                          {/* Azimut - Gráfico centrado y más grande */}
+                          <Box sx={{ mb: 1 }}>
+                            <Box sx={{
+                              display: 'flex',
+                              flexDirection: 'column',
+                              alignItems: 'center',
+                              gap: 0.5,
+                              bgcolor: 'rgba(0,0,0,0.2)',
+                              borderRadius: 1,
+                              p: 1,
+                            }}>
+                              <Box sx={{
+                                transform: 'scale(2)',
+                                transformOrigin: 'center center',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                width: '100%',
+                              }}>
+                                <AzimutPreviewCompact rotation={activeGrid?.rotation || 0} />
+                              </Box>
+                              <Typography sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.6rem', fontWeight: 600 }}>
+                                Azimut: {Math.round(activeGrid?.rotation || 0)}°
+                              </Typography>
+                            </Box>
+                            <Slider
+                              size="small"
+                              value={activeGrid?.rotation || 0}
+                              min={-180} max={180}
+                              onChange={(_, v) => updateGrid(activeGridId, { rotation: v })}
+                              sx={{
+                                color: '#4fc3f7',
+                                height: 4,
+                                mt: 0.5,
+                                '& .MuiSlider-thumb': { width: 14, height: 14 }
+                              }}
+                            />
+                          </Box>
+
+                          {/* Ángulos - Gráfico centrado y más grande */}
+                          <Box sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: 0.5,
+                            bgcolor: 'rgba(0,0,0,0.2)',
+                            borderRadius: 1,
+                            p: 1,
+                            mb: 1,
+                          }}>
+                            <Box sx={{
+                              transform: 'scale(2.0)',
+                              transformOrigin: 'center center',
+                              display: 'flex',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                              width: '100%',
+                            }}>
+                              <AnglePreviewCompact
+                                tilt={activeGrid?.config.tilt || 0}
+                                slope={activeGrid?.config.slope || 0}
+                                isDouble={activeGrid?.config.tipoEstructura === 'doble'}
+                              />
+                            </Box>
+                            <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', width: '100%' }}>
+                              <Typography sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.6rem' }}>
+                                Inc: {activeGrid?.config.tilt || 0}°
+                              </Typography>
+                              <Typography sx={{ color: 'rgba(255,255,255,0.5)', fontSize: '0.6rem' }}>
+                                Suelo: {activeGrid?.config.slope || 0}°
+                              </Typography>
+                            </Box>
+                          </Box>
+
+                          {/* Inclinación */}
+                          <Box sx={{ mb: 0.5 }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0.3 }}>
+                              <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.55rem' }}>
+                                Inclinación
+                              </Typography>
+                              <Typography sx={{ color: 'white', fontSize: '0.6rem', fontWeight: 600 }}>
+                                {activeGrid?.config.tilt || 0}°
+                              </Typography>
+                            </Box>
+                            <Slider
+                              size="small"
+                              value={activeGrid?.config.tilt || 0}
+                              min={0} max={90}
+                              disabled={activeGrid?.config.tipoEstructura === 'coplanar'}
+                              onChange={(_, v) => {
+                                const val = activeGrid?.config.tipoEstructura === 'libre' ? Math.max(v, activeGrid?.config.slope || 0) : v;
+                                updateGrid(activeGridId, { config: { tilt: val } });
+                              }}
+                              sx={{
+                                color: '#4fc3f7',
+                                height: 4,
+                                '& .MuiSlider-thumb': { width: 14, height: 14 }
+                              }}
+                            />
+                          </Box>
+
+                          {/* Suelo */}
+                          <Box sx={{ mb: 0.5 }}>
+                            <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 0.3 }}>
+                              <Typography sx={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.55rem' }}>
+                                Pendiente suelo
+                              </Typography>
+                              <Typography sx={{ color: 'white', fontSize: '0.6rem', fontWeight: 600 }}>
+                                {activeGrid?.config.slope || 0}°
+                              </Typography>
+                            </Box>
+                            <Slider
+                              size="small"
+                              value={activeGrid?.config.slope || 0}
+                              min={0} max={90}
+                              disabled={activeGrid?.config.tipoEstructura === 'doble'}
+                              onChange={(_, v) => {
+                                let updates = { slope: v };
+                                if (activeGrid?.config.tipoEstructura === 'coplanar') { updates.tilt = v; }
+                                else if (activeGrid?.config.tipoEstructura === 'libre') { if (v > activeGrid?.config.tilt) updates.tilt = v; }
+                                updateGrid(activeGridId, { config: updates });
+                              }}
+                              sx={{
+                                color: '#ff9800',
+                                height: 4,
+                                '& .MuiSlider-thumb': { width: 14, height: 14 }
+                              }}
+                            />
+                          </Box>
+                        </Box>
+
+                        {/* ACCIONES */}
+                        <Box sx={{
+                          display: 'flex',
+                          gap: 0.5,
+                          mt: 0.5,
+                          flexWrap: 'wrap',
+                          borderTop: '1px solid rgba(255,255,255,0.05)',
+                          pt: 0.5,
+                          justifyContent: 'center'
+                        }}>
+                          <Button
+                            size="small"
+                            onClick={() => handleCopy(activeGrid)}
+                            sx={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.5)', p: '2px 6px', minHeight: 20 }}
+                          >
+                            <CopyIcon sx={{ fontSize: 12, mr: 0.5 }} /> Copiar
+                          </Button>
+                          <Button
+                            size="small"
+                            onClick={exportToGeoJSON}
+                            sx={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.5)', p: '2px 6px', minHeight: 20 }}
+                          >
+                            <PanelIcon sx={{ fontSize: 12, mr: 0.5 }} /> GeoJSON
+                          </Button>
+                          <Button
+                            size="small"
+                            onClick={() => {
+                              setGrids(prev => prev.filter(x => x.id !== activeGrid?.id));
+                              setActiveGridId(null);
+                            }}
+                            sx={{ fontSize: '0.55rem', color: '#ef5350', p: '2px 6px', minHeight: 20 }}
+                          >
+                            <DeleteIcon sx={{ fontSize: 12, mr: 0.5 }} /> Eliminar
+                          </Button>
+                        </Box>
+                      </Box>
+                    </Collapse>
+                  </Box>
+                );
+              })}
+            </Box>
+          </Box>
+        )}
+      </Box>
       {/* BOTÓN GUARDAR */}
       <Box sx={{
         position: "fixed",
