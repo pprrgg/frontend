@@ -354,7 +354,7 @@ const infoIcon = L.divIcon({
     ">
       <!-- NOMBRE DEL GRUPO (arriba dentro del círculo) -->
       <span style="
-        font-size: 6px;
+        font-size: 11px;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.3px;
