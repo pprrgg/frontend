@@ -294,7 +294,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
         </Typography>
       </Backdrop>
 
-      <Box sx={{ position: 'absolute', bottom: 24, right: "calc(50% - 480px)", zIndex: 1500, display: 'flex', flexDirection: 'column', gap: 2, '@media (max-width: 1000px)': { right: 24 } }}>
+      <Box sx={{ position: 'absolute', bottom: 111, right: "calc(50% - 480px)", zIndex: 1500, display: 'flex', flexDirection: 'column', gap: 2, '@media (max-width: 1000px)': { right: 24 } }}>
         {hasPendingChanges && (
           <Tooltip title="Sincronizar cambios recientes" placement="left">
             <Fab color="primary" onClick={fetchApiUpdate} sx={{ animation: 'pulse-update 2s infinite' }}>
@@ -302,7 +302,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
             </Fab>
           </Tooltip>
         )}
-        <Tooltip title="Descargar" placement="left">
+        <Tooltip title="Descargar en PDF" placement="left">
           <Fab color="error" onClick={handleDownload} disabled={isApiLoading}>
             <PictureAsPdfIcon />
           </Fab>
@@ -314,7 +314,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
         <Box
           sx={{
             position: 'absolute',
-            bottom: 24,
+            bottom: 111,
             left: '50%',
             transform: 'translateX(-50%)',
             zIndex: 1500,
