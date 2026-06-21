@@ -360,7 +360,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
   {numPages > 2 && Array.from(new Array(numPages - 2), (el, index) => (
     <CroppedPage 
       key={`${currentFullUrl}_page_${index + 2}`}
-      pageNumber={index + 2} // Sumamos 3 porque 'index' empieza en 0
+      pageNumber={index + 3} // Sumamos 3 porque 'index' empieza en 0
       containerWidth={containerWidth}
       currentFullUrl={currentFullUrl}
     />

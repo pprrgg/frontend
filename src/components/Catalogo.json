@@ -116,25 +116,7 @@
     {
         "sector": "A61_Conectado_a_red",
         "grupo": "A0_Sistema_FV",
-        "cod": "FV06_pvgisampliado",
-        "descripcion": []
-    },
-    {
-        "sector": "A61_Conectado_a_red",
-        "grupo": "A0_Sistema_FV",
-        "cod": "FV01_Autoconsumo_sin_excedentes",
-        "descripcion": []
-    },
-    {
-        "sector": "A61_Conectado_a_red",
-        "grupo": "A0_Sistema_FV",
-        "cod": "FV03_pvgis6",
-        "descripcion": []
-    },
-    {
-        "sector": "A61_Conectado_a_red",
-        "grupo": "A0_Sistema_FV",
-        "cod": "FV07_pvgisampliadomulti",
+        "cod": "FV01_Rendimiento_de_un_sistema_FV_conectado_a_red",
         "descripcion": []
     }
 ]
