@@ -176,9 +176,11 @@ export default function TopNavBar() {
                 {"TÉCNICO".split("").map((char, i) => <span key={i}>{char}</span>)}
               </Typography>
               <Typography sx={{ color: "white", fontSize: "9px", fontWeight: 700, lineHeight: 1, textTransform: "uppercase", display: 'flex', justifyContent: 'space-between' }}>
-                {"PRoman".split("").map((char, i) => <span key={i}>{char}</span>)}
+                {"interactivo".split("").map((char, i) => <span key={i}>{char}</span>)}
               </Typography>
-
+              <Typography sx={{ color: "white", fontSize: "3px", fontWeight: 700, lineHeight: 1, textTransform: "uppercase", display: 'flex', justifyContent: 'space-between' }}>
+                {"p.roman".split("").map((char, i) => <span key={i}>{char}</span>)}
+              </Typography>
             </Box>
           </Box>
 

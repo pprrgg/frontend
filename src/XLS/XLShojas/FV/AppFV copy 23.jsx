@@ -324,65 +324,45 @@ class FreeGridManager {
     });
 
     // --- MARCADOR DE INFORMACIÓN (SOLO CÍRCULO CON NÚMERO, SIN INTERACCIÓN) ---
-// --- MARCADOR DE INFORMACIÓN (CÍRCULO CON NÚMERO Y NOMBRE DENTRO) ---
-const bloquesPintados = (grid.paneles?.length || 0);
-const panelesPorBloque = (grid.config.rows || 1) * (grid.config.cols || 1);
-const totalPaneles = bloquesPintados * panelesPorBloque;
-const nombreGrupo = grid.nombre || "G";
+    const bloquesPintados = (grid.paneles?.length || 0);
+    const panelesPorBloque = (grid.config.rows || 1) * (grid.config.cols || 1);
+    const totalPaneles = bloquesPintados * panelesPorBloque;
 
-// Icono del círculo con número y nombre dentro - SIN INTERACCIÓN
-const infoIcon = L.divIcon({
-  className: 'info-marker-icon',
-  html: `
+    // Icono del círculo con número - SIN INTERACCIÓN
+    const infoIcon = L.divIcon({
+      className: 'info-marker-icon',
+      html: `
     <div style="
-      background-color: #ff9800;
-      color: white;
+      background-color: #ff9800; /* Naranja sólido */
+      color: white;             /* Letras blancas */
       width: 30px;
       height: 30px;
       border-radius: 50%;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      border: 2px solid #ffffff;
+      border: 2px solid #ffffff; /* Borde blanco opcional para resaltar */
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      font-size: 14px;
+      font-weight: bold;
       font-family: 'Roboto', 'Helvetica', sans-serif;
       pointer-events: none;
       user-select: none;
-      line-height: 1;
-      padding: 2px 0;
     ">
-      <!-- NOMBRE DEL GRUPO (arriba dentro del círculo) -->
-      <span style="
-        font-size: 6px;
-        font-weight: 700;
-        text-transform: uppercase;
-        letter-spacing: 0.3px;
-        opacity: 0.9;
-        margin-bottom: 1px;
-        line-height: 1;
-      ">${nombreGrupo}</span>
-      
-      <!-- NÚMERO (abajo dentro del círculo) -->
-      <span style="
-        font-size: 13px;
-        font-weight: 800;
-        line-height: 1;
-      ">${totalPaneles}</span>
+      ${totalPaneles}
     </div>
   `,
-  iconSize: [30, 30],
-  iconAnchor: [15, 15]
-});
+      iconSize: [30, 30],
+      iconAnchor: [15, 15]
+    });
 
-// Marcador NO interactivo
-L.marker(grid.baseLatLng, {
-  icon: infoIcon,
-  interactive: false,
-  zIndexOffset: 1000,
-  keyboard: false
-}).addTo(this.gridLayer);
-
+    // Marcador NO interactivo
+    L.marker(grid.baseLatLng, {
+      icon: infoIcon,
+      interactive: false,
+      zIndexOffset: 1000,
+      keyboard: false
+    }).addTo(this.gridLayer);
   }
 
 
@@ -1518,3 +1498,5 @@ const App = () => {
 };
 
 export default App;
+
+

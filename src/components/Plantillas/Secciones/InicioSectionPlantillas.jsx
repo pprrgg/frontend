@@ -147,85 +147,84 @@ const InicioSection = () => {
             {/* IZQUIERDA: Título y Micro Badges */}
 
 
-            <Stack
-              direction="row"
-              spacing={2}
-              alignItems="center"
-              justifyContent="center"
-              sx={{
-                py: 2,
-                width: '100%',
-                flexWrap: 'wrap',
-                gap: 1.5
-              }}
-            >
-              <Typography
-                component="h1"
-                onClick={handleOpenMenu}
-                sx={{
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: { xs: "1.1rem", md: "1.3rem" },
-                  fontWeight: 800,
-                  color: "#1e293b",
-                  cursor: "pointer",
-                }}
-              >
-                Blog técnico{" "}
-                <Box
-                  component="span"
-                  sx={{
-                    display: "inline-block",
-                    px: 1,
-                    py: 0.2,
-                    mx: 0.5,
-                    borderRadius: 2,
-                    background: "linear-gradient(135deg, #2563eb, #7c3aed)",
-                    color: "white",
-                    fontWeight: 900,
-                    boxShadow: "0 4px 12px rgba(37,99,235,.25)",
-                  }}
-                >
-                  interactivo
-                </Box>{" "}
-                de P.Román
-              </Typography>
-              {/* <Stack
-    direction="row"
-    spacing={1}
-    sx={{ justifyContent: "center" }}
+<Stack
+  direction="row"
+  spacing={2}
+  alignItems="center"
+  justifyContent="center"
+  sx={{
+    py: 2,
+    width: '100%',
+    flexWrap: 'wrap',
+    gap: 1.5
+  }}
+>
+  <Typography
+    component="h1"
+    onClick={handleOpenMenu}
+    sx={{
+      fontFamily: "'Caveat', 'Patrick Hand', 'Comic Neue', cursive",
+      fontSize: { xs: "1.4rem", sm: "1.8rem", md: "2.2rem" },
+      fontWeight: 600,
+      color: "#1e293b",
+      cursor: "pointer",
+      letterSpacing: '-0.5px',
+      position: 'relative',
+      '&::after': {
+        content: '""',
+        position: 'absolute',
+        bottom: '-4px',
+        left: '0',
+        width: '100%',
+        height: '4px',
+        background: 'linear-gradient(90deg, #2563eb, #7c3aed, #ec4899)',
+        borderRadius: '4px',
+        opacity: 0.3,
+        transform: 'skewX(-15deg)',
+      }
+    }}
   >
-    {[
-      { icon: <PictureAsPdfIcon />, label: "Informes Personalizables en PDF" },
-      // { icon: <EditNoteIcon />, label: "Personalizables" },
-      // { icon: <SensorsIcon />, label: "en linea" },
-    ].map((item, idx) => (
-      <Chip
-        key={idx}
-        size="small"
-        icon={React.cloneElement(item.icon, {
-          style: { fontSize: '0.8rem', marginRight: '2px' }
-        })}
-        label={item.label}
-        onClick={handleOpenMenu}
-        variant="outlined"
-        sx={{
-          height: 24,
-          fontSize: '0.7rem',
-          fontWeight: 600,
-          borderRadius: '12px',
-          borderColor: '#cbd5e1',
-          color: '#64748b',
-          transition: 'all 0.2s',
-          '&:hover': { 
-            borderColor: '#3b82f6', 
-            color: '#3b82f6',
-            bgcolor: '#f1f5f9'
-          }
-        }}
-      />
-    ))}
-  </Stack> */}
-            </Stack>
+    <Box
+      component="span"
+      sx={{
+        display: "inline-block",
+        px: 1.5,
+        py: 0.3,
+        mx: 0.5,
+        borderRadius: "50% 20% 50% 20% / 20% 50% 20% 50%",
+        background: "linear-gradient(135deg, #2563eb, #7c3aed)",
+        color: "white",
+        fontWeight: 700,
+        transform: "rotate(-2deg)",
+        boxShadow: "0 4px 15px rgba(37,99,235,.3)",
+        fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.8rem" },
+        fontFamily: "'Caveat', cursive",
+        letterSpacing: '1px'
+      }}
+    >
+      Blog técnico  interactivo
+    </Box>
+    <Box
+      component="span"
+      sx={{
+        fontFamily: "'Patrick Hand', cursive",
+        fontWeight: 400,
+        color: '#64748b',
+        fontSize: { xs: "0.639rem", sm: "0.81rem", md: "0.93rem" },
+        ml: 0.5,
+        display: 'inline-block',
+        transform: 'rotate(1deg)',
+        '&::before': {
+          color: '#94a3b8'
+        }
+      }}
+    >
+      P.Román
+    </Box>
+  </Typography>
+</Stack>
+
+
             {/* DERECHA: Botón Guía */}
             <Button
               variant="text"
