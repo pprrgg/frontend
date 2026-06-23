@@ -1,5 +1,3 @@
-
-
 import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { Box, CircularProgress, Backdrop, Typography, Tooltip, Fab } from "@mui/material";
@@ -10,7 +8,6 @@ import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
-import { PDFDocument, rgb, degrees } from 'pdf-lib'; // <--- IMPORTAR degrees TAMBIÉN
 
 pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
@@ -94,8 +91,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
   const [isOffline, setIsOffline] = useState(false);
   const [containerWidth, setContainerWidth] = useState(800);
   const [hasPendingChanges, setHasPendingChanges] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
-  const [isDownloading, setIsDownloading] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false); // Nuevo estado para mostrar/ocultar flecha
 
   // --- REFS ---
   const scrollContainerRef = useRef(null);
@@ -190,7 +186,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
       setHasPendingChanges(false);
       setIsOffline(false);
       setNumPages(null);
-      setShowScrollTop(false);
+      setShowScrollTop(false); // Resetear estado de flecha al cambiar de ruta
 
       if (scrollContainerRef.current) {
         scrollContainerRef.current.scrollTop = 0;
@@ -201,11 +197,13 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
   // --- 4. FUNCIONALIDADES AUXILIARES ---
   const handleScroll = (e) => {
     const scrollTop = e.target.scrollTop;
-    const scrollThreshold = 300;
+    const scrollThreshold = 300; // Mostrar flecha después de 300px de scroll
 
+    // Guardar posición
     if (!numPages || isRestoringRef.current || isFetchingRef.current) return;
     if (scrollTop > 10) localStorage.setItem(storageKey, scrollTop.toString());
 
+    // Mostrar/ocultar flecha según posición del scroll
     setShowScrollTop(scrollTop > scrollThreshold);
   };
 
@@ -234,6 +232,7 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
   useEffect(() => {
     const updateWidth = () => {
       if (containerRef.current) {
+        // Obtenemos el ancho real del contenedor donde se renderizan las páginas
         setContainerWidth(Math.min(containerRef.current.offsetWidth, 900));
       }
     };
@@ -243,137 +242,15 @@ export const PdfViewerContent = forwardRef(({ sector: propSector, grupo: propGru
     return () => resizeObserver.disconnect();
   }, []);
 
-  // --- 5. FUNCIÓN DE DESCARGA CON MARCA DE AGUA (CORREGIDA) ---
-// --- 5. FUNCIÓN DE DESCARGA CON MARCA DE AGUA PROFESIONAL (SIN PRECIO) ---
-const handleDownload = async () => {
-  if (!pdfUrl || isDownloading) return;
-  
-  setIsDownloading(true);
-  
-  try {
-    // 1. Cargar el PDF
-    let pdfBlob;
-    if (pdfUrl.startsWith('blob:')) {
-      const response = await fetch(pdfUrl);
-      pdfBlob = await response.blob();
-    } else {
-      const response = await fetch(pdfUrl);
-      if (!response.ok) throw new Error('No se pudo cargar el PDF');
-      pdfBlob = await response.blob();
-    }
-
-    // 2. Cargar el PDF con pdf-lib
-    const arrayBuffer = await pdfBlob.arrayBuffer();
-    const pdfDoc = await PDFDocument.load(arrayBuffer);
-    const pages = pdfDoc.getPages();
-
-    // 3. Agregar marca de agua profesional (SIN PRECIO)
-    pages.forEach((page) => {
-      const { width, height } = page.getSize();
-      
-      // === MARCA PRINCIPAL: "MUESTRA TÉCNICA" ===
-      page.drawText('MUESTRA TÉCNICA', {
-        x: width / 2 - 240,
-        y: height / 2 + 150,
-        size: 55,
-        color: rgb(0.15, 0.15, 0.15),
-        opacity: 0.10,
-        rotate: degrees(-28),
-      });
-
-      // === SUBTEXTO: Explicación profesional ===
-      page.drawText('Documento de previsualización', {
-        x: width / 2 - 115,
-        y: height / 2,
-        size: 16,
-        color: rgb(0.3, 0.3, 0.3),
-        opacity: 0.3,
-        rotate: degrees(-28),
-      });
-
-      // === LLAMADA A LA ACCIÓN ELEGANTE: Solo contacto ===
-      page.drawText('Para versión completa y firmada:', {
-        x: width / 2 - 115,
-        y: height / 2 - 40,
-        size: 14,
-        color: rgb(0.2, 0.2, 0.2),
-        opacity: 0.35,
-        rotate: degrees(-28),
-      });
-
-      // === CONTACTO PROFESIONAL ===
-      page.drawText('contacto@proman.blog', {
-        x: width / 2 - 100,
-        y: height / 2 - 70,
-        size: 16,
-        color: rgb(0.1, 0.4, 0.7), // Azul profesional
-        opacity: 0.4,
-        rotate: degrees(-28),
-      });
-
-      // === MARCA EN ESQUINA INFERIOR DERECHA (sutil) ===
-      page.drawText('Versión: Muestra · Confidencial', {
-        x: width - 230,
-        y: 40,
-        size: 12,
-        color: rgb(0.4, 0.4, 0.4),
-        opacity: 0.2,
-        rotate: degrees(0),
-      });
-
-      // === MARCA EN ESQUINA SUPERIOR IZQUIERDA ===
-      page.drawText('https://proman.blog/', {
-        x: 40,
-        y: height - 45,
-        size: 13,
-        color: rgb(0.4, 0.4, 0.4),
-        opacity: 0.2,
-        rotate: degrees(0),
-      });
-
-      // === SEGUNDA MARCA DIAGONAL (más pequeña, patrón) ===
-      page.drawText('MUESTRA', {
-        x: width * 0.7,
-        y: height * 0.3,
-        size: 30,
-        color: rgb(0.2, 0.2, 0.2),
-        opacity: 0.08,
-        rotate: degrees(-28),
-      });
-    });
-
-    // 4. Guardar y descargar
-    const pdfBytes = await pdfDoc.save();
-    const newBlob = new Blob([pdfBytes], { type: 'application/pdf' });
+  const handleDownload = () => {
+    if (!pdfUrl) return;
     const link = document.createElement('a');
-    link.href = URL.createObjectURL(newBlob);
-    link.download = `${c}_MUESTRA_TECNICA.pdf`;
+    link.href = pdfUrl;
+    link.download = `${c}_actualizado.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-
-    setTimeout(() => URL.revokeObjectURL(link.href), 100);
-
-    // 5. Mostrar modal de contacto (opcional, ver abajo)
-
-  } catch (error) {
-    console.error('Error al agregar marca de agua:', error);
-    // Fallback
-    try {
-      const link = document.createElement('a');
-      link.href = pdfUrl;
-      link.download = `${c}_actualizado.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-    } catch (fallbackError) {
-      console.error('Error en descarga de respaldo:', fallbackError);
-      alert('No se pudo descargar el PDF. Intenta de nuevo.');
-    }
-  } finally {
-    setIsDownloading(false);
-  }
-};
+  };
 
   useImperativeHandle(ref, () => ({ refresh: () => fetchApiUpdate() }));
 
@@ -425,13 +302,9 @@ const handleDownload = async () => {
             </Fab>
           </Tooltip>
         )}
-        <Tooltip title={isDownloading ? "Procesando..." : "Descargar PDF con marca de agua"} placement="left">
-          <Fab 
-            color="error" 
-            onClick={handleDownload} 
-            disabled={isApiLoading || isDownloading}
-          >
-            {isDownloading ? <CircularProgress size={24} color="inherit" /> : <PictureAsPdfIcon />}
+        <Tooltip title="Descargar en PDF" placement="left">
+          <Fab color="error" onClick={handleDownload} disabled={isApiLoading}>
+            <PictureAsPdfIcon />
           </Fab>
         </Tooltip>
       </Box>
@@ -452,10 +325,10 @@ const handleDownload = async () => {
             <Fab
               onClick={scrollToTop}
               sx={{
-                bgcolor: 'rgba(0, 0, 0, 0.5)',
+                bgcolor: 'rgba(0, 0, 0, 0.5)', // Negro semitransparente
                 color: 'white',
                 '&:hover': {
-                  bgcolor: 'rgba(0, 0, 0, 0.4)',
+                  bgcolor: 'rgba(0, 0, 0, 0.4)', // Más opaco al hacer hover
                   transform: 'scale(1.1)',
                   transition: 'transform 0.2s'
                 }
@@ -476,20 +349,23 @@ const handleDownload = async () => {
 
       <Box ref={scrollContainerRef} onScroll={handleScroll} sx={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", alignItems: "center" }}>
         <Box sx={{ width: "100%", maxWidth: "900px", bgcolor: "#ffffff" }}>
-          <Document
-            key={currentFullUrl}
-            file={pdfUrl}
-            onLoadSuccess={({ numPages: total }) => { setNumPages(total); restoreScrollPosition(); }}
-          >
-            {numPages > 2 && Array.from(new Array(numPages - 2), (el, index) => (
-              <CroppedPage 
-                key={`${currentFullUrl}_page_${index + 2}`}
-                pageNumber={index + 2}
-                containerWidth={containerWidth}
-                currentFullUrl={currentFullUrl}
-              />
-            ))}
-          </Document>
+<Document
+  key={currentFullUrl}
+  file={pdfUrl}
+  onLoadSuccess={({ numPages: total }) => { setNumPages(total); restoreScrollPosition(); }}
+>
+  {/* 1. Si numPages es mayor a 2, creamos un array con (numPages - 2) elementos.
+     2. Usamos el índice para empezar a renderizar desde la página 3 (index + 3).
+  */}
+  {numPages > 2 && Array.from(new Array(numPages - 2), (el, index) => (
+    <CroppedPage 
+      key={`${currentFullUrl}_page_${index + 2}`}
+      pageNumber={index + 2} // Sumamos 3 porque 'index' empieza en 0
+      containerWidth={containerWidth}
+      currentFullUrl={currentFullUrl}
+    />
+  ))}
+</Document>
           <Box sx={{ height: '80px', width: '100%', bgcolor: '#ffffff' }} />
         </Box>
       </Box>
@@ -498,4 +374,3 @@ const handleDownload = async () => {
 });
 
 export default PdfViewerContent;
-

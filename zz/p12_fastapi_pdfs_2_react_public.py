@@ -1,20 +1,40 @@
 import os
 import shutil
-from pathlib import Path
-
-os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 origen = '/home/pk/Desktop/backend/fastapi/app/routers'
-destino = '../public'
-destino_completo = os.path.join(destino, 'routers')
-# Eliminar la carpeta de destino si existe
-if os.path.exists(destino_completo):
-    shutil.rmtree(destino_completo)
+destino = '../public/routers'
 
-# Función para excluir carpetas que contienen '__' en su nombre
-def exclude_folders_with_double_underscore(dir, dirs):
-    return [d for d in dirs if '__'  in d]
+if os.path.exists(destino):
+    shutil.rmtree(destino)
 
-# Copiar la carpeta completa, excluyendo carpetas con '__' en el nombre
-shutil.copytree(origen, destino_completo, ignore=exclude_folders_with_double_underscore)
+MAX_DEPTH = 2  # raíz + 2 niveles
 
+def ignore_deep_folders(current_dir, names):
+    # Profundidad relativa respecto al origen
+    rel_path = os.path.relpath(current_dir, origen)
+
+    if rel_path == '.':
+        depth = 0
+    else:
+        depth = len(rel_path.split(os.sep))
+
+    ignored = []
+
+    for name in names:
+        full_path = os.path.join(current_dir, name)
+
+        # Ignorar carpetas con '__'
+        if '__' in name:
+            ignored.append(name)
+
+        # Ignorar subcarpetas que superen la profundidad máxima
+        elif os.path.isdir(full_path) and depth >= MAX_DEPTH:
+            ignored.append(name)
+
+    return ignored
+
+shutil.copytree(
+    origen,
+    destino,
+    ignore=ignore_deep_folders
+)

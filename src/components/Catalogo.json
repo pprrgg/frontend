@@ -116,7 +116,19 @@
     {
         "sector": "A61_Conectado_a_red",
         "grupo": "A0_Sistema_FV",
+        "cod": "FV02_Rendimiento_de_un_sistema_FV_autónomo",
+        "descripcion": []
+    },
+    {
+        "sector": "A61_Conectado_a_red",
+        "grupo": "A0_Sistema_FV",
         "cod": "FV01_Rendimiento_de_un_sistema_FV_conectado_a_red",
+        "descripcion": []
+    },
+    {
+        "sector": "A61_Conectado_a_red",
+        "grupo": "A0_Sistema_FV",
+        "cod": "FV03_Gestión_de_carga_de_un_único_vehícul_eléctrico",
         "descripcion": []
     }
 ]

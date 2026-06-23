@@ -25,6 +25,7 @@ import NavigationBar from './components/NavBar/NavigationBar';
  * App principal configurada con HashRouter.
  * Ideal para despliegues en GitHub Pages o servidores estáticos.
  */
+
 const App = () => {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
