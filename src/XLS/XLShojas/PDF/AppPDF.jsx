@@ -272,17 +272,17 @@ const handleDownload = async () => {
       const { width, height } = page.getSize();
       
       // === MARCA PRINCIPAL: "MUESTRA TÉCNICA" ===
-      page.drawText('MUESTRA TÉCNICA', {
-        x: width / 2 - 240,
-        y: height / 2 + 150,
-        size: 55,
-        color: rgb(0.15, 0.15, 0.15),
+      page.drawText('Borrador', {
+        x: width / 2 - 260,
+        y: height / 2 + 200,
+        size: 150,
+        color: rgb(0.55, 0.15, 0.15),
         opacity: 0.10,
         rotate: degrees(-28),
       });
 
       // === SUBTEXTO: Explicación profesional ===
-      page.drawText('Documento de previsualización', {
+      page.drawText('Documento para previsualización', {
         x: width / 2 - 115,
         y: height / 2,
         size: 16,
@@ -292,9 +292,9 @@ const handleDownload = async () => {
       });
 
       // === LLAMADA A LA ACCIÓN ELEGANTE: Solo contacto ===
-      page.drawText('Para versión completa y firmada:', {
+      page.drawText('Para versión revisada y firmada:', {
         x: width / 2 - 115,
-        y: height / 2 - 40,
+        y: height / 2 - 60,
         size: 14,
         color: rgb(0.2, 0.2, 0.2),
         opacity: 0.35,
@@ -304,7 +304,7 @@ const handleDownload = async () => {
       // === CONTACTO PROFESIONAL ===
       page.drawText('contacto@proman.blog', {
         x: width / 2 - 100,
-        y: height / 2 - 70,
+        y: height / 2 - 90,
         size: 16,
         color: rgb(0.1, 0.4, 0.7), // Azul profesional
         opacity: 0.4,
@@ -312,7 +312,7 @@ const handleDownload = async () => {
       });
 
       // === MARCA EN ESQUINA INFERIOR DERECHA (sutil) ===
-      page.drawText('Versión: Muestra · Confidencial', {
+      page.drawText('Versión: Muestra ', {
         x: width - 230,
         y: 40,
         size: 12,
@@ -332,14 +332,14 @@ const handleDownload = async () => {
       });
 
       // === SEGUNDA MARCA DIAGONAL (más pequeña, patrón) ===
-      page.drawText('MUESTRA', {
-        x: width * 0.7,
-        y: height * 0.3,
-        size: 30,
-        color: rgb(0.2, 0.2, 0.2),
-        opacity: 0.08,
-        rotate: degrees(-28),
-      });
+      // page.drawText('MUESTRA', {
+      //   x: width * 0.7,
+      //   y: height * 0.3,
+      //   size: 30,
+      //   color: rgb(0.2, 0.2, 0.2),
+      //   opacity: 0.08,
+      //   rotate: degrees(-28),
+      // });
     });
 
     // 4. Guardar y descargar
