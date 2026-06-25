@@ -292,7 +292,7 @@ const handleDownload = async () => {
       });
 
       // === LLAMADA A LA ACCIÓN ELEGANTE: Solo contacto ===
-      page.drawText('Para versión revisada y firmada:', {
+      page.drawText('Para versión revisada y firmada, o documento a medida:', {
         x: width / 2 - 115,
         y: height / 2 - 60,
         size: 14,
